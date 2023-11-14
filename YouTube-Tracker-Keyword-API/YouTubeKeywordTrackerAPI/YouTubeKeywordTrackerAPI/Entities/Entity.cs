@@ -1,9 +1,8 @@
-﻿namespace YouTubeKeywordTrackerAPI.Entities
+﻿namespace YouTubeKeywordTrackerAPI.Entities;
+
+public class Entity
 {
-    public class Entity
-    {
-        public string? CreatedBy { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
-    }
+    public string? CreatedBy { get; set; }
+    public DateTime DateCreated { get; set; }
+    public DateTime DateModified { get; set; }
 }
