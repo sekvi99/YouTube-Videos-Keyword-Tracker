@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "J12+nrI8IUjQXBss8PrKp0s156b71ArBMDmaHG1HmYAvlLQSJ9ixd58f6QenoYH7YM5xECuZTxU+Mmk40WRyPw==",
+  "dgSpecHash": "zdU2K21fKyBMS+gpgjXQT+CXA70rT3/erYJbu7nyPiK6iSljc1bu22R5koNhrPmoi7rsLif+4cvSp2+KAZmnWg==",
   "success": true,
   "projectFilePath": "A:\\GithubProjects\\Projekt Magisterski App\\YouTube-Videos-Keyword-Tracker\\YouTube-Tracker-Keyword-API\\YouTubeKeywordTrackerAPI\\YouTubeKeywordTrackerAPI\\YouTubeKeywordTrackerAPI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.25\\microsoft.entityframeworkcore.6.0.25.nupkg.sha512",
