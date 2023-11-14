@@ -14,11 +14,42 @@ public class UsersSeeder : IDataSeeder<User>
     // TODO Implement Seed and GetItems after creating service for reading data from json
     public void Seed()
     {
-        throw new NotImplementedException();
+        if (_dbContext.Database.CanConnect())
+        {
+            if (!_dbContext.Users.Any())
+            {
+                var users = GetItems();
+                _dbContext.Users.AddRange(users);
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                // TODO throw custom exception
+            }
+        }
+        else
+        {
+            // TODO Throw custom exception
+        }
     }
 
     private IEnumerable<User> GetItems()
     {
-        throw new NotImplementedException();
+        // To Refactor l8er
+        var users = new List<User>()
+        {
+            new User()
+            {
+                Username = "admin",
+                PasswordHash = "admin",
+                Address = new Address()
+                {
+                    City = "New York",
+                    Street = "Admin street",
+                    PostalCode = "30-001"
+                }
+            }
+        };
+        return users;
     }
 }
