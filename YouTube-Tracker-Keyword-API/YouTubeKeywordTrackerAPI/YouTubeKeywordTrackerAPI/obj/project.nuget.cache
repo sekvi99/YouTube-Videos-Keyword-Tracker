@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "DIyRLZkj2Zt+VKDMiKjheROqasAMYvZuLIIA/s16sfY/HZc3ypKPwpX0LCzRJdLfiNyoJG6bEgCpmw8Qkbjqnw==",
+  "success": true,
+  "projectFilePath": "A:\\GithubProjects\\Projekt Magisterski App\\YouTube-Videos-Keyword-Tracker\\YouTube-Tracker-Keyword-API\\YouTubeKeywordTrackerAPI\\YouTubeKeywordTrackerAPI\\YouTubeKeywordTrackerAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
