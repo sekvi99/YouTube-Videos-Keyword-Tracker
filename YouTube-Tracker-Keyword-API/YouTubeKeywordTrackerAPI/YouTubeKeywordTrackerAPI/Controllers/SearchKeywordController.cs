@@ -27,6 +27,7 @@ public class SearchKeywordController : ControllerBase
     [HttpGet("user/{userId}")]
     public async Task<ActionResult<IEnumerable<SearchKeyword>>> GetKeywordsForUser(int userId)
     {
+        // TODO Change to id taken from user context
         var keywords = await _searchKeywordService.GetKeywordsForUserAsync(userId);
         return Ok(keywords);
     }

@@ -56,6 +56,7 @@ public class SearchKeywordService : ISearchKeywordService
             throw new InvalidOperationException("User alread has this keyword");
         }
         var newKeyword = _mapper.Map<CreateSearchKeywordDto, SearchKeyword>(keyword);
+        newKeyword.UserId = userId;
         _dbContext.Keywords.Add(newKeyword);
         await _dbContext.SaveChangesAsync();
     }
