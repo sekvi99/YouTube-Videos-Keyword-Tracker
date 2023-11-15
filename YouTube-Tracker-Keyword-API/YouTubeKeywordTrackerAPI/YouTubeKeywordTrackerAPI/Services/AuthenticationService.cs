@@ -56,7 +56,13 @@ public class AuthenticationService : IAuthenticationService
             var user = new User
             {
                 Username = model.Username,
-                PasswordHash = _passwordHasher.HashPassword(null, model.PasswordHash)
+                PasswordHash = _passwordHasher.HashPassword(null, model.PasswordHash),
+                Address = new Address()
+                {
+                    City = model.City,
+                    Street = model.Street,
+                    PostalCode = model.PostalCode,
+                }
             };
 
             await _dbContext.Users.AddAsync(user);
