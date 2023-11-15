@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using YouTubeKeywordTrackerAPI.Models;
+using YouTubeKeywordTrackerAPI.Models.Authentication;
+using YouTubeKeywordTrackerAPI.Models.Data;
 using YouTubeKeywordTrackerAPI.Services.Interfaces;
 
 namespace YouTubeKeywordTrackerAPI.Controllers;

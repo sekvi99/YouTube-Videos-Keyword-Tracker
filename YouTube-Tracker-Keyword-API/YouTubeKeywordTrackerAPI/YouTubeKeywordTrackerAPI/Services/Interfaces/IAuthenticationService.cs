@@ -1,8 +1,9 @@
-﻿using YouTubeKeywordTrackerAPI.Models;
+﻿using YouTubeKeywordTrackerAPI.Models.Authentication;
+
 namespace YouTubeKeywordTrackerAPI.Services.Interfaces;
 
 public interface IAuthenticationService
 {
-    public Task Register(UserDto model);
-    public Task<string> Login(UserDto model);
+    public Task Register(UserRegistrationDto user);
+    public Task<string> Login(UserLoginDto user);
 }

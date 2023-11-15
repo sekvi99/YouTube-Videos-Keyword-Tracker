@@ -2,7 +2,8 @@
 using YouTubeKeywordTrackerAPI.Entities;
 using YouTubeKeywordTrackerAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using YouTubeKeywordTrackerAPI.Models;
+using YouTubeKeywordTrackerAPI.Models.Authentication;
+using YouTubeKeywordTrackerAPI.Models.Data;
 
 namespace YouTubeKeywordTrackerAPI.Services;
 

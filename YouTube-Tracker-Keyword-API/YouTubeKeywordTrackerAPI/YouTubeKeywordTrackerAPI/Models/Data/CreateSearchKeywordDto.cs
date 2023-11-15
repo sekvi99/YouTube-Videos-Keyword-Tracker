@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace YouTubeKeywordTrackerAPI.Models;
+namespace YouTubeKeywordTrackerAPI.Models.Data;
 
-public class UpdateSearchKeywordDto
+public class CreateSearchKeywordDto
 {
     [Required]
     [MaxLength(60)]

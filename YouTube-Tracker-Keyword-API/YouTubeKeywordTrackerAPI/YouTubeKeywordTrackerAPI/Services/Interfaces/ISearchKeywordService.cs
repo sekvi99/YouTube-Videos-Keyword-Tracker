@@ -1,4 +1,5 @@
-﻿using YouTubeKeywordTrackerAPI.Models;
+﻿using YouTubeKeywordTrackerAPI.Models.Authentication;
+using YouTubeKeywordTrackerAPI.Models.Data;
 
 namespace YouTubeKeywordTrackerAPI.Services.Interfaces;
 

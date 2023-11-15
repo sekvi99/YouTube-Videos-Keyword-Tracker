@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using YouTubeKeywordTrackerAPI.Entities;
-using YouTubeKeywordTrackerAPI.Models;
+using YouTubeKeywordTrackerAPI.Models.Authentication;
 using YouTubeKeywordTrackerAPI.Services.Interfaces;
 
 namespace YouTubeKeywordTrackerAPI.Services;
@@ -20,7 +21,7 @@ public class AuthenticationService : IAuthenticationService
         _tokenGenerator = tokenGenerator;
 
     }
-    private async Task<User> GetUser(UserDto model)
+    private async Task<User> GetUser(UserRegistrationDto model)
     {
         var existingUser = await _dbContext
             .Users
@@ -28,18 +29,21 @@ public class AuthenticationService : IAuthenticationService
 
         return existingUser;
     }
-    public async Task<string> Login(UserDto model)
+    public async Task<string> Login(UserLoginDto user)
     {
-        var existingUser = await GetUser(model);
-        if (existingUser == null)
+        var userFromRepo = await _dbContext
+            .Users
+            .FirstOrDefaultAsync(u => u.Username == user.Username);
+
+        if (userFromRepo is null)
         {
-            // To Do Implement Custom Exception
-            // throw new NotFoundException("User with provided UserName does not exist in database");
+            // TODO Change to custom exception
+            throw new Exception("User with provided username does not exist");
         }
 
-        if (_passwordHasher.VerifyHashedPassword(existingUser, existingUser.PasswordHash, model.PasswordHash) == PasswordVerificationResult.Success)
+        if (_passwordHasher.VerifyHashedPassword(userFromRepo, userFromRepo.PasswordHash, user.Password) == PasswordVerificationResult.Success)
         {
-            var token = _tokenGenerator.GenerateJwtToken(existingUser);
+            var token = _tokenGenerator.GenerateJwtToken(userFromRepo);
             return token;
         }
         else
@@ -47,25 +51,25 @@ public class AuthenticationService : IAuthenticationService
             throw new UnauthorizedAccessException("Wrong Username or Password");
         }
     }
-    public async Task Register(UserDto model)
+    public async Task Register(UserRegistrationDto user)
     {
-        var existingUser = await GetUser(model);
+        var existingUser = await GetUser(user);
 
         if (existingUser == null)
         {
-            var user = new User
+            var newUser = new User
             {
-                Username = model.Username,
-                PasswordHash = _passwordHasher.HashPassword(null, model.PasswordHash),
+                Username = user.Username,
+                PasswordHash = _passwordHasher.HashPassword(null, user.Password),
                 Address = new Address()
                 {
-                    City = model.City,
-                    Street = model.Street,
-                    PostalCode = model.PostalCode,
+                    City = user.City,
+                    Street = user.Street,
+                    PostalCode = user.PostalCode,
                 }
             };
 
-            await _dbContext.Users.AddAsync(user);
+            await _dbContext.Users.AddAsync(newUser);
             await _dbContext.SaveChangesAsync();
         }
         else
