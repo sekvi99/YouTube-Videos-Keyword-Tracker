@@ -1,7 +1,7 @@
 ﻿using YouTubeKeywordTrackerAPI.Entities;
-using YouTubeKeywordTrackerAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using YouTubeKeywordTrackerAPI.Models.Authentication;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
 
 namespace YouTubeKeywordTrackerAPI.Controllers;
 [Route("api/[controller]")]

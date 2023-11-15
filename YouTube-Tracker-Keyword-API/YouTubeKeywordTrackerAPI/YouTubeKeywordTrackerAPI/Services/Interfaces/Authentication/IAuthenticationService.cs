@@ -1,6 +1,6 @@
 ﻿using YouTubeKeywordTrackerAPI.Models.Authentication;
 
-namespace YouTubeKeywordTrackerAPI.Services.Interfaces;
+namespace YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
 
 public interface IAuthenticationService
 {

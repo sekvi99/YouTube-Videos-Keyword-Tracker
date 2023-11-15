@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 using YouTubeKeywordTrackerAPI.Entities;
+using YouTubeKeywordTrackerAPI.Exceptions;
 using YouTubeKeywordTrackerAPI.Models.Authentication;
-using YouTubeKeywordTrackerAPI.Services.Interfaces;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Helpers;
 
 namespace YouTubeKeywordTrackerAPI.Services;
 
@@ -74,8 +74,7 @@ public class AuthenticationService : IAuthenticationService
         }
         else
         {
-            // To Do Implement Custom Exception
-            //throw new ResourceExistException("User with given name already exist");
+            throw new ResourceAlreadyExistException("User with provided username already exist");
         }
     }
 }

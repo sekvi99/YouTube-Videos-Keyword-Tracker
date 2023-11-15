@@ -1,4 +1,4 @@
-﻿namespace YouTubeKeywordTrackerAPI.Services.Interfaces
+﻿namespace YouTubeKeywordTrackerAPI.Services.Interfaces.Helpers
 {
     public interface IApplicationConfiguration
     {

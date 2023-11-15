@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using YouTubeKeywordTrackerAPI.Entities;
+using YouTubeKeywordTrackerAPI.Exceptions;
 using YouTubeKeywordTrackerAPI.Models.Authentication;
 using YouTubeKeywordTrackerAPI.Models.Data;
-using YouTubeKeywordTrackerAPI.Services.Interfaces;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Data;
 
 namespace YouTubeKeywordTrackerAPI.Controllers;
 
 [ApiController]
 [Authorize]
-[Route("api/keyword")]
+[Route("api/[controller]")]
 public class SearchKeywordController : ControllerBase
 {
     private readonly ISearchKeywordService _searchKeywordService;
@@ -16,39 +18,34 @@ public class SearchKeywordController : ControllerBase
     {
         _searchKeywordService = searchKeywordService;
     }
-
-    [HttpPost]
-    public async Task<ActionResult> CreateKeyword([FromBody] CreateSearchKeywordDto dto, [FromQuery] UserDto user)
-    {
-        var id = await _searchKeywordService.Create(dto, user);
-        return Created($"/api/keyword/{id}", null);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateBookStore([FromBody] UpdateSearchKeywordDto dto, [FromRoute] int id)
-    {
-        await _searchKeywordService.Update(dto, id);
-        return Ok();
-    }
-
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<SearchKeywordDto>>> GetAllKeywordForGivenUser([FromQuery] UserDto user)
-    {
-        var results = await _searchKeywordService.GetAllKeywordsForGivenUser(user);
-        return Ok(results);
-    }
-
     [HttpGet("{id}")]
-    public async Task<ActionResult<SearchKeywordDto>> Get([FromRoute] int id)
+    public async Task<ActionResult<SearchKeywordDto>> GetKeywordById(int id)
     {
-        var result = await _searchKeywordService.GetById(id);
-        return Ok(result);
+        var keywordDto = await _searchKeywordService.GetKeywordByIdAsync(id);
+        return Ok(keywordDto);
     }
-
+    [HttpGet("user/{userId}")]
+    public async Task<ActionResult<IEnumerable<SearchKeyword>>> GetKeywordsForUser(int userId)
+    {
+        var keywords = await _searchKeywordService.GetKeywordsForUserAsync(userId);
+        return Ok(keywords);
+    }
+    [HttpPost]
+    public async Task<ActionResult> AddKeyword([FromBody] CreateSearchKeywordDto keyword)
+    {
+        await _searchKeywordService.AddKeywordAsync(keyword);
+        return Ok("Keyword added successfully");
+    }
+    [HttpPut("{id}")]
+    public async Task<ActionResult> UpdateKeyword(int id, [FromBody] UpdateSearchKeywordDto keyword)
+    {
+        await _searchKeywordService.Update(keyword, id);
+        return Ok("Keyword updated successfully");
+    }
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(int id)
+    public async Task<ActionResult> DeleteKeyword(int id)
     {
         await _searchKeywordService.Delete(id);
-        return Ok();
+        return Ok("Keyword deleted successfully");
     }
 }

@@ -1,4 +1,4 @@
-﻿using YouTubeKeywordTrackerAPI.Services.Interfaces;
+﻿using YouTubeKeywordTrackerAPI.Services.Interfaces.Helpers;
 
 namespace YouTubeKeywordTrackerAPI.Services;
 

@@ -1,102 +1,84 @@
 ﻿using AutoMapper;
 using YouTubeKeywordTrackerAPI.Entities;
-using YouTubeKeywordTrackerAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using YouTubeKeywordTrackerAPI.Models.Authentication;
 using YouTubeKeywordTrackerAPI.Models.Data;
+using System.Security.Claims;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Data;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
+using YouTubeKeywordTrackerAPI.Exceptions;
 
 namespace YouTubeKeywordTrackerAPI.Services;
 
 public class SearchKeywordService : ISearchKeywordService
 {
     private readonly YouTubeKeywordTrackerDbContext _dbContext;
+    private readonly IUserIdentityService _userIdentityService;
     private readonly IMapper _mapper;
 
-    public SearchKeywordService(YouTubeKeywordTrackerDbContext context, IMapper mapper)
+    public SearchKeywordService(YouTubeKeywordTrackerDbContext context, IUserIdentityService userIdentityService, IMapper mapper)
     {
         _dbContext = context;
+        _userIdentityService = userIdentityService;
         _mapper = mapper;
     }
-
-    private async Task<SearchKeyword> SelectKeywordById(int id)
+    private async Task<SearchKeyword> GetKeywordById(int id)
     {
         var keyword = await _dbContext
             .Keywords
-            .FirstOrDefaultAsync(k => k.Id == id);
+            .FirstOrDefaultAsync(keyword => keyword.Id == id);
         return keyword;
     }
-
-    private async Task<IEnumerable<SearchKeyword>> SelectAllKeywordsForGivenUser(UserDto user)
+    public async Task<SearchKeyword> GetKeywordAsync(int keywordId)
     {
-        var keywords = await _dbContext
-            .Users
-            .Where(u => u.Username == user.Username)
-            .SelectMany(u => u.Keywords)
-            .ToListAsync();
-
-        return keywords;
+        return await _dbContext.Keywords.FindAsync(keywordId);
     }
-
-    public async Task<SearchKeywordDto> GetById(int id)
+    public async Task<SearchKeywordDto> GetKeywordByIdAsync(int id)
     {
-        var keyword = await SelectKeywordById(id);
-
+        var keyword = await GetKeywordById(id);
         if (keyword is null)
         {
-            // TODO Add custom exception there
-            // throw new NotFoundException
+            throw new ResourceNotFoundException($"Keyword with given id: {id} does not exist in database");
         }
-
         var keywordDto = _mapper.Map<SearchKeywordDto>(keyword);
         return keywordDto;
     }
-
-    public async Task<IEnumerable<SearchKeywordDto>> GetAllKeywordsForGivenUser(UserDto user)
+    public async Task<IEnumerable<SearchKeyword>> GetKeywordsForUserAsync(int userId)
     {
-        var keywords = await SelectAllKeywordsForGivenUser(user);
-        var keywordsDtos = _mapper.Map<List<SearchKeywordDto>>(keywords);
-        return keywordsDtos;
+        return await _dbContext
+            .Keywords
+            .Where(n => n.UserId == userId)
+            .ToListAsync();
     }
-
-    public async Task<int> Create(CreateSearchKeywordDto dto, UserDto user)
+    public async Task AddKeywordAsync(CreateSearchKeywordDto keyword)
     {
-        var keywords = await SelectAllKeywordsForGivenUser(user);
-        var keywordsDtos = _mapper.Map<List<CreateSearchKeywordDto>>(keywords);
-        if (keywordsDtos.Contains(dto))
+        var userId = _userIdentityService.GetUserId();
+        if (await _dbContext.Keywords.AnyAsync(k => k.UserId == userId && k.Keyword == keyword.Keyword))
         {
-            // TODO Add custom exception when resource already exist
-            // Keyword with given KeyWord Name exist for given user
+            throw new InvalidOperationException("User alread has this keyword");
         }
-
-        var keyword = _mapper.Map<SearchKeyword>(dto);
-        _dbContext.Keywords.Add(keyword);
-        await _dbContext.SaveChangesAsync();
-        return keyword.Id;
-    }
-
-    public async Task Delete(int id)
-    {
-        var keyword = await SelectKeywordById(id);
-
-        if (keyword is null)
-        {
-            // TODO Add custom exception
-        }
-
-        _dbContext.Remove(keyword);
+        var newKeyword = _mapper.Map<CreateSearchKeywordDto, SearchKeyword>(keyword);
+        _dbContext.Keywords.Add(newKeyword);
         await _dbContext.SaveChangesAsync();
     }
-
     public async Task Update(UpdateSearchKeywordDto dto, int id)
     {
-        var keyword = await SelectKeywordById(id);
-
+        var keyword = await GetKeywordById(id);
         if (keyword is null)
         {
-            // TODO Add custom ecception there
+            throw new ResourceNotFoundException($"Keyword with given id: {id} does not exist in database");
         }
-
         keyword.Keyword = dto.Keyword;
+        await _dbContext.SaveChangesAsync();
+    }
+    public async Task Delete(int id)
+    {
+        var keyword = await GetKeywordById(id);
+        if (keyword is null)
+        {
+            throw new ResourceNotFoundException($"Keyword with given id: {id} does not exist in database");
+        }
+        _dbContext.Remove(keyword);
         await _dbContext.SaveChangesAsync();
     }
 }
