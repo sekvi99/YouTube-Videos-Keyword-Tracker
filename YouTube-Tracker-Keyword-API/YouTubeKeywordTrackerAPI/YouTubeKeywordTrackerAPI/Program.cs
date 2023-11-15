@@ -12,6 +12,8 @@ using YouTubeKeywordTrackerAPI.Mapper;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<YouTubeKeywordTrackerDbContext>();
+builder.Services.AddScoped<ITokenGenerator, TokenGeneratorService>();
 builder.Services.AddTransient<IApplicationConfiguration, ConfigurationService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ISearchKeywordService, SearchKeywordService>();
@@ -55,5 +57,12 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    var seeder = serviceProvider.GetRequiredService<IDataSeeder<User>>();
+    seeder.Seed();
+}
 
 app.Run();

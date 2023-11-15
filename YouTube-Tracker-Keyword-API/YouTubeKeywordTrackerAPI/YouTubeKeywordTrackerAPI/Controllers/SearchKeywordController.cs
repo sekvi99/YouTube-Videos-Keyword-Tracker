@@ -17,7 +17,7 @@ public class SearchKeywordController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateKeyword([FromBody] CreateSearchKeywordDto dto, [FromBody] UserDto user)
+    public async Task<ActionResult> CreateKeyword([FromBody] CreateSearchKeywordDto dto, [FromQuery] UserDto user)
     {
         var id = await _searchKeywordService.Create(dto, user);
         return Created($"/api/keyword/{id}", null);
@@ -31,7 +31,7 @@ public class SearchKeywordController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<SearchKeywordDto>>> GetAllKeywordForGivenUser([FromBody] UserDto user)
+    public async Task<ActionResult<IEnumerable<SearchKeywordDto>>> GetAllKeywordForGivenUser([FromQuery] UserDto user)
     {
         var results = await _searchKeywordService.GetAllKeywordsForGivenUser(user);
         return Ok(results);
