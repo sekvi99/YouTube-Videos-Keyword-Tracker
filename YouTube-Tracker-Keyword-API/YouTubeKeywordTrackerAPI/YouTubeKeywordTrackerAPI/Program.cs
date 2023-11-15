@@ -3,18 +3,21 @@ using YouTubeKeywordTrackerAPI.Entities;
 using YouTubeKeywordTrackerAPI.Seeders;
 using YouTubeKeywordTrackerAPI.Seeders.Interfaces;
 using YouTubeKeywordTrackerAPI.Services;
-using YouTubeKeywordTrackerAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using YouTubeKeywordTrackerAPI.Mapper;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Data;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<YouTubeKeywordTrackerDbContext>();
+builder.Services.AddScoped<IHttpContextAccessor, IHttpContextAccessor>();
 builder.Services.AddScoped<ITokenGenerator, TokenGeneratorService>();
+builder.Services.AddScoped<IUserIdentityService, UserIdentityService>();
 builder.Services.AddTransient<IApplicationConfiguration, ConfigurationService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ISearchKeywordService, SearchKeywordService>();
@@ -41,8 +44,6 @@ builder.Services.AddAuthentication(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
 
 var app = builder.Build();
 

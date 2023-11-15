@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using YouTubeKeywordTrackerAPI.Entities;
 using Microsoft.EntityFrameworkCore;
-using YouTubeKeywordTrackerAPI.Models.Authentication;
 using YouTubeKeywordTrackerAPI.Models.Data;
-using System.Security.Claims;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Data;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
 using YouTubeKeywordTrackerAPI.Exceptions;
