@@ -33,3 +33,9 @@
 
 # Vs helper directory
 .vs
+
+# Python env
+env
+
+# .Env file
+.env
