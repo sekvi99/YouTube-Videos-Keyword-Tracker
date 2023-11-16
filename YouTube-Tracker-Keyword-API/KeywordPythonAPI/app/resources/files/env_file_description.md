@@ -1,12 +1,12 @@
 # Files Directory Structure
-**Directory Structure**
+**Directory Structure**\
 ![Alt text](image.png)
 
 **Directory Description**
 Inside the files directory, for the correct operation of the api, a directory named env must be created, with an .env file.
 
 # What the .env file should contain?
-**Variables Structure**
+**Variables Structure**\
 ![Alt text](image-1.png)
 
 **Variables Description**
