@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class ApiMethods(Enum):
     """
     Enum that determines possible api methods.
