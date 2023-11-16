@@ -21,6 +21,6 @@ app.add_middleware(
 async def get_keyword_raport(
     keyword: str = Path(..., description='Keyword to process data from youtube api')
 ):
-    ...    
+    return { 'test': 1}
 
 
