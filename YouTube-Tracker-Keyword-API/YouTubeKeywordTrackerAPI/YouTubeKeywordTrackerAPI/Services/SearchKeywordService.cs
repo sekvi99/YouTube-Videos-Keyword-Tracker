@@ -41,8 +41,9 @@ public class SearchKeywordService : ISearchKeywordService
         var keywordDto = _mapper.Map<SearchKeywordDto>(keyword);
         return keywordDto;
     }
-    public async Task<IEnumerable<SearchKeyword>> GetKeywordsForUserAsync(int userId)
+    public async Task<IEnumerable<SearchKeyword>> GetKeywordsForUserAsync()
     {
+        var userId = _userIdentityService.GetUserId();
         return await _dbContext
             .Keywords
             .Where(n => n.UserId == userId)

@@ -24,11 +24,10 @@ public class SearchKeywordController : ControllerBase
         var keywordDto = await _searchKeywordService.GetKeywordByIdAsync(id);
         return Ok(keywordDto);
     }
-    [HttpGet("user/{userId}")]
-    public async Task<ActionResult<IEnumerable<SearchKeyword>>> GetKeywordsForUser(int userId)
+    [HttpGet("user")]
+    public async Task<ActionResult<IEnumerable<SearchKeyword>>> GetKeywordsForUser()
     {
-        // TODO Change to id taken from user context
-        var keywords = await _searchKeywordService.GetKeywordsForUserAsync(userId);
+        var keywords = await _searchKeywordService.GetKeywordsForUserAsync();
         return Ok(keywords);
     }
     [HttpPost]

@@ -8,7 +8,7 @@ public interface ISearchKeywordService
 {
     public Task<SearchKeyword> GetKeywordAsync(int id);
     public Task<SearchKeywordDto> GetKeywordByIdAsync(int id);
-    public Task<IEnumerable<SearchKeyword>> GetKeywordsForUserAsync(int userId);
+    public Task<IEnumerable<SearchKeyword>> GetKeywordsForUserAsync();
     public Task AddKeywordAsync(CreateSearchKeywordDto keyword);
     public Task Update(UpdateSearchKeywordDto dto, int id);
     public Task Delete(int id);
