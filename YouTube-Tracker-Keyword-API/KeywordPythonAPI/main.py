@@ -27,10 +27,10 @@ async def get_keyword_raport(
 ):  
     yt_controller = YouTubeApiController(
         YOUTUBE_API_SECRET_KEY,
-        'https://www.youtube.com/watch',
+        YOUTUBE_URL_FORMAT,
         'GET',
         None,
-        'Fruit'
+        keyword
     )
     yt_controller.parse_response()
     return { 'test': 1}

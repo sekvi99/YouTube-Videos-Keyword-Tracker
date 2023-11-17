@@ -15,3 +15,6 @@ ENV_HANDLER: Final[EnvFileHandler] = EnvFileHandler(ENV_FILE)
 API_KEY_NAME: Final[str] = ENV_HANDLER.read_var_by_name('API_KEY_NAME')
 API_KEY: Final[str] = ENV_HANDLER.read_var_by_name('API_KEY')
 YOUTUBE_API_SECRET_KEY: Final[str] = ENV_HANDLER.read_var_by_name('YOUTUBE_API_SECRET_KEY')
+
+# * Application string consts
+YOUTUBE_URL_FORMAT: Final[str] = 'https://www.youtube.com/watch?v='
