@@ -4,6 +4,7 @@ from fastapi import FastAPI, Path
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.consts import *
+from app.controller.api_controllers.youtube_api_controller import YouTubeApiController
 
 # Setting up logger
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
@@ -23,10 +24,15 @@ app.add_middleware(
 @app.get('/api/keyword-raport/{keyword}')
 async def get_keyword_raport(
     keyword: str = Path(..., description='Keyword to process data from youtube api')
-):
-    print(API_KEY_NAME)
-    print(API_KEY)
-    print(YOUTUBE_API_SECRET_KEY)
+):  
+    yt_controller = YouTubeApiController(
+        YOUTUBE_API_SECRET_KEY,
+        'https://www.youtube.com/watch',
+        'GET',
+        None,
+        'Fruit'
+    )
+    yt_controller.parse_response()
     return { 'test': 1}
 
 

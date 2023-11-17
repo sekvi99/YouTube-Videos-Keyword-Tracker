@@ -3,13 +3,13 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Generic
 
-from api_methods import ApiMethods
+from .api_methods import ApiMethods
 
 from app.exceptions.api_method_exception import ApiMethodException
 from app.exceptions.api_url_exception import ApiUrlException
 from app.helpers.regex_url_checker import UrlRegexChecker
 from app.models.entity_dto import Entity, TDataType
-
+from typing import Optional
 
 @dataclass
 class AbstractApiController(ABC, Generic[TDataType]):
@@ -17,7 +17,7 @@ class AbstractApiController(ABC, Generic[TDataType]):
     _api_key: str # Api key
     _api_url: str # * Private variable for selecting propper url to get data from
     _api_method: str # * Private variable that stores information about http method
-    _api_data_parser: Entity[TDataType] # * Private parser with propper data type
+    _api_data_parser: Optional[Entity[TDataType]] # * Private parser with propper data type
     
     def __post_init__(self) -> None:
         """
@@ -26,7 +26,7 @@ class AbstractApiController(ABC, Generic[TDataType]):
         Raises:
             ApiMethodException: Occures when provided api method does not exist in enum context.
         """
-        if not self._api_method in list(ApiMethods):
+        if not any(method.value == self._api_method for method in ApiMethods):
             logging.error(f"Can't create api request with provided method: {self._api_method}")
             raise ApiMethodException(f"Wrong api method: {self._api_method}")
         

@@ -1,22 +1,21 @@
 import logging
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from googleapiclient.discovery import build
-
 from app.controller.abstract_api_controller import AbstractApiController
 from app.exceptions.yt_engine_build_exception import \
     YouTubeEngineBuildException
 from app.models.entity_dto import Entity
+from dateutil import parser
 
-
-@dataclass(frozen=True)
+@dataclass
 class YouTubeApiController(AbstractApiController):
     
     _query_param: str # * Private instance of api query param
-    _query_date_range: str = (datetime.utcnow() - timedelta(days=7)).isoformat() + 'Z' # ! Static date range to filter youtube movies
-    _youtube_client: Any
+    _query_date_range: str = None
+    _youtube_client: Any = None
     
     def __post_init__(self) -> None:
         """
@@ -26,6 +25,7 @@ class YouTubeApiController(AbstractApiController):
         logging.info('Building YouTube engine')
         try:
             self._youtube_client = build('youtube', 'v3', developerKey=self._api_key)
+            self._query_date_range = (datetime.utcnow() - timedelta(days=7)).replace(microsecond=0, tzinfo=timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')  # ! Static date range to filter youtube movies
             
         except YouTubeEngineBuildException:
             logging.error('Unknown error has occured, while building yt api engine')
@@ -37,6 +37,7 @@ class YouTubeApiController(AbstractApiController):
         Returns:
             Entity: _description_
         """
+        print(self._query_date_range)
         search_response = self._youtube_client.search().list(
             q=self._query_param,
             part='id,snippet',
@@ -44,10 +45,35 @@ class YouTubeApiController(AbstractApiController):
             order='date',
             publishedAfter=self._query_date_range
         ).execute()
-        
+
         # ! To Refactor just print for testing
         for item in search_response['items']:
-            video_title = item['snippet']['title']
             video_id = item['id']['videoId']
+
+            # Retrieve additional information
+            video_info = self._youtube_client.videos().list(
+                part='id,snippet,contentDetails,statistics',
+                id=video_id
+            ).execute()
+
+            snippet = video_info['items'][0]['snippet']
+            content_details = video_info['items'][0]['contentDetails']
+            statistics = video_info['items'][0]['statistics']
+
+            video_title = snippet['title']
             video_url = f'https://www.youtube.com/watch?v={video_id}'
-            print(f'Tytuł: {video_title}\nID: {video_id}\nURL: {video_url}\n\n')
+            views = statistics['viewCount']
+            comments = statistics['commentCount']
+            published_at = snippet['publishedAt']
+            duration = content_details['duration']
+            channel_title = snippet['channelTitle']
+
+            print(f'Tytuł: {video_title}')
+            print(f'ID: {video_id}')
+            print(f'URL: {video_url}')
+            print(f'Views: {views}')
+            print(f'Comments: {comments}')
+            print(f'Published At: {published_at}')
+            print(f'Duration: {duration}')
+            print(f'Channel Title: {channel_title}')
+            print('\n')
