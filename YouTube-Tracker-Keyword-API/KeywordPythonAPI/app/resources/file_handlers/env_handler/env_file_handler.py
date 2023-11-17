@@ -2,12 +2,12 @@ import logging
 from dataclasses import dataclass
 from typing import Dict
 
-from application.resources.file_handlers.abstract_file_handler import \
+from app.resources.file_handlers.abstract_file_handler import \
     FileHandler
 from dotenv import dotenv_values
 
 
-@dataclass
+@dataclass(frozen=True)
 class EnvFileHandler(FileHandler):
     """
     Class that definies way of extracting/ setting data in .env files.

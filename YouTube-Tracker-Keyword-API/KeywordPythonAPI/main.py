@@ -2,6 +2,7 @@ import logging
 
 from fastapi import FastAPI, Path
 from fastapi.middleware.cors import CORSMiddleware
+from app.consts import *
 
 # Setting up logger
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
@@ -22,6 +23,9 @@ app.add_middleware(
 async def get_keyword_raport(
     keyword: str = Path(..., description='Keyword to process data from youtube api')
 ):
+    print(API_KEY_NAME)
+    print(API_KEY)
+    print(YOUTUBE_API_SECRET_KEY)
     return { 'test': 1}
 
 
