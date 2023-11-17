@@ -2,9 +2,9 @@ import logging
 from dataclasses import dataclass
 from typing import Dict
 
-from app.resources.file_handlers.abstract_file_handler import \
-    FileHandler
 from dotenv import dotenv_values
+
+from app.resources.file_handlers.abstract_file_handler import FileHandler
 
 
 @dataclass(frozen=True)

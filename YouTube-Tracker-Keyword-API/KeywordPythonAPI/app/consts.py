@@ -1,6 +1,8 @@
-from typing import Final
-from app.resources.file_handlers.env_handler.env_file_handler import EnvFileHandler
 import os
+from typing import Final
+
+from app.resources.file_handlers.env_handler.env_file_handler import \
+    EnvFileHandler
 
 # * Absoulte application paths
 APP_DIR: Final[str] = os.path.dirname(os.path.abspath(__file__)) # Path to application directory

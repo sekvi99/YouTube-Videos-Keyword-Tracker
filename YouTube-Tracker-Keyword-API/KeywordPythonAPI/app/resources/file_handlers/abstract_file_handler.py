@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Dict
 
 
-@dataclass
+@dataclass(frozen=True)
 class FileHandler(ABC):
     """
     Class that definies way of handling files with diffrent extensions used in application.

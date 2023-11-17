@@ -2,6 +2,7 @@ import logging
 
 from fastapi import FastAPI, Path
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.consts import *
 
 # Setting up logger
