@@ -1,19 +1,23 @@
 import logging
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from typing import Generic
 
 from api_methods import ApiMethods
 
 from app.exceptions.api_method_exception import ApiMethodException
 from app.exceptions.api_url_exception import ApiUrlException
 from app.helpers.regex_url_checker import UrlRegexChecker
+from app.models.entity_dto import Entity, TDataType
 
 
 @dataclass
-class AbstractApiController(ABC):
+class AbstractApiController(ABC, Generic[TDataType]):
     
+    _api_key: str # Api key
     _api_url: str # * Private variable for selecting propper url to get data from
     _api_method: str # * Private variable that stores information about http method
+    _api_data_parser: Entity[TDataType] # * Private parser with propper data type
     
     def __post_init__(self) -> None:
         """
@@ -46,7 +50,7 @@ class AbstractApiController(ABC):
         Declaration of setter for api url.
 
         Args:
-            value (str): _description_
+            value (str): String representation of url.
         """
         if not UrlRegexChecker.is_url_valid(value):
             raise ApiUrlException(f"Provided url: {value} does not match endpoint criteria")
@@ -65,12 +69,23 @@ class AbstractApiController(ABC):
     
     @api_method.setter
     def api_method(self, value: str) -> None:
-        """_summary_
+        """
+        Declaration of setter for api method.
 
         Args:
-            value (str): _description_
+            value (str): String representation of api method.
         """
         if not value in list(ApiMethods):
             raise ApiMethodException(f"Wrong api method: {self._api_method}")
         
         self._api_method = value 
+        
+    @abstractmethod
+    def parse_response(self) -> Entity[TDataType]:
+        """
+        Should return parsed information of provided data type in given data type.
+
+        Returns:
+            Entity[TDataType]: Parsed information of provided data type in entity format.
+        """
+        ...

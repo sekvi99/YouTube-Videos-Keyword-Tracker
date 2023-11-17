@@ -1,17 +1,17 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import List
+from typing import Generic, List
 
-from app.models.entity_dto import Entity
+from app.models.entity_dto import Entity, TDataType
 
 
 @dataclass
-class AbstractParseService(ABC):
+class AbstractParseService(ABC, Generic[TDataType]):
     
-    _data_to_parse: List[str] # ! Provide propper data type after checking api
+    _data_to_parse: List[TDataType] # * Data to parse of some type
     
     @abstractmethod
-    def parse_data(self) -> Entity:
+    def parse_data(self) -> Entity[TDataType]:
         """
         Should return parsed information in form of Entity.
 
