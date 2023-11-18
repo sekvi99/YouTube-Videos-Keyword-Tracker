@@ -1,9 +1,11 @@
-from app.services.abstract_parsing_service import AbstractParseService
-from dataclasses import dataclass
-from app.models.keyword_dto import KeywordDto
-from typing import Optional
-from datetime import datetime
 import logging
+from dataclasses import dataclass
+from datetime import datetime
+from typing import Optional
+
+from app.models.keyword_dto import KeywordDto
+from app.services.abstract_parsing_service import AbstractParseService
+
 
 @dataclass
 class YouTubeDataParseService(AbstractParseService):

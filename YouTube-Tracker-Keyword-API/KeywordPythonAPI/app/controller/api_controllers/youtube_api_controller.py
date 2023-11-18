@@ -4,13 +4,16 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from googleapiclient.discovery import build
+
 from app.controller.abstract_api_controller import AbstractApiController
+from app.exceptions.data_parse_exception import DataParseException
 from app.exceptions.yt_engine_build_exception import \
     YouTubeEngineBuildException
 from app.models.entity_dto import Entity
-from app.exceptions.data_parse_exception import DataParseException
 from app.models.keyword_dto import KeywordDto
-from app.services.yt_data_parser.yt_data_parsing_service import YouTubeDataParseService
+from app.services.yt_data_parser.yt_data_parsing_service import \
+    YouTubeDataParseService
+
 
 @dataclass
 class YouTubeApiController(AbstractApiController):

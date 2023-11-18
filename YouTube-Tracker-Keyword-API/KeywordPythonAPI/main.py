@@ -2,8 +2,10 @@ import logging
 
 from fastapi import FastAPI, Path
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.consts import *
-from app.controller.api_controllers.youtube_api_controller import YouTubeApiController
+from app.controller.api_controllers.youtube_api_controller import \
+    YouTubeApiController
 
 # Setting up logger
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
