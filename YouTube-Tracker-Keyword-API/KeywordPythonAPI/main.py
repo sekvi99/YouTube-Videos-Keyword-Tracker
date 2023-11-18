@@ -1,18 +1,13 @@
-import logging
-
-from fastapi import FastAPI, Path, HTTPException
+from fastapi import FastAPI, HTTPException, Path
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.consts import *
 from app.controller.api_controllers.youtube_api_controller import \
     YouTubeApiController
-
-from app.models.keyword_dto import KeywordDto
 from app.models.entity_dto import Entity
+from app.models.keyword_dto import KeywordDto
 from app.models.keyword_raport_dto import KeywordRaportDto
-
-# Setting up logger
-logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
+from logger_conf import logger
 
 app = FastAPI()
 
@@ -30,6 +25,7 @@ app.add_middleware(
 async def get_keyword_collection(
     keyword: str = Path(..., description='Keyword to process data from youtube api')
 ):  
+    logger.info(f"Creating summary for keyword: {keyword}")
     yt_controller = YouTubeApiController(
         YOUTUBE_API_SECRET_KEY,
         YOUTUBE_URL_FORMAT,
@@ -43,7 +39,6 @@ async def get_keyword_collection(
 async def create_keyword_raport(
     data: Entity[KeywordDto]
 ):
-    print(data.items)
     try:
         sorted_collection = sorted(data.items, key=lambda x: x.views, reverse=True)
         print(sorted_collection)

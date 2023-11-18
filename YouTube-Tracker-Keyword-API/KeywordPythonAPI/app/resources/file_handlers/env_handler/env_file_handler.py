@@ -1,10 +1,10 @@
-import logging
 from dataclasses import dataclass
 from typing import Dict
 
 from dotenv import dotenv_values
 
 from app.resources.file_handlers.abstract_file_handler import FileHandler
+from logger_conf import logger
 
 
 @dataclass(frozen=True)
@@ -29,7 +29,7 @@ class EnvFileHandler(FileHandler):
                 k, v = line.split('=', 1)
                 env_data[k] = v
                 
-        logging.info(f'Correctly extracted info from .env file: {self._file_path}')
+        logger.info(f'Correctly extracted info from .env file: {self._file_path}')
         return env_data
     
     def read_var_by_name(self, var_name: str) -> str:
@@ -46,11 +46,11 @@ class EnvFileHandler(FileHandler):
         val = env_variables.get(var_name)
         
         if val:
-            logging.info(f'Correctly extracted: {var_name} from .env file.')
+            logger.info(f'Correctly extracted: {var_name} from .env file.')
             return val
         
         else:
-            logging.error(f'Unable to extract {var_name} from .env file')
+            logger.error(f'Unable to extract {var_name} from .env file')
     
     def write(self, data: Dict[str, str]) -> None:
         """
@@ -68,8 +68,8 @@ class EnvFileHandler(FileHandler):
                 for k, v in data.items():
                     f.write(f'{k}={v}')
 
-            logging.info('Correctly saved data to .env file')
+            logger.info('Correctly saved data to .env file')
             
         else:
-            logging.error('Unable to save data to .env file')
+            logger.error('Unable to save data to .env file')
             raise TypeError(f'Expected dictionary provided: {type(data)}')

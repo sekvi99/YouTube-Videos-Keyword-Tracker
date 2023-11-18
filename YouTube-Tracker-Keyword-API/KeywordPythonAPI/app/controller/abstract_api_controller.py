@@ -1,4 +1,3 @@
-import logging
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
@@ -6,6 +5,7 @@ from app.exceptions.api_method_exception import ApiMethodException
 from app.exceptions.api_url_exception import ApiUrlException
 from app.helpers.regex_url_checker import UrlRegexChecker
 from app.models.entity_dto import Entity, TDataType
+from logger_conf import logger
 
 from .api_methods import ApiMethods
 
@@ -25,11 +25,11 @@ class AbstractApiController(ABC):
             ApiMethodException: Occures when provided api method does not exist in enum context.
         """
         if not any(method.value == self._api_method for method in ApiMethods):
-            logging.error(f"Can't create api request with provided method: {self._api_method}")
+            logger.error(f"Can't create api request with provided method: {self._api_method}")
             raise ApiMethodException(f"Wrong api method: {self._api_method}")
         
         if not UrlRegexChecker.is_url_valid(self._api_url):
-            logging.error(f"Provided url: {self._api_url} doesn't match endpoint criteria")
+            logger.error(f"Provided url: {self._api_url} doesn't match endpoint criteria")
             raise ApiUrlException(f"Provided url: {self._api_url} does not match endpoint criteria")
         
     @property

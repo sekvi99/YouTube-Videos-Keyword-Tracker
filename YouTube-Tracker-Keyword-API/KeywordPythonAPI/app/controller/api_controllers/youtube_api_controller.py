@@ -1,4 +1,3 @@
-import logging
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from typing import Any
@@ -13,6 +12,7 @@ from app.models.entity_dto import Entity
 from app.models.keyword_dto import KeywordDto
 from app.services.yt_data_parser.yt_data_parsing_service import \
     YouTubeDataParseService
+from logger_conf import logger
 
 
 @dataclass
@@ -27,13 +27,13 @@ class YouTubeApiController(AbstractApiController):
         Overwritten post init for building yt engine
         """
         super().__post_init__()
-        logging.info('Building YouTube engine')
+        logger.info('Building YouTube engine')
         try:
             self._youtube_client = build('youtube', 'v3', developerKey=self._api_key)
             self._query_date_range = (datetime.utcnow() - timedelta(days=7)).replace(microsecond=0, tzinfo=timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')  # ! Static date range to filter youtube movies
             
         except YouTubeEngineBuildException:
-            logging.error('Unknown error has occured, while building yt api engine')
+            logger.error('Unknown error has occured, while building yt api engine')
         
     
     def parse_response(self) -> Entity[KeywordDto]:
@@ -43,6 +43,7 @@ class YouTubeApiController(AbstractApiController):
         Returns:
             Entity[KeywordDto]: Collection that respects Entity format.
         """
+        logger.info('Extracting information from youtube api')
         search_response = self._youtube_client.search().list(
             q=self._query_param,
             part='id,snippet',
@@ -52,24 +53,28 @@ class YouTubeApiController(AbstractApiController):
         ).execute()
         
         collection = list()
-        try:
-            for item in search_response['items']:
-                video_id = item['id']['videoId']
-                video_info = self._youtube_client.videos().list(
-                    part='id,snippet,contentDetails,statistics',
-                    id=video_id
-                ).execute()
+        
+        for item in search_response['items']:
+            video_id = item['id']['videoId']
+            video_info = self._youtube_client.videos().list(
+                part='id,snippet,contentDetails,statistics',
+                id=video_id
+            ).execute()
+            logger.info(f'Parsing api response for video: {video_id}')
+            
+            try:
                 parser = YouTubeDataParseService(video_info)
                 data = parser.parse_data(video_id)
                 if data != None:
                     collection.append(data)
-
-            return Entity(
-                count=len(collection),
-                items=collection
-            )
-        
-        except DataParseException:
-            logging.error('Error occured while parsing data')
-        except Exception:
-            logging.error('Unknown error has occured')
+                    
+            except (KeyError, TypeError) as e:
+                logger.error(f"Error parsing data: {e}")
+                
+            except Exception:
+                logger.error('Unknown error has occured')       
+            
+        return Entity(
+            count=len(collection),
+            items=collection
+        )

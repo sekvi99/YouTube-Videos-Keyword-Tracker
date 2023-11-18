@@ -1,10 +1,10 @@
-import logging
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
 from app.models.keyword_dto import KeywordDto
 from app.services.abstract_parsing_service import AbstractParseService
+from logger_conf import logger
 
 
 @dataclass
@@ -28,7 +28,7 @@ class YouTubeDataParseService(AbstractParseService):
         try:
             return datetime.fromisoformat(date_str.replace("Z", "+00:00"))
         except (ValueError, TypeError) as e:
-            print(f"Error parsing date: {e}")
+            logger.error(f"Error parsing date: {e}")
             return None
 
     def parse_data(self, video_id: int) -> KeywordDto:
@@ -46,19 +46,23 @@ class YouTubeDataParseService(AbstractParseService):
             snippet = item.get('snippet', {})
             content_details = item.get('contentDetails', {})
             statistics = item.get('statistics', {})
-
+            logger.info('Correctly extracted: snippet, contentDetails and statistics')
+            
             parsed_object = KeywordDto(
-                videoTitle=snippet.get('title'),
+                videoTitle=snippet.get('title', None),
                 videoUrl=self._video_url_pattern.format(video_id),
-                views=statistics.get('viewCount'),
-                commentsCount=statistics.get('commentCount'),
-                publishedAt=snippet.get('publishedAt'),
-                duration=content_details.get('duration'),
-                channelTitle=snippet.get('channelTitle')
+                views=statistics.get('viewCount', None),
+                commentsCount=statistics.get('commentCount', None),
+                publishedAt=snippet.get('publishedAt', None),
+                duration=content_details.get('duration', None),
+                channelTitle=snippet.get('channelTitle', None)
             )
+            
+            logger.info('Correctly parsed object')
+            print(parsed_object)
             return parsed_object
 
         except (KeyError, TypeError) as e:
-            logging.error(f"Error parsing data: {e}")
+            logger.error(f"Error parsing data: {e}")
             return None 
 

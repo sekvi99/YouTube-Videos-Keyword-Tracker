@@ -1,8 +1,9 @@
-import logging
 import os
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Dict
+
+from logger_conf import logger
 
 
 @dataclass(frozen=True)
@@ -18,7 +19,7 @@ class FileHandler(ABC):
         Post init method for checking whether provided path exist in OS.
         """
         if not os.path.exists(self._file_path):
-            logging.error(f'Path to file does not exist: {self._file_path} in OS.')
+            logger.error(f'Path to file does not exist: {self._file_path} in OS.')
         
     @property
     def file_path(self) -> str:
@@ -45,7 +46,7 @@ class FileHandler(ABC):
             self._file_path = path
         else:
             msg = f'File {path} does not exist.'
-            logging.error(msg)
+            logger.error(msg)
             raise FileNotFoundError(msg)
         
     @abstractmethod
