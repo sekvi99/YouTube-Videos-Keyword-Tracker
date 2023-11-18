@@ -54,7 +54,7 @@ public class SearchKeywordService : ISearchKeywordService
         var userId = _userIdentityService.GetUserId();
         if (await _dbContext.Keywords.AnyAsync(k => k.UserId == userId && k.Keyword == keyword.Keyword))
         {
-            throw new InvalidOperationException("User alread has this keyword");
+            throw new ResourceAlreadyExistException("User alread has this keyword");
         }
         var newKeyword = _mapper.Map<CreateSearchKeywordDto, SearchKeyword>(keyword);
         newKeyword.UserId = userId;

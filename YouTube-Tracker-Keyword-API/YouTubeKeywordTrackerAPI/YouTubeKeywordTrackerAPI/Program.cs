@@ -25,6 +25,7 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ISearchKeywordService, SearchKeywordService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IDataSeeder<User>, UsersSeeder>();
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(YouTubeKeywordTrackerMappingProfile)); // New version of autoMapper conf
 builder.Services.AddAuthentication(options =>
