@@ -11,6 +11,7 @@ using YouTubeKeywordTrackerAPI.Services.Interfaces.Data;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Helpers;
 using Microsoft.OpenApi.Models;
+using YouTubeKeywordTrackerAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,6 +81,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Register custom middlewares
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseAuthentication();
 
