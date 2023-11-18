@@ -12,12 +12,14 @@ using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Helpers;
 using Microsoft.OpenApi.Models;
 using YouTubeKeywordTrackerAPI.Middleware;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.ExternalDataService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<YouTubeKeywordTrackerDbContext>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped<ITokenGenerator, TokenGeneratorService>();
 builder.Services.AddScoped<IUserIdentityService, UserIdentityService>();
 builder.Services.AddTransient<IApplicationConfiguration, ConfigurationService>();
@@ -25,6 +27,7 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ISearchKeywordService, SearchKeywordService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IDataSeeder<User>, UsersSeeder>();
+builder.Services.AddScoped<IYouTubeApiKeywordService,  YouTubeApiKeywordService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(YouTubeKeywordTrackerMappingProfile)); // New version of autoMapper conf
