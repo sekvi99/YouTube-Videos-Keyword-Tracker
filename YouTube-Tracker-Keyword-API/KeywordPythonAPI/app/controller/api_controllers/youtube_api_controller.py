@@ -9,6 +9,8 @@ from app.exceptions.yt_engine_build_exception import \
     YouTubeEngineBuildException
 from app.models.entity_dto import Entity
 from app.exceptions.data_parse_exception import DataParseException
+from app.models.keyword_dto import KeywordDto
+from app.services.yt_data_parser.yt_data_parsing_service import YouTubeDataParseService
 
 @dataclass
 class YouTubeApiController(AbstractApiController):
@@ -31,7 +33,7 @@ class YouTubeApiController(AbstractApiController):
             logging.error('Unknown error has occured, while building yt api engine')
         
     
-    def parse_response(self) -> Entity:
+    def parse_response(self) -> Entity[KeywordDto]:
         """_summary_
 
         Returns:
@@ -40,13 +42,12 @@ class YouTubeApiController(AbstractApiController):
         search_response = self._youtube_client.search().list(
             q=self._query_param,
             part='id,snippet',
-            maxResults=200,
+            maxResults=50,
             order='date',
             publishedAfter=self._query_date_range
         ).execute()
         
         collection = list()
-        
         try:
             for item in search_response['items']:
                 video_id = item['id']['videoId']
@@ -54,45 +55,17 @@ class YouTubeApiController(AbstractApiController):
                     part='id,snippet,contentDetails,statistics',
                     id=video_id
                 ).execute()
-                
-                collection.append(self._api_data_parser.parse_data(video_info))
-            
-            return collection
+                parser = YouTubeDataParseService(video_info)
+                data = parser.parse_data(video_id)
+                if data != None:
+                    collection.append(data)
+
+            return Entity(
+                count=len(collection),
+                items=collection
+            )
         
         except DataParseException:
             logging.error('Error occured while parsing data')
         except Exception:
-            logging.error('Unknown error has occured')    
-        
-
-        # # ! To Refactor just print for testing
-        # for item in search_response['items']:
-        #     video_id = item['id']['videoId']
-
-        #     # Retrieve additional information
-        #     video_info = self._youtube_client.videos().list(
-        #         part='id,snippet,contentDetails,statistics',
-        #         id=video_id
-        #     ).execute()
-
-        #     snippet = video_info['items'][0]['snippet']
-        #     content_details = video_info['items'][0]['contentDetails']
-        #     statistics = video_info['items'][0]['statistics']
-
-        #     video_title = snippet['title']
-        #     video_url = f'https://www.youtube.com/watch?v={video_id}'
-        #     views = statistics['viewCount']
-        #     comments = statistics['commentCount']
-        #     published_at = snippet['publishedAt']
-        #     duration = content_details['duration']
-        #     channel_title = snippet['channelTitle']
-
-        #     print(f'Tytuł: {video_title}')
-        #     print(f'ID: {video_id}')
-        #     print(f'URL: {video_url}')
-        #     print(f'Views: {views}')
-        #     print(f'Comments: {comments}')
-        #     print(f'Published At: {published_at}')
-        #     print(f'Duration: {duration}')
-        #     print(f'Channel Title: {channel_title}')
-        #     print('\n')
+            logging.error('Unknown error has occured')

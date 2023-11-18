@@ -1,23 +1,21 @@
 import logging
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Generic
+from app.models.entity_dto import Entity
 
 from .api_methods import ApiMethods
 
 from app.exceptions.api_method_exception import ApiMethodException
 from app.exceptions.api_url_exception import ApiUrlException
 from app.helpers.regex_url_checker import UrlRegexChecker
-from app.models.entity_dto import Entity, TDataType
-from typing import Optional
+from app.models.entity_dto import TDataType
 
 @dataclass
-class AbstractApiController(ABC, Generic[TDataType]):
+class AbstractApiController(ABC):
     
     _api_key: str # Api key
     _api_url: str # * Private variable for selecting propper url to get data from
     _api_method: str # * Private variable that stores information about http method
-    _api_data_parser: Optional[Entity[TDataType]] # * Private parser with propper data type
     
     def __post_init__(self) -> None:
         """
@@ -75,8 +73,8 @@ class AbstractApiController(ABC, Generic[TDataType]):
         Args:
             value (str): String representation of api method.
         """
-        if not value in list(ApiMethods):
-            raise ApiMethodException(f"Wrong api method: {self._api_method}")
+        if not any(method.value == value for method in ApiMethods):
+            raise ApiMethodException(f"Wrong api method: {value}")
         
         self._api_method = value 
         

@@ -2,7 +2,6 @@ import logging
 
 from fastapi import FastAPI, Path
 from fastapi.middleware.cors import CORSMiddleware
-
 from app.consts import *
 from app.controller.api_controllers.youtube_api_controller import YouTubeApiController
 
@@ -29,10 +28,9 @@ async def get_keyword_raport(
         YOUTUBE_API_SECRET_KEY,
         YOUTUBE_URL_FORMAT,
         'GET',
-        None,
         keyword
     )
-    yt_controller.parse_response()
-    return { 'test': 1}
+    collection = yt_controller.parse_response()
+    return collection
 
 
