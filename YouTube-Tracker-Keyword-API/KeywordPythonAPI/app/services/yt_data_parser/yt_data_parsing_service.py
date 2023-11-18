@@ -16,24 +16,31 @@ class YouTubeDataParseService(AbstractParseService):
          self._video_url_pattern = 'https://www.youtube.com/watch?v={}'
 
     def _parse_date(self, date_str: str) -> datetime:
+        """
+        Private method responsible for parsing date_str to datetime obj.
+
+        Args:
+            date_str (str): String representaiton od date.
+
+        Returns:
+            datetime: Parsed datetime obj
+        """
         try:
-            # Add your date parsing logic here
-            # Example: return datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
-            pass
+            return datetime.fromisoformat(date_str.replace("Z", "+00:00"))
         except (ValueError, TypeError) as e:
             print(f"Error parsing date: {e}")
             return None
 
-    def _parse_duration(self, duration_str: str) -> str:
-        try:
-            # Add your duration parsing logic here
-            # Example: return f"{hours} hours, {minutes} minutes, {seconds} seconds"
-            pass
-        except (ValueError, TypeError) as e:
-            print(f"Error parsing duration: {e}")
-            return None
-
     def parse_data(self, video_id: int) -> KeywordDto:
+        """
+        Declaration of parser parse_data method.
+
+        Args:
+            video_id (int): Id of youtube video.
+
+        Returns:
+            KeywordDto: Parsed yt video information that requires format of keywordDto.
+        """
         try:
             item = self._data_to_parse['items'][0]
             snippet = item.get('snippet', {})

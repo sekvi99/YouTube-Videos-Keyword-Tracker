@@ -37,10 +37,11 @@ class YouTubeApiController(AbstractApiController):
         
     
     def parse_response(self) -> Entity[KeywordDto]:
-        """_summary_
+        """
+        Declaration of method for parsing response from youtube api.
 
         Returns:
-            Entity: _description_
+            Entity[KeywordDto]: Collection that respects Entity format.
         """
         search_response = self._youtube_client.search().list(
             q=self._query_param,
