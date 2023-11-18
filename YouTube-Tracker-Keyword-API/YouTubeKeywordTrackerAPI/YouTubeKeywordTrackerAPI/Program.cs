@@ -13,6 +13,7 @@ using YouTubeKeywordTrackerAPI.Services.Interfaces.Helpers;
 using Microsoft.OpenApi.Models;
 using YouTubeKeywordTrackerAPI.Middleware;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.ExternalDataService;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,6 +77,9 @@ builder.Services.AddSwaggerGen(c =>
             }
             });
 });
+
+builder.Logging.ClearProviders();
+builder.WebHost.UseNLog();
 
 var app = builder.Build();
 

@@ -13,12 +13,14 @@ public class AuthenticationService : IAuthenticationService
     private readonly IPasswordHasher<User> _passwordHasher;
     private readonly YouTubeKeywordTrackerDbContext _dbContext;
     private readonly ITokenGenerator _tokenGenerator;
+    private readonly ILogger<AuthenticationService> _logger;
 
-    public AuthenticationService(IPasswordHasher<User> passwordHasher, YouTubeKeywordTrackerDbContext dbContext, ITokenGenerator tokenGenerator)
+    public AuthenticationService(IPasswordHasher<User> passwordHasher, YouTubeKeywordTrackerDbContext dbContext, ITokenGenerator tokenGenerator, ILogger<AuthenticationService> logger)
     {
         _passwordHasher = passwordHasher;
         _dbContext = dbContext;
         _tokenGenerator = tokenGenerator;
+        _logger = logger;
 
     }
     private async Task<User> GetUser(UserRegistrationDto model)
@@ -31,6 +33,7 @@ public class AuthenticationService : IAuthenticationService
     }
     public async Task<string> Login(UserLoginDto user)
     {
+        _logger.LogInformation($"Performing login operation for user: {user.Username}");
         var userFromRepo = await _dbContext
             .Users
             .FirstOrDefaultAsync(u => u.Username == user.Username);
@@ -53,6 +56,7 @@ public class AuthenticationService : IAuthenticationService
     }
     public async Task Register(UserRegistrationDto user)
     {
+        _logger.LogInformation($"Performing register operation for user: {user.Username}");
         var existingUser = await GetUser(user);
 
         if (existingUser == null)

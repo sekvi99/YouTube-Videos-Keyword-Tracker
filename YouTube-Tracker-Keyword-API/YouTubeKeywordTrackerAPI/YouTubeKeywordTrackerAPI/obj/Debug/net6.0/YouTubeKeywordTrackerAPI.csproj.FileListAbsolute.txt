@@ -69,3 +69,7 @@ A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\Humanizer.dll
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\nlog.config
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\NLog.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\NLog.Web.AspNetCore.dll

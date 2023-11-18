@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lSDgWTgrpENj5vU1PfzsnzNcGEsNfY3O/roEmw6BLv4TWsrbgchlDZyda9URPREGK4bi2kK4q1l5qfbpkn+o4A==",
+  "dgSpecHash": "09s9+UWMtq2LU+cHbkzjY6HWVPP1PUtBeHaECoWW7H8d6pQjO1DkG3eiwCDFB5bMWaJ+Vybhsuo6f/O64r1sYg==",
   "success": true,
   "projectFilePath": "A:\\GithubProjects\\Projekt Magisterski App\\YouTube-Videos-Keyword-Tracker\\YouTube-Tracker-Keyword-API\\YouTubeKeywordTrackerAPI\\YouTubeKeywordTrackerAPI\\YouTubeKeywordTrackerAPI.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,9 @@
     "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\nlog\\5.2.5\\nlog.5.2.5.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\nlog.extensions.logging\\5.3.5\\nlog.extensions.logging.5.3.5.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.5\\nlog.web.aspnetcore.5.3.5.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
