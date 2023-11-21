@@ -9,6 +9,7 @@ public class YouTubeKeywordTrackerDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Address> Addresses { get; set; }
     public DbSet<SearchKeyword> Keywords { get; set; }
+    public DbSet<Role> Roles { get; set; }
     public YouTubeKeywordTrackerDbContext(IApplicationConfiguration _configuration)
     {
         _applicationConfiguration = _configuration;
@@ -22,6 +23,11 @@ public class YouTubeKeywordTrackerDbContext : DbContext
 
         modelBuilder.Entity<User>()
             .Property(user => user.PasswordHash)
+            .IsRequired();
+
+        // Roles
+        modelBuilder.Entity<Role>()
+            .Property(role => role.Name)
             .IsRequired();
 
         // Keywords

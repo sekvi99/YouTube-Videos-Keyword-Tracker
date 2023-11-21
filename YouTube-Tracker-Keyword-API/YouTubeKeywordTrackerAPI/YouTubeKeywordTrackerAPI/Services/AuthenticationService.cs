@@ -24,7 +24,6 @@ public class AuthenticationService : IAuthenticationService
         _tokenGenerator = tokenGenerator;
         _logger = logger;
         _mapper = mapper;
-
     }
     private async Task<User> GetUser(UserRegistrationDto model)
     {
