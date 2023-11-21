@@ -25,4 +25,19 @@ public class AuthenticationController : ControllerBase
         var token = await _authenticationService.Login(user);
         return Ok(new { Token = token });
     }
+    [HttpGet("all")]
+    public async Task<IEnumerable<UserDto>> GetAllUsers()
+    {
+        return await _authenticationService.GetAllUsers();
+    }
+    [HttpDelete("{userId}")]
+    public async Task Delete(int userId)
+    {
+        await _authenticationService.Delete(userId);
+    }
+    [HttpPut("{userId}")]
+    public async Task Update([FromBody] UserUpdateDto user, int userId)
+    {
+        await _authenticationService.UpdateUserCredentials(userId, user);
+    }
 }
