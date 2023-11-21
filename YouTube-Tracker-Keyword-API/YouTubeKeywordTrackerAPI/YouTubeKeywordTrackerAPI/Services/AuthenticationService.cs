@@ -116,12 +116,14 @@ public class AuthenticationService : IAuthenticationService
 
         if (!string.IsNullOrEmpty(user.City) || !string.IsNullOrEmpty(user.PostalCode) || !string.IsNullOrEmpty(user.Street))
         {
-            userToUpdate.Address = new Address()
+            if (userToUpdate.Address == null)
             {
-                Street = user.Street,
-                City = user.City,
-                PostalCode = user.PostalCode
-            };
+                userToUpdate.Address = new Address();
+            }
+
+            userToUpdate.Address.City = user.City ?? userToUpdate.Address.City;
+            userToUpdate.Address.Street = user.Street ?? userToUpdate.Address.Street;
+            userToUpdate.Address.PostalCode = user.PostalCode ?? userToUpdate.Address.PostalCode;
         }
 
         await _dbContext.SaveChangesAsync();
