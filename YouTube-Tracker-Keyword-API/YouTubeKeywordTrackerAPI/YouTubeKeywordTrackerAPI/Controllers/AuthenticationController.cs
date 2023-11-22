@@ -33,11 +33,13 @@ public class AuthenticationController : ControllerBase
         return await _authenticationService.GetAllUsers();
     }
     [HttpDelete("{userId}")]
+    [Authorize(Roles = "Admin")]
     public async Task Delete(int userId)
     {
         await _authenticationService.Delete(userId);
     }
     [HttpPut("{userId}")]
+    [Authorize(Roles = "Admin")]
     public async Task Update([FromBody] UserUpdateDto user, int userId)
     {
         await _authenticationService.UpdateUserCredentials(userId, user);
