@@ -1,4 +1,5 @@
-﻿using YouTubeKeywordTrackerAPI.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using YouTubeKeywordTrackerAPI.Entities;
 using YouTubeKeywordTrackerAPI.Seeders.Interfaces;
 
 namespace YouTubeKeywordTrackerAPI.Seeders;
@@ -6,10 +7,12 @@ namespace YouTubeKeywordTrackerAPI.Seeders;
 public class UsersSeeder : IDataSeeder<User>
 {
     private readonly YouTubeKeywordTrackerDbContext _dbContext;
+    private readonly IPasswordHasher<User> _passwordHasher;
 
-    public UsersSeeder(YouTubeKeywordTrackerDbContext context)
+    public UsersSeeder(YouTubeKeywordTrackerDbContext context, IPasswordHasher<User> passwordHasher)
     {
         _dbContext = context;
+        _passwordHasher = passwordHasher;
     }
     // TODO Implement Seed and GetItems after creating service for reading data from json
     public void Seed()
@@ -41,12 +44,16 @@ public class UsersSeeder : IDataSeeder<User>
             new User()
             {
                 Username = "admin",
-                PasswordHash = "admin",
+                PasswordHash = _passwordHasher.HashPassword(null, "admin"),
                 Address = new Address()
                 {
                     City = "New York",
                     Street = "Admin street",
                     PostalCode = "30-001"
+                },
+                Role = new Role()
+                {
+                    Name = "Admin",
                 }
             }
         };

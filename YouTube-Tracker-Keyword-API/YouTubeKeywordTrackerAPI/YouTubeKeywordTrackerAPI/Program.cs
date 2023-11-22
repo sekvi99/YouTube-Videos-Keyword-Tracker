@@ -28,6 +28,7 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ISearchKeywordService, SearchKeywordService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IDataSeeder<User>, UsersSeeder>();
+builder.Services.AddScoped<IDataSeeder<Role>, RolesSeeder>();
 builder.Services.AddScoped<IYouTubeApiKeywordService,  YouTubeApiKeywordService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddControllers();
@@ -100,6 +101,13 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    var seeder = serviceProvider.GetRequiredService<IDataSeeder<Role>>();
+    seeder.Seed();
+}
 
 using (var scope = app.Services.CreateScope())
 {
