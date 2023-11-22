@@ -12,4 +12,6 @@ public class UserRegistrationDto
     public string City { get; set; }
     public string Street { get; set; }
     public string PostalCode { get; set; }
+    [Required]
+    public int RoleId { get; set; } = 1;
 }

@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using YouTubeKeywordTrackerAPI.Middleware;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.ExternalDataService;
 using NLog.Web;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication.Roles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ builder.Services.AddScoped<ITokenGenerator, TokenGeneratorService>();
 builder.Services.AddScoped<IUserIdentityService, UserIdentityService>();
 builder.Services.AddTransient<IApplicationConfiguration, ConfigurationService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IRoleService, RolesService>();
 builder.Services.AddScoped<ISearchKeywordService, SearchKeywordService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IDataSeeder<User>, UsersSeeder>();
