@@ -24,7 +24,8 @@ public class TokenGeneratorService : ITokenGenerator
             Subject = new ClaimsIdentity(new[]
             {
                     new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.Name.ToString())
                 }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)

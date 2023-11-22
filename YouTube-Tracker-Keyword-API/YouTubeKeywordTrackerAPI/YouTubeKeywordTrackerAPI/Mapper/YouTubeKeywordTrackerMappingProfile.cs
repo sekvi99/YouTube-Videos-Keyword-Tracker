@@ -12,7 +12,8 @@ public class YouTubeKeywordTrackerMappingProfile : Profile
     {
         CreateMap<User, UserDto>()
             .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
-            .ForMember(dest => dest.Keywords, opt => opt.MapFrom(src => src.Keywords));
+            .ForMember(dest => dest.Keywords, opt => opt.MapFrom(src => src.Keywords))
+            .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.RoleId));
 
         CreateMap<RoleCreateDto, Role>();
         CreateMap<Role, RoleDto>();

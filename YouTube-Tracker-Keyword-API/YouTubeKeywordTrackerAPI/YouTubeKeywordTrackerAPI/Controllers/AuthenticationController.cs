@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using YouTubeKeywordTrackerAPI.Models.Authentication;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace YouTubeKeywordTrackerAPI.Controllers;
 [Route("api/[controller]")]
@@ -26,6 +27,7 @@ public class AuthenticationController : ControllerBase
         return Ok(new { Token = token });
     }
     [HttpGet("all")]
+    [Authorize(Roles = "Admin")]
     public async Task<IEnumerable<UserDto>> GetAllUsers()
     {
         return await _authenticationService.GetAllUsers();

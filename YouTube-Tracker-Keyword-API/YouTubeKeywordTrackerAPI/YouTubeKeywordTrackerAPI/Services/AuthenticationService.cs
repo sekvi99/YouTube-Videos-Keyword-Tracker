@@ -38,6 +38,7 @@ public class AuthenticationService : IAuthenticationService
         _logger.LogInformation($"Performing login operation for user: {user.Username}");
         var userFromRepo = await _dbContext
             .Users
+            .Include(u => u.Role)
             .FirstOrDefaultAsync(u => u.Username == user.Username);
 
         if (userFromRepo is null)
@@ -71,7 +72,8 @@ public class AuthenticationService : IAuthenticationService
                     City = user.City,
                     Street = user.Street,
                     PostalCode = user.PostalCode,
-                }
+                },
+                RoleId = user.RoleId,
             };
 
             await _dbContext.Users.AddAsync(newUser);
@@ -87,9 +89,11 @@ public class AuthenticationService : IAuthenticationService
         _logger.LogInformation($"Extracting all current users from database");
         var existingUsers = await _dbContext
             .Users
+            .Include(u => u.Address)
+            .Include(u => u.Keywords)
             .ToListAsync();
 
-        var userDtos = _mapper.Map<List<UserDto>>(existingUsers);
+        var userDtos = _mapper.Map<IEnumerable<UserDto>>(existingUsers);
 
         return userDtos;
     }
