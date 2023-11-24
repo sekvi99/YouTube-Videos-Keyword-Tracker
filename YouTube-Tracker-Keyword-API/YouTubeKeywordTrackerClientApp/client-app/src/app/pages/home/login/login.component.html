@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="auth-form">
+    <h2 class="header mb-3">Zaloguj się do systemu</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="fields-container">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Nazwa użytkownika" formControlName="username" />
+                <mat-error *ngIf="loginForm.get('username')?.hasError('required')"
+                >Nazwa użytkownika jest wymagana</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="password" placeholder="Hasło" formControlName="password" />
+                <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
+                >Hasło jest wymagane</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-actions">
+            <button 
+                type="submit"
+            >Zaloguj się</button>
+        </div>
+    </form>
+</div>

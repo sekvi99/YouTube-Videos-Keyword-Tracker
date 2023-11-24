@@ -1,0 +1,28 @@
+.auth-form {
+    width: 50%;
+    margin: auto;
+
+    & > h2 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    & > form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+
+        & > .fields-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-left: 50px;
+            
+
+            & > mat-form-field {
+                padding: 10px;
+            }
+        }
+    }
+}

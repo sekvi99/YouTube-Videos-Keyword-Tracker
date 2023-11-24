@@ -1,0 +1,49 @@
+@import 'media-queries';
+
+.home-container {
+    height: 100%;
+
+    .brand-container {
+        padding: 1rem 0.5rem;
+
+        .brand-text {
+            margin-top: 0.5rem;
+            color: black;
+            font-size: 1.5rem;
+            display: block;
+        }
+
+        .brand-logo {
+            max-width: 100%;
+        }
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0.5rem;
+        background-color: plum;
+        height: 100%;
+    }
+
+    @include desktop-sm {
+        padding: 3rem 0;
+        overflow: hidden;
+
+        .brand-container {
+            margin-bottom: 1.5rem;
+            margin-left: 10%;
+            padding: 0;
+
+            .brand-text {
+                margin-top: 0.2rem;
+            }
+        }
+
+        .login-container {
+            clip-path: polygon(10% 0, 100% 0, 100% 100%, 20% 100%, 0 30%);
+            // polygon(10% 0, 100% 0, 100% 100%, 20% 100%, 0 60%, 0 30%);
+            padding-top: 5rem;
+        }
+    }
+}
