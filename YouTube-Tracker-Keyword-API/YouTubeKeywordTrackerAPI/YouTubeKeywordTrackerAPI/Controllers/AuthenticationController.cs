@@ -28,9 +28,11 @@ public class AuthenticationController : ControllerBase
     }
     [HttpGet("all")]
     [Authorize(Roles = "Admin")]
-    public async Task<IEnumerable<UserDto>> GetAllUsers()
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
     {
-        return await _authenticationService.GetAllUsers();
+        // TODO This endpoint throws an exception while return Ok(users)
+        var users =  await _authenticationService.GetAllUsers();
+        return Ok(users);
     }
     [HttpDelete("{userId}")]
     [Authorize(Roles = "Admin")]

@@ -93,8 +93,7 @@ public class AuthenticationService : IAuthenticationService
             .Include(u => u.Keywords)
             .ToListAsync();
 
-        var userDtos = _mapper.Map<IEnumerable<UserDto>>(existingUsers);
-
+        var userDtos = _mapper.Map<List<UserDto>>(existingUsers);
         return userDtos;
     }
     public async Task UpdateUserCredentials(int userId, UserUpdateDto user)
