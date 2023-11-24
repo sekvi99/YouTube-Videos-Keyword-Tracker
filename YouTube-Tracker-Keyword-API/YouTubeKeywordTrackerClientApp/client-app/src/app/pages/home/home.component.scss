@@ -1,7 +1,9 @@
 @import 'media-queries';
 
 .home-container {
-    height: 100%;
+    height: 89.5%;
+    background-color: white;
+    margin: 0;
 
     .brand-container {
         padding: 1rem 0.5rem;
@@ -42,7 +44,6 @@
 
         .login-container {
             clip-path: polygon(10% 0, 100% 0, 100% 100%, 20% 100%, 0 30%);
-            // polygon(10% 0, 100% 0, 100% 100%, 20% 100%, 0 60%, 0 30%);
             padding-top: 5rem;
         }
     }

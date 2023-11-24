@@ -1,0 +1,30 @@
+<button (click)="drawer.toggle()" mat-icon-button>
+    <mat-icon>more_horiz</mat-icon>
+</button>
+<mat-drawer-container>
+    <mat-drawer #drawer opened="false" mode="push" position="start">
+    <mat-nav-list>
+        <mat-list-item routerLink="">
+            <span><mat-icon>home</mat-icon>Strona główna</span>
+        </mat-list-item>
+        <mat-list-item routerLink="keywords">
+            <span><mat-icon>table</mat-icon>Słowa kluczowe</span>
+        </mat-list-item>
+        <mat-list-item routerLink="account">
+            <span><mat-icon>settings</mat-icon>Ustawienia konta</span>
+        </mat-list-item>
+        <mat-list-item routerLink="about">
+            <span><mat-icon>person_pin</mat-icon>O projekcie</span>
+        </mat-list-item>
+        <mat-list-item routerLink="user-panel">
+            <span><mat-icon>supervisor_account</mat-icon>Panel użytkowników</span>
+        </mat-list-item>
+        <mat-list-item routerLink="logout">
+            <span><mat-icon>exit_to_app</mat-icon>Wyloguj</span>
+        </mat-list-item>
+    </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+            <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

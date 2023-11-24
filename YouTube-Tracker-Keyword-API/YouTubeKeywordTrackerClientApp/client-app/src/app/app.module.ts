@@ -8,10 +8,9 @@ import { LoginComponent } from './pages/home/login/login.component';
 import { RegisterComponent } from './pages/home/register/register.component';
 import { AboutComponent } from './pages/about/about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { SideNavComponent } from './common/side-nav/side-nav.component';
+import { MaterialModule } from './material-module';
 
 @NgModule({
   declarations: [
@@ -19,17 +18,17 @@ import { MatInputModule } from '@angular/material/input';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AboutComponent
+    AboutComponent,
+    SideNavComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

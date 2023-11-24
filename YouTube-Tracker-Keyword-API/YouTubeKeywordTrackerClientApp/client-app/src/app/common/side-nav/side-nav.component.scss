@@ -1,0 +1,16 @@
+.mat-drawer-container {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        .mat-icon {
+            margin-right: 5px;
+        }
+    }
+}
