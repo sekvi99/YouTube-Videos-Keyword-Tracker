@@ -10,5 +10,5 @@ export abstract class FormComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    abstract onSubmit(): void;
+    abstract onSubmit(): Promise<void>;
 }

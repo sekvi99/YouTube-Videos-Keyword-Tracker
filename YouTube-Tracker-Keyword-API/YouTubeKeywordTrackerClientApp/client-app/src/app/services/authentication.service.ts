@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { IUser } from "../models/user/user";
 import { AppConfig } from "../app.config";
 import { Router } from "@angular/router";
 import { AuthenticationEndpoints } from "./api-endpoints/endpoints";
 import { map } from 'rxjs/operators';
 import { IUserRegister } from "../models/user/user.register";
+import { IAuthLoginResponse } from "../models/user/login/auth.login";
 
 export enum UserRolesDefinition {
     User = 0,
@@ -20,24 +20,24 @@ export class AuthenticationService {
         private router: Router,
         private config: AppConfig
     ) { }
-
-    public login(username: string, password: string): Observable<IUser> {
+ 
+    public login(username: string, password: string): Observable<IAuthLoginResponse> {
         const options = {
             params: new HttpParams()
                 .set('username', username)
                 .set('password', password)
         };
         
-        return this.httpService.post<IUser>(`${this.config.apiUrl}${AuthenticationEndpoints.Authentication}`, null, options)
+        return this.httpService.post<IAuthLoginResponse>(`https://localhost:7142/api/Authentication/login`, null, options)
         .pipe(
-            map(user => {
-                if (user && user.token) {
-                    localStorage.setItem('currentToken', JSON.stringify(user.token));
-                    localStorage.setItem('currentUser', JSON.stringify(user.username));
-                    localStorage.setItem('currentUserRole', JSON.stringify(user.role));
+            map(response => {
+                if (response && response.token !== '') {
+                    localStorage.setItem('currentToken', JSON.stringify(response.token));
+                    localStorage.setItem('currentUser', JSON.stringify(username));
+                    // localStorage.setItem('currentUserRole', JSON.stringify(user.roleId));
                 }
 
-                return user;
+                return { ...response };
             })
         )
     }
@@ -50,7 +50,7 @@ export class AuthenticationService {
         this.router.navigate(['/']);
     }
 
-    public register(user: IUserRegister): Observable<void> {
+    public register(user: IUserRegister): Observable<IUserRegister> {
         const options = {
             params: new HttpParams()
             .set('username', user.username)
@@ -61,7 +61,7 @@ export class AuthenticationService {
             .set('role', user.roleId)
         }
 
-        return this.httpService.post<void>(`${this.config.apiUrl}${AuthenticationEndpoints.Register}`, null, options);
+        return this.httpService.post<IUserRegister>(`${this.config.apiUrl}${AuthenticationEndpoints.Register}`, null, options);
     }
 
     // TODO Add roles user remove and so on ...

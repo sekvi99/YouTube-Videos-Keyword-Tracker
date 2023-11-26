@@ -21,7 +21,7 @@ public class AuthenticationController : ControllerBase
         return Ok();
     }
     [HttpPost("login")]
-    public async Task<ActionResult<string>> Login([FromBody] UserLoginDto user)
+    public async Task<ActionResult<string>> Login([FromQuery] UserLoginDto user)
     {
         var token = await _authenticationService.Login(user);
         return Ok(new { Token = token });

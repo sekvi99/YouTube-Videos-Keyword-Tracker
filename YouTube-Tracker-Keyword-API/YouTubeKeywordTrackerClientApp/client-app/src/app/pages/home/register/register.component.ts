@@ -16,7 +16,7 @@ export class RegisterComponent extends FormComponent {
     postalCode: [null, Validators.required]
   });
 
-  override onSubmit(): void {
+  override async onSubmit(): Promise<void> {
       if (this.registerForm.invalid) {
         // TODO Add toast service there that informs that invalid that has been passed
         return;

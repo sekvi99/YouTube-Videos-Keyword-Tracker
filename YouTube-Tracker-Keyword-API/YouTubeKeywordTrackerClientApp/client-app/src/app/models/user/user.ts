@@ -1,7 +1,6 @@
 export interface IUser {
-    token: string;
     username: string;
-    role: UserRole
+    roleId: number
 }
 
 export enum UserRole {
@@ -10,7 +9,6 @@ export enum UserRole {
 }
 
 export const DEFAULT_USER_VALUES: IUser = {
-    token: '',
     username: '',
-    role: {} as UserRole
+    roleId: UserRole.User
 }

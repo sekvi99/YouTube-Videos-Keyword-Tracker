@@ -1,4 +1,4 @@
 export enum AuthenticationEndpoints {
-    Authentication = 'login',
+    Authentication = '/Authentication/login',
     Register = 'Register'
 }
