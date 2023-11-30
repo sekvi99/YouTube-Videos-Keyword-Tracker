@@ -84,6 +84,16 @@ builder.Services.AddSwaggerGen(c =>
 builder.Logging.ClearProviders();
 builder.WebHost.UseNLog();
 
+// Enable CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder
+            .WithOrigins("http://localhost:4200") // Adjust this to match your frontend origin
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -92,6 +102,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Enable CORS
+app.UseCors("AllowSpecificOrigin");
 
 // Register custom middlewares
 app.UseMiddleware<ErrorHandlingMiddleware>();
