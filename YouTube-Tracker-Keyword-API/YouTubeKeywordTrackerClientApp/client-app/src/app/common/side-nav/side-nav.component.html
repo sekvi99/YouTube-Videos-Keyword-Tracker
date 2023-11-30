@@ -19,7 +19,7 @@
         <mat-list-item routerLink="user-panel">
             <span><mat-icon>supervisor_account</mat-icon>Panel użytkowników</span>
         </mat-list-item>
-        <mat-list-item routerLink="logout">
+        <mat-list-item (click)="onLogout()">
             <span><mat-icon>exit_to_app</mat-icon>Wyloguj</span>
         </mat-list-item>
     </mat-nav-list>

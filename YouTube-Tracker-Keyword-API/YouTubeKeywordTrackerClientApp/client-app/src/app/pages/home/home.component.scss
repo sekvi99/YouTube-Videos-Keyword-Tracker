@@ -1,4 +1,5 @@
 @import 'media-queries';
+@import 'color-variables';
 
 .home-container {
     height: 89.5%;
@@ -10,7 +11,7 @@
 
         .brand-text {
             margin-top: 0.5rem;
-            color: black;
+            color: $header-color;
             font-size: 1.5rem;
             display: block;
         }
@@ -24,7 +25,7 @@
         display: flex;
         justify-content: center;
         padding: 1rem 0.5rem;
-        background-color: plum;
+        background-color: $primary-color;
         height: 100%;
     }
 

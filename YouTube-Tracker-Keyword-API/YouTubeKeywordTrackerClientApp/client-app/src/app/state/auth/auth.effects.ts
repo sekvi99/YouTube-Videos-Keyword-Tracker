@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, act, createEffect, ofType } from '@ngrx/effects';
 import { catchError, of, exhaustMap, map, tap, mergeMap } from 'rxjs';
-import { loginRequest, loginSuccess, loginFailure } from './auth.actions';
+import { 
+  loginRequest, 
+  loginSuccess, 
+  loginFailure,
+  registerRequest,
+  registerFailure,
+  registerSuccess,
+  logout,
+ } from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
+    // Login Actions
     loginRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginRequest),
@@ -40,6 +49,55 @@ export class AuthEffects {
         })
       ),
     { dispatch: false }
+  );
+
+  // Register Actions
+  registerRequest$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(registerRequest),
+    mergeMap((action) => {  
+      return this.authService
+        .register(action.registerCredentials.username, action.registerCredentials.password, action.registerCredentials.city, action.registerCredentials.street, action.registerCredentials.postalCode)
+        .pipe(
+          map(() =>
+            registerSuccess()
+          ),
+          catchError((error) => {
+            console.error('Register error:', error);
+            return of(registerFailure({ error }));
+          })
+        );
+    }))
+  );
+
+  registerSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(registerSuccess),
+        tap(() => {
+          this.router.navigateByUrl('/');
+          alert(
+            'Successfull Registration, Please log in!'
+          );
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // Logout Actions
+  logout$ = createEffect(
+    () => 
+      this.actions$.pipe(
+        ofType(logout),
+        tap(() => {
+          this.authService.logout();
+          this.router.navigateByUrl('/');
+          alert(
+            'Log out'
+          );
+        })
+      ),
+      { dispatch: false }
   );
 
   constructor(

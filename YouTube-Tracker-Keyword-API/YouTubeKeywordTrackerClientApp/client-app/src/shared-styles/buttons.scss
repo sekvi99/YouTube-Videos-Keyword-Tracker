@@ -1,0 +1,24 @@
+$button-background: #3498db;
+$button-color: #ffffff;
+$button-hover-color: #2c3e50;
+$button-border-radius: 4px;
+$button-padding: 10px 20px;
+$button-border: 1px solid #3498db;
+
+.buttons-confirm {
+  background-color: $button-background;
+  color: $button-color;
+  border: $button-border;
+  border-radius: $button-border-radius;
+  padding: $button-padding;
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &:hover:enabled {
+    background-color: $button-hover-color;
+  }
+}
