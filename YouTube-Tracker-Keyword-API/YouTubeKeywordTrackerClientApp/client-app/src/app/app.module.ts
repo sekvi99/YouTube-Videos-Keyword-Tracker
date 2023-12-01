@@ -20,6 +20,8 @@ import { AuthenticationService } from './services/authentication.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizationInterceptor } from './providers/authorization.interceptor';
 import { HttpClientModule } from '@angular/common/http';
+import { TableComponent } from './common/table/table.component';
+import { HeaderComponent } from './common/header/header.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     AboutComponent,
     SideNavComponent,
+    TableComponent,
+    HeaderComponent,
     
   ],
   imports: [
