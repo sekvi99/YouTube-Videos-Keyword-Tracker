@@ -21,10 +21,10 @@ public class AuthenticationController : ControllerBase
         return Ok();
     }
     [HttpPost("login")]
-    public async Task<ActionResult<string>> Login([FromQuery] UserLoginDto user)
+    public async Task<ActionResult<UserLoginSuccessDto>> Login([FromQuery] UserLoginDto user)
     {
-        var token = await _authenticationService.Login(user);
-        return Ok(new { Token = token });
+        var userLoginSuccess = await _authenticationService.Login(user);
+        return Ok(userLoginSuccess);
     }
     [HttpGet("all")]
     [Authorize(Roles = "Admin")]

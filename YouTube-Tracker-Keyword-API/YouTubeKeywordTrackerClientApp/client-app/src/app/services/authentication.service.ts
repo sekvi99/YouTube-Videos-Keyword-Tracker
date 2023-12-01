@@ -17,7 +17,6 @@ export enum UserRolesDefinition {
 export class AuthenticationService {
     constructor(
         private httpService: HttpClient,
-        private router: Router,
         private config: AppConfig
     ) { }
  
@@ -33,8 +32,8 @@ export class AuthenticationService {
             map(response => {
                 if (response && response.token !== '') {
                     localStorage.setItem('currentToken', JSON.stringify(response.token));
-                    localStorage.setItem('currentUser', JSON.stringify(username));
-                    // localStorage.setItem('currentUserRole', JSON.stringify(user.roleId));
+                    localStorage.setItem('currentUser', JSON.stringify(response.username));
+                    localStorage.setItem('currentUserRole', JSON.stringify(response.roleId));
                 }
 
                 return { ...response };
@@ -44,8 +43,8 @@ export class AuthenticationService {
 
     public logout(): void {
         localStorage.removeItem('currentToken');
-        localStorage.removeItem('token');
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
         localStorage.removeItem('currentUserRole');
 
         window.location.reload();

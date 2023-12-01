@@ -40,12 +40,13 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(loginSuccess),
         tap(({ loginSuccessResponse }) => {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/about');
           localStorage.setItem('token', loginSuccessResponse.token);
           alert(
             'Login Successfull, Welcome!'
           );
-          this.router.navigateByUrl('/about'); // TODO To change url
+          this.router.navigateByUrl('/');
+          window.location.reload();
         })
       ),
     { dispatch: false }

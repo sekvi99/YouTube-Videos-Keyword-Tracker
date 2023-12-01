@@ -1,14 +1,16 @@
 export interface IUser {
     username: string;
-    roleId: number
+    roleId: number;
+    token: string
 }
 
 export enum UserRole {
-    User = 0, // Basic User
-    Admin = 1 // Admin
+    User = 1, // Basic User
+    Admin = 2 // Admin
 }
 
 export const DEFAULT_USER_VALUES: IUser = {
     username: '',
-    roleId: UserRole.User
+    roleId: UserRole.User,
+    token: ''
 }

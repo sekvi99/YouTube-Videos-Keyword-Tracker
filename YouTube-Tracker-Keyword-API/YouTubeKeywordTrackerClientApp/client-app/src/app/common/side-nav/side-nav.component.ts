@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { logout } from '../../state/auth/auth.actions';
+import { hasAdminRightsSelector, isAuthenticatedSelector } from '../../state/auth/auth.selectors';
+import { IState } from '../../state';
 
 @Component({
   selector: 'app-side-nav',
@@ -8,8 +10,11 @@ import { logout } from '../../state/auth/auth.actions';
   styleUrl: './side-nav.component.scss'
 })
 export class SideNavComponent {
+  isUserAuthenticated$ = this.store.select(isAuthenticatedSelector);
+  hadUserAdminRights$ = this.store.select(hasAdminRightsSelector);
+
   constructor(
-    private store: Store
+    private store: Store<IState>
   ) { }
   
     public onLogout(): void 

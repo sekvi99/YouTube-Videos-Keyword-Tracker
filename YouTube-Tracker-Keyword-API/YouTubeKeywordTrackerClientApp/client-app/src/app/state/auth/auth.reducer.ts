@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { IUser, DEFAULT_USER_VALUES } from '../../models/user/user';
-import { loginFailure, loginSuccess } from './auth.actions';
+import { loginFailure, loginSuccess, registerFailure, registerSuccess } from './auth.actions';
 
 // Definition of auth state
 export interface IAuthState {
@@ -29,6 +29,17 @@ const _authReducer = createReducer(
             loginError: error,
         }
     }),
+    on(registerSuccess, (state) =>  {
+        return {
+            ...state,
+        }
+    }),
+    on(registerFailure, (state, { error }) => {
+        return {
+            ...state,
+            error: error
+        }
+    })
 );
 
 export function authReducer(state: any, action: any) {

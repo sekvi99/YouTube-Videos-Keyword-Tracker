@@ -1,3 +1,5 @@
 export interface IAuthLoginResponse {
-    token: string
+    username: string;
+    token: string;
+    roleId: number;
 }

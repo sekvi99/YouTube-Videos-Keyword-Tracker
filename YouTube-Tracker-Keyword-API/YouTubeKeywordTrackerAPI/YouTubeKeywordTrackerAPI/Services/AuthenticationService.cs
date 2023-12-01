@@ -33,7 +33,7 @@ public class AuthenticationService : IAuthenticationService
 
         return existingUser;
     }
-    public async Task<string> Login(UserLoginDto user)
+    public async Task<UserLoginSuccessDto> Login(UserLoginDto user)
     {
         _logger.LogInformation($"Performing login operation for user: {user.Username}");
         var userFromRepo = await _dbContext
@@ -49,7 +49,12 @@ public class AuthenticationService : IAuthenticationService
         if (_passwordHasher.VerifyHashedPassword(userFromRepo, userFromRepo.PasswordHash, user.Password) == PasswordVerificationResult.Success)
         {
             var token = _tokenGenerator.GenerateJwtToken(userFromRepo);
-            return token;
+            return new UserLoginSuccessDto()
+            {
+                Username = userFromRepo.Username,
+                RoleId = userFromRepo.RoleId,
+                Token = token
+            };
         }
         else
         {
