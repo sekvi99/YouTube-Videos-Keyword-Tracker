@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Actions, act, createEffect, ofType } from '@ngrx/effects';
-import { catchError, of, exhaustMap, map, tap, mergeMap } from 'rxjs';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, of, map, tap, mergeMap } from 'rxjs';
 import { 
   loginRequest, 
   loginSuccess, 
