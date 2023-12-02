@@ -10,6 +10,13 @@ import {
     fetchByIdSuccess
 } from './data.actions';
 import { IEntity } from "../../models/entity";
+import { DataReducerEntity } from "./data.reducer";
+import { KeywordsEndpoints } from "../../services/api-endpoints/endpoints";
+
+const TABLE_ENTITY_URL_MAP: Record<DataReducerEntity, string> = {
+    keywordsData: KeywordsEndpoints.GetAllKeywords,
+    singleKeywordData: KeywordsEndpoints.GetSingleKeyword
+}
 
 @Injectable()
 export class DataEffects {

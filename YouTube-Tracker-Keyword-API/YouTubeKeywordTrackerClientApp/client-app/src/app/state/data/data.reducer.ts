@@ -7,6 +7,11 @@ export interface IDataState {
     data: IEntity[]
 }
 
+export enum DataReducerEntity {
+    Keywords = 'keywordsData',
+    KeywordSingle = 'singleKeywordData'
+}
+
 const initialState: IDataState = {
     isFetching: false,
     data: [] as IEntity[]

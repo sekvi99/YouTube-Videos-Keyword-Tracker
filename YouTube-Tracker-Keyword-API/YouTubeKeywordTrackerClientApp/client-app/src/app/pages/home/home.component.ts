@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HEADER_DEFINITIONS, IHeaderDefinition } from '../../common/header/header-definitions';
 
 @Component({
@@ -6,10 +6,6 @@ import { HEADER_DEFINITIONS, IHeaderDefinition } from '../../common/header/heade
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   headerDefinition: IHeaderDefinition = HEADER_DEFINITIONS.home;
-
-  ngOnInit(): void {
-      console.log('hello from home');
-  }
 }

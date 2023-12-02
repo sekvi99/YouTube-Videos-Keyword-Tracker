@@ -6,6 +6,10 @@ export interface IState {
     data: IDataState
 }
 
+export interface IReducerSelectorEntityProps {
+    entityType: string;
+}
+
 export const reducers = {
     authReducer,
     dataReducer

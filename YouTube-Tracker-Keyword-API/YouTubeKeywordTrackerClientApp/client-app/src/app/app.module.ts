@@ -24,6 +24,8 @@ import { TableComponent } from './common/table/table.component';
 import { HeaderComponent } from './common/header/header.component';
 import { dataReducer } from './state/data/data.reducer';
 import { DataEffects } from './state/data/data.effects';
+import { KeywordListComponent } from './pages/keyword-list/keyword-list.component';
+import { reducers } from './state';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { DataEffects } from './state/data/data.effects';
     SideNavComponent,
     TableComponent,
     HeaderComponent,
+    KeywordListComponent,
     
   ],
   imports: [
@@ -45,7 +48,10 @@ import { DataEffects } from './state/data/data.effects';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    StoreModule.forRoot({ auth: authReducer, data: dataReducer }),
+    StoreModule.forRoot({
+      auth: authReducer,
+      data: dataReducer
+    }),
     EffectsModule.forRoot([AuthEffects, DataEffects])
   ],
   providers: [

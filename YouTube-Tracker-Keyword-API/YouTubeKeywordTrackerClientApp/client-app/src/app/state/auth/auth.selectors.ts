@@ -13,7 +13,5 @@ export const isAuthenticatedSelector = createSelector(userSelector, () => !!loca
 
 export const hasAdminRightsSelector = createSelector(userRoleSelector, () => {
     const storedUserRole = localStorage.getItem('currentUserRole');
-    console.log(storedUserRole);
-    console.log(Number(storedUserRole) >= UserRole.Admin);
     return storedUserRole !== null && Number(storedUserRole) >= UserRole.Admin;
 });

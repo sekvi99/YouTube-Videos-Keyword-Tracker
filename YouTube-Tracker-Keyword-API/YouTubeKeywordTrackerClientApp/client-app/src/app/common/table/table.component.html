@@ -1,4 +1,8 @@
-<table #tableRef mat-table [dataSource]="data" class="mat-elevation-z8 demo-table">
+<ng-container *ngFor="let item of data$ | async">
+    <h1>{{ item.keyword }}</h1>
+</ng-container>
+
+<table #tableRef mat-table [dataSource]="data$ | async" class="mat-elevation-z8 demo-table">
     <ng-container *ngFor="let column of dataColumns" matColumnDef="{{ column.propertyName }}">
         <th
             mat-header-cell

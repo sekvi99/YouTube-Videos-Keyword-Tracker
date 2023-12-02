@@ -13,7 +13,8 @@ export class DataService {
     ) { }
 
     fetch<T>(url: string): Observable<T> {
-        return this.http.get<T>(`${this.config.apiUrl}${url}`);
+        return this.http.get<T>('https://localhost:7142/api/SearchKeyword/user');
+        //return this.http.get<T>(`${this.config.apiUrl}${url}`);
     }
 
     fetchById<T>(url: string, id: number): Observable<T> {
