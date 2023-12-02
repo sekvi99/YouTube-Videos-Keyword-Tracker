@@ -7,7 +7,7 @@ import { AdminRightsGuard } from './providers/admin.rights.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent, canActivate: [AuthorizationGuard] }
+  { path: 'about', component: AboutComponent }
 ];
 
 @NgModule({

@@ -1,8 +1,9 @@
 <div class="home-container">
-    <div class="brand-container">
-        <img src="" alt="Sekvi Logo" class="brand-logo"/>
-        <span class="brand-text">Filip Koźlik</span>
-    </div>
+    <app-header
+        [title]="headerDefinition.title"
+        [imgSource]="headerDefinition.imgSource"
+        [imgAlt]="headerDefinition.imgAlt"
+    ></app-header>
     <div class="login-container">
         <mat-tab-group class="home-tabs">
             <mat-tab label="Zaloguj się">

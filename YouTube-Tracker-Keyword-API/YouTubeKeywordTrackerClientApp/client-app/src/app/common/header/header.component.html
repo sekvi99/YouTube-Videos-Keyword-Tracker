@@ -1,1 +1,13 @@
-<p>header works!</p>
+<div class="header-container">
+    <img
+        *ngIf="imgSource" 
+        src="imgSource" 
+        alt="imgAlt" 
+        class="header-logo"
+    />
+    <span
+        class="header-text"
+    >
+        {{ title }}
+    </span>
+</div>

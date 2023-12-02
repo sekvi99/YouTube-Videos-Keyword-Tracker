@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HEADER_DEFINITIONS, IHeaderDefinition } from '../../common/header/header-definitions';
 
 @Component({
   selector: 'app-about',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-
+  headerDefinition: IHeaderDefinition = HEADER_DEFINITIONS.about;
 }
