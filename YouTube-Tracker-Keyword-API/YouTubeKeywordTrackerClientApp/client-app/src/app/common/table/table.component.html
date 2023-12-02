@@ -1,1 +1,14 @@
-<p>table works!</p>
+<table #tableRef mat-table [dataSource]="data" class="mat-elevation-z8 demo-table">
+    <ng-container *ngFor="let column of dataColumns" matColumnDef="{{ column.propertyName }}">
+        <th
+            mat-header-cell
+            *matHeaderCellDef
+        >
+            <div class="mat-header-cell-content">
+                <span>{{ column.columnName }}</span>
+            </div>
+        </th>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="propertyNames; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: propertyNames;"></tr>
+</table>

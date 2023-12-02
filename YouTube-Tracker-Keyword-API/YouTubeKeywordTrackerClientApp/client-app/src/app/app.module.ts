@@ -22,6 +22,8 @@ import { AuthorizationInterceptor } from './providers/authorization.interceptor'
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './common/table/table.component';
 import { HeaderComponent } from './common/header/header.component';
+import { dataReducer } from './state/data/data.reducer';
+import { DataEffects } from './state/data/data.effects';
 
 @NgModule({
   declarations: [
@@ -43,8 +45,8 @@ import { HeaderComponent } from './common/header/header.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    StoreModule.forRoot({ auth: authReducer }),
-    EffectsModule.forRoot([AuthEffects])
+    StoreModule.forRoot({ auth: authReducer, data: dataReducer }),
+    EffectsModule.forRoot([AuthEffects, DataEffects])
   ],
   providers: [
     AppConfig,

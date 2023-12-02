@@ -15,4 +15,8 @@ export class DataService {
     fetch<T>(url: string): Observable<T> {
         return this.http.get<T>(`${this.config.apiUrl}${url}`);
     }
+
+    fetchById<T>(url: string, id: number): Observable<T> {
+        return this.http.get<T>(`${this.config.apiUrl}${url}${id}`);
+    }
 }

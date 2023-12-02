@@ -5,7 +5,9 @@ import { DataService } from "../../services/data.service";
 import {
     fetch,
     fetchSuccess,
-    fetchError
+    fetchError,
+    fetchById,
+    fetchByIdSuccess
 } from './data.actions';
 import { IEntity } from "../../models/entity";
 
@@ -24,6 +26,25 @@ export class DataEffects {
                     ),
                     catchError((error) => {
                         console.log('Data fetch error: ', error);
+                        return of(fetchError({ error }));
+                    })
+                )
+            })
+        )
+    );
+
+    fetchById$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(fetchById),
+            mergeMap(action => {
+                return this.dataService
+                .fetchById(action.endpoint, action.id)
+                .pipe(
+                    map(data => 
+                        fetchByIdSuccess({ data: data as IEntity })
+                    ),
+                    catchError((error) => {
+                        console.log('Data fetch by id error: ', error);
                         return of(fetchError({ error }));
                     })
                 )
