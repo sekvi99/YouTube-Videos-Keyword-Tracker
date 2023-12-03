@@ -15,6 +15,8 @@ using YouTubeKeywordTrackerAPI.Middleware;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.ExternalDataService;
 using NLog.Web;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication.Roles;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Email;
+using MailKit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<YouTubeKeywordTrackerDbContext>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<HttpClient>();
+// builder.Services.AddScoped<IMailService, MailService>();
+builder.Services.AddScoped<IMailConfig, MailConfigService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ITokenGenerator, TokenGeneratorService>();
 builder.Services.AddScoped<IUserIdentityService, UserIdentityService>();
 builder.Services.AddTransient<IApplicationConfiguration, ConfigurationService>();

@@ -46,3 +46,6 @@ __pycache__/
 
 # Log files
 *.log
+
+# Mail credentials
+mailsettings.json

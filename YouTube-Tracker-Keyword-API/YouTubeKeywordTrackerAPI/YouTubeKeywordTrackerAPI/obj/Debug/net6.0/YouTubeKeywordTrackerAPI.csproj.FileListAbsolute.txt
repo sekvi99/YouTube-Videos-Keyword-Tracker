@@ -73,3 +73,12 @@ A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\NLog.dll
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\mailsettings.json
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\MailKit.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\MimeKit.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\System.Formats.Asn1.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
