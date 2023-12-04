@@ -5,6 +5,8 @@ import { IState } from '../../state';
 import { fetch } from '../../state/data/data.actions';
 import { dataSelector } from '../../state/data/data.selectors';
 import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-table',
@@ -17,26 +19,52 @@ export class TableComponent implements OnInit {
   @Input() endpoint?: string;
 
   @ViewChild('tableRef', { static: true }) tableRef?: ElementRef;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   data$?: Observable<any>;
-  columnLabels?: string[] = this.dataColumns?.map(column => column.columnName);
-  propertyNames?: string[] = this.dataColumns?.map(column => column.propertyName);
 
   constructor(
     protected store: Store<IState>
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     if (!this.endpoint || !this.entityType) {
       return;
     }
-    this.store.dispatch(fetch({ endpoint: this.endpoint }))
-    this.data$ = this.store.select(dataSelector, { entityType: this.entityType })
+    this.store.dispatch(fetch({ endpoint: this.endpoint }));
+    this.data$ = this.store.select(dataSelector, { entityType: this.entityType });
+    if (this.dataColumns) {
+      this.data$.subscribe(data => {
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paginator;
+      });
+    }
   }
 
-  public onRowClick(row: any): void {
+  get columnLabels(): string[] | undefined {
+    return this.dataColumns?.map(column => column.columnName);
+  }
+
+  get columnsMap() {
+    const propertyNameToColumnNameMap = new Map<string, string>();
+    this.dataColumns?.forEach((propertyMap) => {
+      propertyNameToColumnNameMap.set(propertyMap.propertyName, propertyMap.columnName);
+    });
+    return propertyNameToColumnNameMap;
+  }
+
+  get propertyNames(): string[] | undefined {
+    return this.dataColumns?.map(column => column.propertyName);
+  }
+
+  public onEditRowClick(event: any, row: any): void {
+    console.log(event);
+    console.log(row);
+  }
+
+  public onDeleteRowClick(event: any, row: any): void {
+    console.log(event);
     console.log(row);
   }
 }

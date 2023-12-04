@@ -1,0 +1,54 @@
+@import 'color-variables';
+
+@mixin iconHover($background-color, $color) {
+    background-color: $background-color;
+    color: $color;
+    transition: ease-in-out 0.15s all;
+}
+
+.table-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+
+  .data-table {
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    // TODO Hover effects on table
+    ::ng-deep .mat-header-row:hover {
+        background-color: $table-row-hover;
+        color: $text-color;
+    }
+
+    ::ng-deep .mat-row:hover {
+        background-color: $table-row-hover;
+        color: $text-color;
+    }
+
+    .mat-icon {
+      cursor: pointer;
+      margin: 0 4px;
+      font-size: 18px;
+      padding: 5px;
+      text-align: center;
+      border-radius: 50%;
+    }
+
+    .edit-table-icon {
+        color: $primary-color;
+        
+        &:hover {
+            @include iconHover($primary-color, $text-color);
+        }
+    }
+
+    .delete-table-icon {
+        color: $error-color;
+
+        &:hover {
+            @include iconHover($error-color, $text-color);
+        }
+    }
+  }
+}

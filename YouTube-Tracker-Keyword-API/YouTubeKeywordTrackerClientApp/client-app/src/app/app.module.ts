@@ -26,6 +26,8 @@ import { dataReducer } from './state/data/data.reducer';
 import { DataEffects } from './state/data/data.effects';
 import { KeywordListComponent } from './pages/keyword-list/keyword-list.component';
 import { reducers } from './state';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { TranslatedPaginatorIntl } from './providers/paginator.translation';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,10 @@ import { reducers } from './state';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,
       multi: true
+    },
+    {
+      provide: MatPaginatorIntl,
+      useClass: TranslatedPaginatorIntl
     }
   ],
   bootstrap: [AppComponent]

@@ -1,18 +1,35 @@
-<ng-container *ngFor="let item of data$ | async">
-    <h1>{{ item.keyword }}</h1>
-</ng-container>
-
-<table #tableRef mat-table [dataSource]="data$ | async" class="mat-elevation-z8 demo-table">
-    <ng-container *ngFor="let column of dataColumns" matColumnDef="{{ column.propertyName }}">
-        <th
-            mat-header-cell
-            *matHeaderCellDef
-        >
-            <div class="mat-header-cell-content">
-                <span>{{ column.columnName }}</span>
-            </div>
-        </th>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="propertyNames; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: propertyNames;"></tr>
-</table>
+<div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 data-table">
+  
+      <ng-container *ngFor="let column of propertyNames" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>{{ columnsMap.get(column) }}</th>
+        <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Akcje</th>
+        <td mat-cell *matCellDef="let element">
+            <span 
+                class="icon-span"
+                (click)="onEditRowClick($event, element)"
+            >
+                <mat-icon 
+                    class="edit-table-icon"
+                    >edit</mat-icon>
+            </span>
+            <span 
+                class="icon-span"
+                (click)="onDeleteRowClick($event, element)"
+            >
+                <mat-icon
+                    class="delete-table-icon"
+                    >delete</mat-icon>
+            </span>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="propertyNames?.concat('actions')"></tr>
+      <tr mat-row *matRowDef="let row; columns: propertyNames?.concat('actions');"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+  </div>
