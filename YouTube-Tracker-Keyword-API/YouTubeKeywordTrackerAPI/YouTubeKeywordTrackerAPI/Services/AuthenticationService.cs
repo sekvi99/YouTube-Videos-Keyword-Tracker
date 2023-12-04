@@ -94,8 +94,8 @@ public class AuthenticationService : IAuthenticationService
         _logger.LogInformation($"Extracting all current users from database");
         var existingUsers = await _dbContext
             .Users
-            .Include(u => u.Address)
-            .Include(u => u.Keywords)
+            .Include(user => user.Address)
+            .Include(user => user.Keywords)
             .ToListAsync();
 
         var userDtos = _mapper.Map<List<UserDto>>(existingUsers);

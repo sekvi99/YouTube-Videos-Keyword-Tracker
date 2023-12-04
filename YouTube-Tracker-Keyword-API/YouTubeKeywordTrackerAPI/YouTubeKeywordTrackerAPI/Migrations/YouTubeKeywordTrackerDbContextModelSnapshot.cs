@@ -49,9 +49,15 @@ namespace YouTubeKeywordTrackerAPI.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.Role", b =>
@@ -77,7 +83,7 @@ namespace YouTubeKeywordTrackerAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.SearchKeyword", b =>
@@ -108,7 +114,7 @@ namespace YouTubeKeywordTrackerAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Keywords");
+                    b.ToTable("Keywords", (string)null);
                 });
 
             modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.User", b =>
@@ -118,9 +124,6 @@ namespace YouTubeKeywordTrackerAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -144,12 +147,20 @@ namespace YouTubeKeywordTrackerAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId")
-                        .IsUnique();
-
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.Address", b =>
+                {
+                    b.HasOne("YouTubeKeywordTrackerAPI.Entities.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("YouTubeKeywordTrackerAPI.Entities.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.SearchKeyword", b =>
@@ -165,27 +176,13 @@ namespace YouTubeKeywordTrackerAPI.Migrations
 
             modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.User", b =>
                 {
-                    b.HasOne("YouTubeKeywordTrackerAPI.Entities.Address", "Address")
-                        .WithOne("User")
-                        .HasForeignKey("YouTubeKeywordTrackerAPI.Entities.User", "AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("YouTubeKeywordTrackerAPI.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Address");
-
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.Address", b =>
-                {
-                    b.Navigation("User")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.Role", b =>
@@ -195,6 +192,9 @@ namespace YouTubeKeywordTrackerAPI.Migrations
 
             modelBuilder.Entity("YouTubeKeywordTrackerAPI.Entities.User", b =>
                 {
+                    b.Navigation("Address")
+                        .IsRequired();
+
                     b.Navigation("Keywords");
                 });
 #pragma warning restore 612, 618

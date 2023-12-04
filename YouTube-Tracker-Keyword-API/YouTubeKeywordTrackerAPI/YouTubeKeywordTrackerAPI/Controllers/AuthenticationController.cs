@@ -30,7 +30,6 @@ public class AuthenticationController : ControllerBase
     [Authorize(Roles = "Admin")]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
     {
-        // TODO This endpoint throws an exception while return Ok(users)
         var users =  await _authenticationService.GetAllUsers();
         return Ok(users);
     }

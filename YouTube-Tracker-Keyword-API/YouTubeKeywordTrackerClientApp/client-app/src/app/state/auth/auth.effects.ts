@@ -19,7 +19,7 @@ export class AuthEffects {
     loginRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginRequest),
-      mergeMap((action) => {  
+      mergeMap((action) => {
         return this.authService
           .login(action.credentials.username, action.credentials.password)
           .pipe(
@@ -41,7 +41,6 @@ export class AuthEffects {
         ofType(loginSuccess),
         tap(({ loginSuccessResponse }) => {
           this.router.navigateByUrl('/about');
-          localStorage.setItem('token', loginSuccessResponse.token);
           alert(
             'Login Successfull, Welcome!'
           );

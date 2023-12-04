@@ -8,3 +8,7 @@ export const KEYWORD_COLUMNS_DEFINITION: IColumnDefinition[] = [
     { propertyName: "dateCreated", columnName: "Data utworzenia" },
     { propertyName: "dateModified", columnName: "Data modyfikacji" }
 ]
+
+// export const USERS_HUB_COLUMNS_DEFINITION: IColumnDefinition[] = [
+//     { }
+// ]

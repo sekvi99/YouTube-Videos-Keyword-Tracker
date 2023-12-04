@@ -6,7 +6,7 @@ public class Address : Entity
     public string City { get; set; }
     public string? Street { get; set; }
     public string? PostalCode { get; set; }
-
+    public int UserId { get; set; }
     // Table Reference
-    public virtual User User { get; set; }
+    public User User { get; set; }
 }

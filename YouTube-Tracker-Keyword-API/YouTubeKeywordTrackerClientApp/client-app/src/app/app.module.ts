@@ -28,6 +28,7 @@ import { KeywordListComponent } from './pages/keyword-list/keyword-list.componen
 import { reducers } from './state';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { TranslatedPaginatorIntl } from './providers/paginator.translation';
+import { UsersListComponent } from './pages/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TranslatedPaginatorIntl } from './providers/paginator.translation';
     TableComponent,
     HeaderComponent,
     KeywordListComponent,
+    UsersListComponent,
     
   ],
   imports: [
