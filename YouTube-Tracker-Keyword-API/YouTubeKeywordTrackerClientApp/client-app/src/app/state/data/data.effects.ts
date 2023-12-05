@@ -7,7 +7,13 @@ import {
     fetchSuccess,
     fetchError,
     fetchById,
-    fetchByIdSuccess
+    fetchByIdSuccess,
+    upload,
+    uploadSuccess,
+    uploadError,
+    edit,
+    editSuccess,
+    editError
 } from './data.actions';
 import { IEntity } from "../../models/entity";
 import { DataReducerEntity } from "./data.reducer";
@@ -55,6 +61,34 @@ export class DataEffects {
                         console.log('Data fetch by id error: ', error);
                         return of(fetchError({ error }));
                     })
+                )
+            })
+        )
+    );
+
+    upload$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(upload),
+            mergeMap(action => {
+                return this.dataService
+                .upload(action.endpoint, action.formData)
+                .pipe(
+                    map(data => uploadSuccess({ successMessage: 'Successfully uploaded data' })),
+                    catchError(() => of(uploadError({ errorMessage: 'Error occured while uploading data' })))
+                )
+            })
+        )
+    );
+
+    edit$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(edit),
+            mergeMap(action => {
+                return this.dataService
+                .edit(action.endpoint, action.formData)
+                .pipe(
+                    map(data => editSuccess({ successMessage: 'Successfully edited data' })),
+                    catchError(() => of(editError({ errorMessage: 'Error occured while editing data' })))
                 )
             })
         )

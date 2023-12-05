@@ -29,6 +29,9 @@ import { reducers } from './state';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { TranslatedPaginatorIntl } from './providers/paginator.translation';
 import { UsersListComponent } from './pages/users-list/users-list.component';
+import { DataDialogComponentComponent } from './common/data-dialog-component/data-dialog-component.component';
+import { KeywordFormComponent } from './common/forms/keyword-form/keyword-form.component';
+import { UserFormComponent } from './common/forms/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import { UsersListComponent } from './pages/users-list/users-list.component';
     HeaderComponent,
     KeywordListComponent,
     UsersListComponent,
+    DataDialogComponentComponent,
+    KeywordFormComponent,
+    UserFormComponent,
     
   ],
   imports: [
