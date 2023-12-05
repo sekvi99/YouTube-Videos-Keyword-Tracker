@@ -4,11 +4,11 @@ export enum AuthenticationEndpoints {
 }
 
 export enum KeywordsEndpoints {
-    GetAllKeywords = 'SearchKeyword/user',
-    GetSingleKeyword = 'SearchKeyword/', // Id after /
+    GetAllKeywords = '/SearchKeyword/user',
+    GetSingleKeyword = '/SearchKeyword/', // Id after /
 }
 
 export enum UsersEndpoints {
-    Users = 'api/Authentication/all',
-    User = 'api/Authentication'
+    Users = '/Authentication/all',
+    User = '/Authentication'
 }
