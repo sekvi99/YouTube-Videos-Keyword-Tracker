@@ -32,6 +32,8 @@ import { UsersListComponent } from './pages/users-list/users-list.component';
 import { DataDialogComponentComponent } from './common/data-dialog-component/data-dialog-component.component';
 import { KeywordFormComponent } from './common/forms/keyword-form/keyword-form.component';
 import { UserFormComponent } from './common/forms/user-form/user-form.component';
+import { ToastService } from './services/toast.service';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -62,10 +64,12 @@ import { UserFormComponent } from './common/forms/user-form/user-form.component'
       auth: authReducer,
       data: dataReducer
     }),
-    EffectsModule.forRoot([AuthEffects, DataEffects])
+    EffectsModule.forRoot([AuthEffects, DataEffects]),
+    ToastrModule.forRoot(),
   ],
   providers: [
     AppConfig,
+    ToastService,
     AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,

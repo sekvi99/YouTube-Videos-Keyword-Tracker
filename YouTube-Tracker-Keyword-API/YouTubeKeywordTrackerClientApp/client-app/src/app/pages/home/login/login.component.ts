@@ -6,8 +6,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 // import { IState } from '../../../store';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { login } from '../../../store/authentication/authentication.action';
 import { loginRequest } from '../../../state/auth/auth.actions';
+import { LoginActionMessages } from '../../../models/toast/toast-messages';
 
 @Component({
   selector: 'app-login',
@@ -21,31 +21,12 @@ export class LoginComponent extends FormComponent {
     password: [null, Validators.required]
   });
 
-  // isLoading$ = this.store.select(isLoadingSelector);
-  // errors$ = this.store.select(errorsSelector);
-
-  constructor(
-    private store: Store,
-    protected override formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router
-  ) { 
-    super(formBuilder);
-    // this.store.pipe(
-    //   select(isAuthenticatedSelector)
-    // )
-    // .subscribe(result => {
-    //   if (result) {
-    //     this.router.navigate(['main-page']);
-    //   }
-    // })
-  }
-
   override async onSubmit(): Promise<void> {
     if (this.loginForm.invalid) {
-      // TODO Throw an toast that informs that provided data is not correct
       return ;
     }
+
+    this.toastService.info(LoginActionMessages.Info);
 
     const credentials = {
       username: this.loginForm.value.username,
@@ -53,6 +34,5 @@ export class LoginComponent extends FormComponent {
     }
     
     this.store.dispatch(loginRequest({ credentials }));
-    // this.isSubmitting = false;
   }
 }

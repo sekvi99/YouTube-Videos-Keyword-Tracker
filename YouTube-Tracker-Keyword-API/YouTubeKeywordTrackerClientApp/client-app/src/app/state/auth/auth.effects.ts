@@ -12,6 +12,8 @@ import {
   registerSuccess,
   logout,
  } from './auth.actions';
+import { ToastService } from '../../services/toast.service';
+import { LoginActionMessages, LogoutActionMessages, RegisterActionMessages } from '../../models/toast/toast-messages';
 
 @Injectable()
 export class AuthEffects {
@@ -27,7 +29,7 @@ export class AuthEffects {
               loginSuccess({ loginSuccessResponse })
             ),
             catchError((error) => {
-              console.error('Login error:', error);
+              this.toastService.error(LoginActionMessages.Error);
               return of(loginFailure({ error }));
             })
           );
@@ -40,12 +42,8 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(loginSuccess),
         tap(({ loginSuccessResponse }) => {
-          this.router.navigateByUrl('/about');
-          alert(
-            'Login Successfull, Welcome!'
-          );
-          this.router.navigateByUrl('/');
-          window.location.reload();
+          this.toastService.success(LoginActionMessages.Success);
+          this.router.navigateByUrl('/keywords');
         })
       ),
     { dispatch: false }
@@ -63,7 +61,7 @@ export class AuthEffects {
             registerSuccess()
           ),
           catchError((error) => {
-            console.error('Register error:', error);
+            this.toastService.error(RegisterActionMessages.Error);
             return of(registerFailure({ error }));
           })
         );
@@ -76,9 +74,7 @@ export class AuthEffects {
         ofType(registerSuccess),
         tap(() => {
           this.router.navigateByUrl('/');
-          alert(
-            'Successfull Registration, Please log in!'
-          );
+          this.toastService.success(RegisterActionMessages.Success);
         })
       ),
     { dispatch: false }
@@ -91,10 +87,7 @@ export class AuthEffects {
         ofType(logout),
         tap(() => {
           this.authService.logout();
-          this.router.navigateByUrl('/');
-          alert(
-            'Log out'
-          );
+          this.toastService.success(LogoutActionMessages.Success);
         })
       ),
       { dispatch: false }
@@ -103,6 +96,7 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 }
