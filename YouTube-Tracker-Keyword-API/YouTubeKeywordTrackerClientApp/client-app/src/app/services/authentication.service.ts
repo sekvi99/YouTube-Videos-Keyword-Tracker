@@ -45,8 +45,6 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('token');
         localStorage.removeItem('currentUserRole');
-
-        window.location.reload();
     }
 
     public register(username: string, password: string, city: string, street: string, postalCode?: string): Observable<void> {

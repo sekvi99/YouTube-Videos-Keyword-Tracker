@@ -16,7 +16,6 @@ export class AdminRightsGuard implements CanActivate {
                     return true;
                 }
 
-                this.router.navigate(['/']);
                 return false;
             }),
             take(1)

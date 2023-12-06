@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'keywords', component: KeywordListComponent, canActivate: [AuthorizationGuard] },
-  { path: 'user-panel', component: UsersListComponent, canActivate: [AdminRightsGuard] }
+  { path: 'user-panel', component: UsersListComponent, canActivate: [AdminRightsGuard] },
+  { path: '**', redirectTo: '' } // * Has to be last one
 ];
 
 @NgModule({

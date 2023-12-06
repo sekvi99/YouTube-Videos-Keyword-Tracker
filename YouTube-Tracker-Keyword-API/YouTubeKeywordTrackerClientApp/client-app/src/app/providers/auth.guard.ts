@@ -16,7 +16,6 @@ export class AuthorizationGuard implements CanActivate {
                     return true;
                 }
 
-                this.router.navigate(['/'], { queryParams: { returnUrl: state.url } });
                 return false;
             }),
             take(1)

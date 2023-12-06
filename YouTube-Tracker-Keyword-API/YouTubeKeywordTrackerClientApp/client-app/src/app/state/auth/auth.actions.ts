@@ -20,17 +20,17 @@ export enum AuthenticationActionTypes {
 export const loginRequest = createAction(
     AuthenticationActionTypes.LoginRequest,
     props<{ credentials: { username: string, password: string } }>()
-)
+);
 
 export const loginSuccess = createAction(
     AuthenticationActionTypes.LoginSuccess,
     props<{ loginSuccessResponse: IAuthLoginResponse }>()
-)
+);
 
 export const loginFailure = createAction(
     AuthenticationActionTypes.LoginRequest,
     props<{ error: string }>()
-)
+);
 
 // Register Actions
 export const registerRequest = createAction(

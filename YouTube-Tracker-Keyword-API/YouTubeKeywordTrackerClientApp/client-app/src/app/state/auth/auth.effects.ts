@@ -26,7 +26,6 @@ export class AuthEffects {
           .login(action.credentials.username, action.credentials.password)
           .pipe(
             map((loginSuccessResponse) => {
-              this.router.navigate(['/keywords']);
               return loginSuccess({ loginSuccessResponse });
             }
             ),
@@ -45,7 +44,9 @@ export class AuthEffects {
         ofType(loginSuccess),
         tap(({ loginSuccessResponse }) => {
           this.toastService.success(LoginActionMessages.Success);
-          this.router.navigate(['/keywords']);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         })
       ),
     { dispatch: false }
@@ -90,6 +91,9 @@ export class AuthEffects {
         tap(() => {
           this.authService.logout();
           this.toastService.success(LogoutActionMessages.Success);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         })
       ),
       { dispatch: false }
@@ -102,3 +106,5 @@ export class AuthEffects {
     private toastService: ToastService
   ) {}
 }
+
+// TODO Think about more elegant way of not using setTimeout
