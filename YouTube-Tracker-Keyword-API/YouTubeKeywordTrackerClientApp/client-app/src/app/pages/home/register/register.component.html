@@ -1,5 +1,4 @@
 <div class="auth-form">
-    <h2 class="header mb-3">Zarejestruj się</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="fields-container">
             <mat-form-field>
@@ -30,6 +29,7 @@
             <button
                 class="buttons-confirm"
                 type="submit"
+                [disabled]="registerForm.invalid"
             >Zarejestruj się</button>
         </div>
     </form>

@@ -35,7 +35,6 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(response.username));
                     localStorage.setItem('currentUserRole', JSON.stringify(response.roleId));
                 }
-
                 return { ...response };
             })
         )

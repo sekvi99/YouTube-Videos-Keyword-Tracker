@@ -15,7 +15,7 @@ interface IHeaderDefinitions {
 export const HEADER_DEFINITIONS: IHeaderDefinitions = {
     home: {
         title: "Projekt magisterski",
-        imgSource: "None",
+        imgSource: "../../../assets/logo.jpg",
         imgAlt: "Logo"
     },
     about: {

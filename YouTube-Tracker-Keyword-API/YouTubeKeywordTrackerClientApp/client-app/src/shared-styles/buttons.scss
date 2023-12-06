@@ -11,6 +11,7 @@ $button-border: 1px solid #3498db;
   border: $button-border;
   border-radius: $button-border-radius;
   padding: $button-padding;
+  min-width: 215px;
   cursor: pointer;
 
   &[disabled] {

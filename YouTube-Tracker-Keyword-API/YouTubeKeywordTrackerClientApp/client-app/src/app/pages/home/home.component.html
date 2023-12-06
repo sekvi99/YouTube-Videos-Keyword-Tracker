@@ -1,4 +1,5 @@
 <div class="home-container">
+    <div class="circle-background"></div>
     <app-header
         [title]="headerDefinition.title"
         [imgSource]="headerDefinition.imgSource"
@@ -6,10 +7,16 @@
     ></app-header>
     <div class="login-container">
         <mat-tab-group class="home-tabs">
-            <mat-tab label="Zaloguj się">
+            <mat-tab 
+                label="Zaloguj się"
+                class="home-tab"
+            >
                 <app-login></app-login>
             </mat-tab>
-            <mat-tab label="Zarejestruj się">
+            <mat-tab 
+                label="Zarejestruj się"
+                class="home-tab"
+            >
                 <app-register></app-register>
             </mat-tab>
         </mat-tab-group>

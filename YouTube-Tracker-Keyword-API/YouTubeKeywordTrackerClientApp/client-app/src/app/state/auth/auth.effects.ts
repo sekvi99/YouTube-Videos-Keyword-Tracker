@@ -25,8 +25,10 @@ export class AuthEffects {
         return this.authService
           .login(action.credentials.username, action.credentials.password)
           .pipe(
-            map((loginSuccessResponse) =>
-              loginSuccess({ loginSuccessResponse })
+            map((loginSuccessResponse) => {
+              this.router.navigate(['/keywords']);
+              return loginSuccess({ loginSuccessResponse });
+            }
             ),
             catchError((error) => {
               this.toastService.error(LoginActionMessages.Error);
@@ -43,7 +45,7 @@ export class AuthEffects {
         ofType(loginSuccess),
         tap(({ loginSuccessResponse }) => {
           this.toastService.success(LoginActionMessages.Success);
-          this.router.navigateByUrl('/keywords');
+          this.router.navigate(['/keywords']);
         })
       ),
     { dispatch: false }
