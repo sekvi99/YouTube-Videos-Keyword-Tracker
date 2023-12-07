@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormComponent } from '../../../generic-components/form-component';
 import { FormGroup, Validators } from '@angular/forms';
+import { edit, upload } from '../../../state/data/data.actions';
+import { KeywordsEndpoints } from '../../../services/api-endpoints/endpoints';
 
 @Component({
   selector: 'app-keyword-form',
@@ -14,21 +16,44 @@ export class KeywordFormComponent extends FormComponent {
     keyword: [null, Validators.required]
   })
 
+  public override ngOnInit(): void {
+    this.keywordForm.patchValue(this.loadKeywordContent());
+  }
+
   override async onSubmit(): Promise<void> {
       if (!this.keywordForm.valid) {
         return;
       }
-      try
-      {
-        // this.store.dispatch();
-      }
-      catch
-      {
-        // TODO Add toast service for error there 
+
+      switch(this.editMode) {
+        case true:
+          this.editKeyword();
+          break;
+
+        case false:
+          this.addKeyword;
+          break;
       }
   }
 
-  // override loadDataFromValues(): void {
-  //   throw new Error('Method not implemented.');
-  // }
+  private addKeyword(): void {
+    this.store.dispatch(upload({
+      formData: this.keywordForm.value,
+      endpoint: KeywordsEndpoints.Keyword
+    }))
+  }
+
+  private editKeyword(): void {
+    this.store.dispatch(edit({
+      formData: this.keywordForm.value,
+      endpoint: KeywordsEndpoints.Keyword
+    }))
+  }
+
+  private loadKeywordContent() {
+    return {
+      id: this.data.id,
+      keyword: this.data.keyword
+    }
+  }
 }

@@ -18,6 +18,8 @@ import {
 import { IEntity } from "../../models/entity";
 import { DataReducerEntity } from "./data.reducer";
 import { KeywordsEndpoints, UsersEndpoints } from "../../services/api-endpoints/endpoints";
+import { ToastService } from "../../services/toast.service";
+import { DataActionMessages } from "../../models/toast/toast-messages";
 
 const TABLE_ENTITY_URL_MAP: Record<DataReducerEntity, string> = {
     keywordsData: KeywordsEndpoints.GetAllKeywords,
@@ -80,6 +82,25 @@ export class DataEffects {
         )
     );
 
+    uploadSuccess$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(uploadSuccess),
+            tap(() => {
+                this.toastService.success(DataActionMessages.AddSuccess);
+            })
+        ),
+        { dispatch: false }
+    );
+
+    uploadError$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(uploadError),
+            tap(() => {
+                this.toastService.error(DataActionMessages.AddError);
+            })
+        )
+    );
+
     edit$ = createEffect(() => 
         this.actions$.pipe(
             ofType(edit),
@@ -94,8 +115,29 @@ export class DataEffects {
         )
     );
 
+    editSuccess$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(editSuccess),
+            tap(() => {
+                this.toastService.success(DataActionMessages.EditSuccess);
+            })
+        ),
+        { dispatch: false }
+    );
+
+    editError$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(editError),
+            tap(() => {
+                this.toastService.error(DataActionMessages.EditError);
+            })
+        ),
+        { dispatch: false }
+    );
+
     constructor(
         private actions$: Actions,
-        private dataService: DataService
+        private dataService: DataService,
+        private toastService: ToastService
     ) {}
 }

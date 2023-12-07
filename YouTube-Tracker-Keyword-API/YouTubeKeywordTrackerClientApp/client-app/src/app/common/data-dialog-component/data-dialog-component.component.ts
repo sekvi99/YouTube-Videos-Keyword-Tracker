@@ -10,10 +10,11 @@ import { DataReducerEntity } from '../../state/data/data.reducer';
   styleUrl: './data-dialog-component.component.scss'
 })
 export class DataDialogComponentComponent {
-  formData: any;
+  formData?: any;
   entityType?: string;
+  editMode?: boolean;
 
-  @ViewChild('dialogContent', { static: true }) dialogContent = TemplateRef<any>; 
+  @ViewChild('dialogContent', { static: true }) dialogContent!: TemplateRef<any>;
 
   reducers = DataReducerEntity;
 
@@ -26,9 +27,12 @@ export class DataDialogComponentComponent {
     return this.reducers;
   }
 
-  public openDialog(formData: any, entityType: string): void {
+  public openDialog(formData: any, entityType: string, editMode: boolean): void {
     this.formData = formData;
     this.entityType = entityType;
+    this.editMode = editMode;
+
+    this.dialog.open(this.dialogContent, { width: '100vh' });
   }
   
   public onFormSuccessfull(event: any): void {

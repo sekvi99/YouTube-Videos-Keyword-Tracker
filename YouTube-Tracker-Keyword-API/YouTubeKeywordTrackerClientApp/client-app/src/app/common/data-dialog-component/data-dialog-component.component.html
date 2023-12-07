@@ -2,7 +2,11 @@
     <h1 mat-dialog-title>Potwierdź</h1>
     <mat-dialog-content>
         <ng-container *ngIf="entityType === reducers.Keywords">
-            
+            <app-keyword-form
+                [editMode]="editMode"
+                [data]="formData"
+                [entityType]="entityType"
+            ></app-keyword-form>
         </ng-container>
     </mat-dialog-content>
 </ng-template>

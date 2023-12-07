@@ -6,6 +6,7 @@ export enum AuthenticationEndpoints {
 export enum KeywordsEndpoints {
     GetAllKeywords = '/SearchKeyword/user',
     GetSingleKeyword = '/SearchKeyword/', // Id after /
+    Keyword = '/SearchKeyword'
 }
 
 export enum UsersEndpoints {

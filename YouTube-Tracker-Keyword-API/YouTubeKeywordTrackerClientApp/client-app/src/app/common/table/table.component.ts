@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { IColumnDefinition } from './columns-definition';
 import { Store } from '@ngrx/store';
 import { IState } from '../../state';
@@ -17,6 +17,9 @@ export class TableComponent implements OnInit {
   @Input() dataColumns?: IColumnDefinition[];
   @Input() entityType?: string;
   @Input() endpoint?: string;
+
+  @Output('onEditClick') onEditClickEvent = new EventEmitter<any>();
+  @Output('onDeleteClick') onDeleteClickEvent = new EventEmitter<any>();
 
   @ViewChild('tableRef', { static: true }) tableRef?: ElementRef;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -59,12 +62,10 @@ export class TableComponent implements OnInit {
   }
 
   public onEditRowClick(event: any, row: any): void {
-    console.log(event);
-    console.log(row);
+    this.onEditClickEvent.emit(row);
   }
 
   public onDeleteRowClick(event: any, row: any): void {
-    console.log(event);
-    console.log(row);
+    this.onDeleteClickEvent.emit(row);
   }
 }
