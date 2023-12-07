@@ -108,7 +108,7 @@ export class DataEffects {
                 return this.dataService
                 .edit(action.endpoint, action.formData)
                 .pipe(
-                    map(data => editSuccess({ successMessage: 'Successfully edited data' })),
+                    map(() => editSuccess({ successMessage: 'Successfully edited data' })),
                     catchError(() => of(editError({ errorMessage: 'Error occured while editing data' })))
                 )
             })

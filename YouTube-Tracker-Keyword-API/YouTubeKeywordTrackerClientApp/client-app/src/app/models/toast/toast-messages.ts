@@ -15,10 +15,9 @@ export enum LogoutActionMessages {
 }
 
 export enum DataActionMessages {
-    AddInfo = 'Dodawanie nowych danych!',
+    Info = 'Dodawanie danych!',
     AddSuccess = 'Sukces, poprawnie dodano dane!',
     AddError = 'Wystąpił błąd, nie udało się dodać danych!',
-    EditInfo = 'Edytowanie danych!',
     EditSuccess = 'Sukces, udało się zmienić dane!',
     EditError = 'Wystąpił błąd, nie udało się zmienić danych'
 }
