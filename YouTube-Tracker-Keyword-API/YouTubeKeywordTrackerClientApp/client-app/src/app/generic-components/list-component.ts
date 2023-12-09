@@ -13,7 +13,7 @@ export abstract class ListComponent<TDataType> {
     @ViewChild(DataDialogComponentComponent, { static: true }) dialog!: DataDialogComponentComponent;
 
     constructor(
-        private store: Store<IState>,
+        protected store: Store<IState>,
     ) { }
 
     abstract editDataClick(data: TDataType): void;

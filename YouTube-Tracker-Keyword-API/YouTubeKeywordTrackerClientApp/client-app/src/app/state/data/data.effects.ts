@@ -13,7 +13,10 @@ import {
     uploadError,
     edit,
     editSuccess,
-    editError
+    editError,
+    deleteData,
+    deleteSuccess,
+    deleteError
 } from './data.actions';
 import { IEntity } from "../../models/entity";
 import { DataReducerEntity } from "./data.reducer";
@@ -131,6 +134,36 @@ export class DataEffects {
             tap(() => {
                 this.toastService.error(DataActionMessages.EditError);
             })
+        ),
+        { dispatch: false }
+    );
+
+    delete$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(deleteData),
+            mergeMap(action => {
+                return this.dataService
+                .delete(action.endpoint, action.entity)
+                .pipe(
+                    map(() => deleteSuccess({ successMessage: 'Successfully deleted data' })),
+                    catchError(() => of(deleteError({ errorMessage: 'Error occured while deleting data' })))
+                )
+            })
+        )
+    );
+
+    deleteSuccess$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(deleteSuccess),
+            tap(()=> this.toastService.success(DataActionMessages.DeleteSuccess))
+        ),
+        { dispatch: false }
+    );
+
+    deleteError$ = createEffect(() => 
+        this.actions$.pipe(
+            ofType(deleteError),
+            tap(() => this.toastService.error(DataActionMessages.DeleteError))
         ),
         { dispatch: false }
     );

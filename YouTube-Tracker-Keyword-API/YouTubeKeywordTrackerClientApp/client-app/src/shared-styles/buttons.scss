@@ -21,5 +21,6 @@ $button-border: 1px solid #3498db;
 
   &:hover:enabled {
     background-color: $button-hover-color;
+    transition: all ease-in-out 0.1s;
   }
 }

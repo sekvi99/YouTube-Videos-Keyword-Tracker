@@ -5,6 +5,7 @@ import { HEADER_DEFINITIONS } from '../../common/header/header-definitions';
 import { DataReducerEntity } from '../../state/data/data.reducer';
 import { ListComponent } from '../../generic-components/list-component';
 import { ISearchKeyword } from '../../models/data/search.keyword';
+import { deleteData } from '../../state/data/data.actions';
 
 @Component({
   selector: 'app-keyword-list',
@@ -22,6 +23,6 @@ export class KeywordListComponent extends ListComponent<ISearchKeyword> {
   }
 
   override deleteDataClick(data: ISearchKeyword): void {
-    throw new Error('Method not implemented.');
+    this.store.dispatch(deleteData({ endpoint: KeywordsEndpoints.Keyword, entity: data }));
   }
 }

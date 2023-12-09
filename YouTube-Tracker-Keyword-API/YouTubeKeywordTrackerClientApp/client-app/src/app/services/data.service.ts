@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { AppConfig } from "../app.config";
 import { Observable } from 'rxjs';
 import { FormGroup } from "@angular/forms";
+import { IEntity } from '../models/entity';
 
 @Injectable({
     providedIn: 'root'
@@ -35,5 +36,11 @@ export class DataService {
         const options = { params, observe: 'response' as const, responseType: 'text' as const };
       
         return this.http.put(modifiedUrl, formData.value, options);
+    }
+
+    delete<T>(url: string, data: IEntity, params?: any): Observable<HttpEvent<string>> {
+        const dataId = data.id;
+        const options = { params, observe: 'response' as const, responseType: 'text' as const };
+        return this.http.delete(`${this.apiUrl}${url}/${dataId}`, options);
     }
 }

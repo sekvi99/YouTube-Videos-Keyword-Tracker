@@ -14,7 +14,10 @@ export enum DataActionTypes {
     DataUploadError = '[Data] Data upload error',
     DataEdit = '[Data] Data edit request',
     DataEditSuccess = '[Data] Data edit success',
-    DataEditError = '[Data] Data edit error'
+    DataEditError = '[Data] Data edit error',
+    Delete = '[Data] Delete data request',
+    DeleteSuccess = '[Data] Delete data success',
+    DeleteError = '[Data] Delete data error'
 }
 
 // Data actions
@@ -73,3 +76,18 @@ export const editError = createAction(
     DataActionTypes.DataEditError,
     props<{ errorMessage: string }>()
 );
+// Data delete actions
+export const deleteData = createAction(
+    DataActionTypes.Delete,
+    props<{ endpoint: string, entity: IEntity }>()
+);
+
+export const deleteSuccess = createAction(
+    DataActionTypes.DeleteSuccess,
+    props<{ successMessage: string }>()
+)
+
+export const deleteError = createAction(
+    DataActionTypes.DeleteError,
+    props<{  errorMessage: string }>()
+)

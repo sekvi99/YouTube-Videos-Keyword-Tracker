@@ -19,5 +19,7 @@ export enum DataActionMessages {
     AddSuccess = 'Sukces, poprawnie dodano dane!',
     AddError = 'Wystąpił błąd, nie udało się dodać danych!',
     EditSuccess = 'Sukces, udało się zmienić dane!',
-    EditError = 'Wystąpił błąd, nie udało się zmienić danych'
+    EditError = 'Wystąpił błąd, nie udało się zmienić danych',
+    DeleteSuccess = 'Sukces, udało się usunąć dane!',
+    DeleteError = 'Wystąpił błąd, nie udało usunąć się danych'
 }
