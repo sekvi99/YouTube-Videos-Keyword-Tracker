@@ -16,14 +16,16 @@ public class AuthenticationService : IAuthenticationService
     private readonly ITokenGenerator _tokenGenerator;
     private readonly ILogger<AuthenticationService> _logger;
     private readonly IMapper _mapper;
+    private readonly IUserIdentityService _userIdentityService;
 
-    public AuthenticationService(IPasswordHasher<User> passwordHasher, YouTubeKeywordTrackerDbContext dbContext, ITokenGenerator tokenGenerator, ILogger<AuthenticationService> logger, IMapper mapper)
+    public AuthenticationService(IPasswordHasher<User> passwordHasher, YouTubeKeywordTrackerDbContext dbContext, ITokenGenerator tokenGenerator, ILogger<AuthenticationService> logger, IMapper mapper, IUserIdentityService userIdentityService)
     {
         _passwordHasher = passwordHasher;
         _dbContext = dbContext;
         _tokenGenerator = tokenGenerator;
         _logger = logger;
         _mapper = mapper;
+        _userIdentityService = userIdentityService;
     }
     private async Task<User> GetUser(UserRegistrationDto model)
     {
@@ -71,6 +73,7 @@ public class AuthenticationService : IAuthenticationService
             var newUser = new User
             {
                 Username = user.Username,
+                DateCreated = DateTime.UtcNow,
                 PasswordHash = _passwordHasher.HashPassword(null, user.Password),
                 Address = new Address()
                 {
@@ -104,21 +107,17 @@ public class AuthenticationService : IAuthenticationService
     public async Task UpdateUserCredentials(int userId, UserUpdateDto user)
     {
         _logger.LogInformation($"Performing update operation for user with ID: {userId}");
-        var userToUpdate = await _dbContext.Users.FindAsync(userId);
+        var userToUpdate = await _dbContext.Users.Include(u => u.Address).FirstOrDefaultAsync(u => u.Id == userId);
 
         if (userToUpdate == null)
         {
-            throw new ResourceNotFoundException($"User with ID: {userId} does not exist in system");
+            throw new ResourceNotFoundException($"User with ID: {userId} does not exist in the system");
         }
 
         if (!string.IsNullOrEmpty(user.Username))
         {
             userToUpdate.Username = user.Username;
-        }
-
-        if (!string.IsNullOrEmpty(user.Password))
-        {
-            userToUpdate.PasswordHash = _passwordHasher.HashPassword(null, user.Password);
+            userToUpdate.DateModified = DateTime.UtcNow;
         }
 
         if (!string.IsNullOrEmpty(user.City) || !string.IsNullOrEmpty(user.PostalCode) || !string.IsNullOrEmpty(user.Street))
@@ -126,11 +125,13 @@ public class AuthenticationService : IAuthenticationService
             if (userToUpdate.Address == null)
             {
                 userToUpdate.Address = new Address();
+                userToUpdate.Address.DateCreated = DateTime.UtcNow;
             }
 
             userToUpdate.Address.City = user.City ?? userToUpdate.Address.City;
             userToUpdate.Address.Street = user.Street ?? userToUpdate.Address.Street;
             userToUpdate.Address.PostalCode = user.PostalCode ?? userToUpdate.Address.PostalCode;
+            userToUpdate.Address.DateCreated = DateTime.UtcNow;
         }
 
         await _dbContext.SaveChangesAsync();
@@ -146,6 +147,25 @@ public class AuthenticationService : IAuthenticationService
         }
 
         _dbContext.Users.Remove(userToDelete);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task UpdateUserPassword(UserUpdatePasswordDto user)
+    {
+        var currentUserId = _userIdentityService.GetUserId();
+        _logger.LogInformation($"Updating password for user with ID: {currentUserId}");
+
+        var currentuser = await _dbContext
+            .Users
+            .FindAsync(currentUserId);
+
+        if (currentuser == null)
+        {
+            throw new ResourceNotFoundException($"User with ID: {currentUserId} does not exist at system");
+        }
+
+        currentuser.PasswordHash = _passwordHasher.HashPassword(null, user.NewPassword);
+        currentuser.DateModified = DateTime.UtcNow;
         await _dbContext.SaveChangesAsync();
     }
 }

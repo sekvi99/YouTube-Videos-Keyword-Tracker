@@ -44,5 +44,11 @@ public class AuthenticationController : ControllerBase
     public async Task Update([FromBody] UserUpdateDto user, int userId)
     {
         await _authenticationService.UpdateUserCredentials(userId, user);
+    }   
+    [HttpPut("password")]
+    [Authorize]
+    public async Task UpdatePassword([FromBody] UserUpdatePasswordDto user)
+    {
+        await _authenticationService.UpdateUserPassword(user);
     }
 }

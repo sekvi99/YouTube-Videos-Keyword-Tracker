@@ -58,6 +58,7 @@ public class SearchKeywordService : ISearchKeywordService
         }
         var newKeyword = _mapper.Map<CreateSearchKeywordDto, SearchKeyword>(keyword);
         newKeyword.UserId = userId;
+        newKeyword.DateCreated = DateTime.UtcNow;
         _dbContext.Keywords.Add(newKeyword);
         await _dbContext.SaveChangesAsync();
     }
@@ -69,6 +70,7 @@ public class SearchKeywordService : ISearchKeywordService
             throw new ResourceNotFoundException($"Keyword with given id: {id} does not exist in database");
         }
         keyword.Keyword = dto.Keyword;
+        keyword.DateModified = DateTime.UtcNow;
         await _dbContext.SaveChangesAsync();
     }
     public async Task Delete(int id)

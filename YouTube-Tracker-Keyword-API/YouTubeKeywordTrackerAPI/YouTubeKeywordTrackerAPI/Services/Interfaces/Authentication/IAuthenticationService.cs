@@ -8,5 +8,6 @@ public interface IAuthenticationService
     public Task<UserLoginSuccessDto> Login(UserLoginDto user);
     public Task<IEnumerable<UserDto>> GetAllUsers();
     public Task UpdateUserCredentials(int userId, UserUpdateDto user);
+    public Task UpdateUserPassword(UserUpdatePasswordDto user);
     public Task Delete(int userId);
 }
