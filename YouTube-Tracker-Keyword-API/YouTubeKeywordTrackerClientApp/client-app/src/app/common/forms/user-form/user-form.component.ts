@@ -12,6 +12,7 @@ import { UsersEndpoints } from '../../../services/api-endpoints/endpoints';
 })
 export class UserFormComponent extends FormComponent {
   userForm: FormGroup = this.formBuilder.group({
+    id: [null],
     username: [null, Validators.required],
     city: [null, Validators.required],
     street: [null, Validators.required],
@@ -48,10 +49,11 @@ export class UserFormComponent extends FormComponent {
 
   private loadUserContent() {
     return {
+      id: this.data.id,
       username: this.data.username,
-      city: this.data.city,
-      street: this.data.street,
-      postalCode: this.data.postalCode
+      city: this.data.addressCity,
+      street: this.data.addressStreet,
+      postalCode: this.data.addressPostalCode
     }
   }
 }

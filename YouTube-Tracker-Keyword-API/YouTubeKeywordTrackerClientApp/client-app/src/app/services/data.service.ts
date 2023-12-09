@@ -32,6 +32,8 @@ export class DataService {
 
     edit<T>(url: string, formData: FormGroup, params?: any): Observable<HttpEvent<string>> {
         const dataId = formData.value.id;
+        console.log(formData.value);
+        console.log(dataId);
         const modifiedUrl = `${this.apiUrl}${url}${dataId !== undefined ? `/${dataId}` : ''}`;
         const options = { params, observe: 'response' as const, responseType: 'text' as const };
       

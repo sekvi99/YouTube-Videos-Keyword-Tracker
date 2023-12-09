@@ -1,1 +1,29 @@
-<p>user-form works!</p>
+<div class="form-container">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Nazwa użytkownika" formControlName="username" />
+            <mat-error *ngIf="userForm.get('username')?.hasError('required')"
+            >Nazwa użytkownika jest wymagana</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Miasto" formControlName="city" />
+            <mat-error *ngIf="userForm.get('city')?.hasError('required')"
+            >Miasto jest wymagane</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Ulica" formControlName="street" />
+            <mat-error *ngIf="userForm.get('street')?.hasError('required')"
+            >Ulica jest wymagana</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Kod pocztowy" formControlName="postalCode" />
+        </mat-form-field>
+        <div class="form-actions">
+            <button
+                class="buttons-confirm"
+                type="submit"
+                [disabled]="userForm.invalid"
+            >Potwierdź</button>
+        </div>
+    </form>
+</div>
