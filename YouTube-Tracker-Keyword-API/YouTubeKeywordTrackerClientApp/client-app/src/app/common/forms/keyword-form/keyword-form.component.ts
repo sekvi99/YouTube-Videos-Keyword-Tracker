@@ -11,32 +11,25 @@ import { DataActionMessages } from '../../../models/toast/toast-messages';
   styleUrl: './keyword-form.component.scss'
 })
 export class KeywordFormComponent extends FormComponent {
-
   keywordForm: FormGroup = this.formBuilder.group({
     id: [null],
     keyword: [null, Validators.required]
   })
 
   public override ngOnInit(): void {
+    if (this.data === undefined || this.data === null) {
+      return;
+    } 
     this.keywordForm.patchValue(this.loadKeywordContent());
   }
 
   override async onSubmit(): Promise<void> {
-      if (!this.keywordForm.valid) {
-        return;
-      }
-
-      this.toastService.info(DataActionMessages.Info);
-
-      switch(this.editMode) {
-        case true:
-          this.editKeyword();
-          break;
-
-        case false:
-          this.addKeyword();
-          break;
-      }
+    if (!this.keywordForm.valid) {
+      return;
+    }
+  
+    this.toastService.info(DataActionMessages.Info);
+    this.editMode ? this.editKeyword() : this.addKeyword();
   }
 
   private addKeyword(): void {

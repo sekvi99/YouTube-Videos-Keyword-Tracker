@@ -8,5 +8,12 @@
                 [entityType]="entityType"
             ></app-keyword-form>
         </ng-container>
+        <ng-container *ngIf="entityType === reducers.Users">
+            <app-user-form
+                [editMode]="editMode"
+                [data]="formData"
+                [entityType]="entityType"
+            ></app-user-form>
+        </ng-container>
     </mat-dialog-content>
 </ng-template>

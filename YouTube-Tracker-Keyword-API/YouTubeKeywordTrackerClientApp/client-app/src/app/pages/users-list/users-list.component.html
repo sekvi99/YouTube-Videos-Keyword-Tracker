@@ -1,11 +1,16 @@
-<app-header
-    [title]="headerDefinition.title"
-    [imgSource]="headerDefinition.imgSource"
-    [imgAlt]="headerDefinition.imgAlt"
-></app-header>
+<div class="table-header-container">
+    <app-header
+        [title]="headerDefinition.title"
+        [imgSource]="headerDefinition.imgSource"
+        [imgAlt]="headerDefinition.imgAlt"
+    ></app-header>
 
-<app-table
-    [entityType]="entityType"
-    [dataColumns]="columns"
-    [endpoint] = "endpoint"
-></app-table>
+    <app-table
+        [entityType]="entityType"
+        [dataColumns]="columns"
+        [endpoint] = "endpoint"
+        (onEditClick)="editDataClick($event)"
+        (onDeleteClick)="deleteDataClick($event)"
+    ></app-table>
+</div>
+<app-data-dialog-component></app-data-dialog-component>

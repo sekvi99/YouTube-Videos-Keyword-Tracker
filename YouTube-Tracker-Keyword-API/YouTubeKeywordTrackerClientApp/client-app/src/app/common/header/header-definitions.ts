@@ -20,22 +20,22 @@ export const HEADER_DEFINITIONS: IHeaderDefinitions = {
     },
     about: {
         title: "O projekcie",
-        imgSource: null,
-        imgAlt: null
+        imgSource: "../../../assets/logo.jpg",
+        imgAlt: "Logo"
     },
     keywords: {
         title: "Słowa kluczowe",
-        imgSource: null,
-        imgAlt: null
+        imgSource: "../../../assets/logo.jpg",
+        imgAlt: "Logo"
     },
     accountSettings: {
         title: "Ustawienia konta",
-        imgSource: null,
-        imgAlt: null,
+        imgSource: "../../../assets/logo.jpg",
+        imgAlt: "Logo",
     },
     usersHub: {
         title: "Panel użytkowników",
-        imgSource: null,
-        imgAlt: null,
+        imgSource: "../../../assets/logo.jpg",
+        imgAlt: "Logo",
     }
 }

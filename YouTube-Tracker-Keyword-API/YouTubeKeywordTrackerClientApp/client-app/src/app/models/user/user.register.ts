@@ -1,4 +1,6 @@
-export interface IUserRegister {
+import { IEntity } from '../entity';
+
+export interface IUserRegister extends IEntity {
     username: string;
     password: string;
     city: string;
