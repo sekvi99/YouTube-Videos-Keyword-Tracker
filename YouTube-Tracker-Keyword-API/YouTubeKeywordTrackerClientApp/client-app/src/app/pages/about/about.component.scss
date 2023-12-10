@@ -1,0 +1,82 @@
+@import 'color-variables';
+
+.about-container {
+    overflow-y: visible;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+
+        h1 {
+            font-weight: bold;
+            color: $primary-color;
+            padding: 15px;
+
+            &:hover {
+                cursor: pointer;
+                color: $secondary-color;
+                transition: all 0.2s ease-in-out;
+            }
+        }
+
+        span {
+            width: 65%;
+            text-align: left;
+            color: $primary-color;
+            border: 2px solid $primary-color;
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            ul {
+                width: 40%;
+                color: $primary-color;
+                font-size: larger;
+                list-style-type: none;
+
+                li {
+                    margin-bottom: 10px;
+                    a {
+                        text-decoration: none;
+                    }
+
+                    h2 {
+                        font-weight: bold;
+                        color: $secondary-color;
+
+                        &:hover {
+                            color: $primary-color;
+                            transition: all 0.3s ease-in-out;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            p {
+                width: 40%;
+                padding: 10px;
+                color: $primary-color;
+                font-size: larger;
+            }
+            
+            .img-container {
+                width: 40%;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    max-height: 300px;
+                }
+            }
+        }
+    }
+}

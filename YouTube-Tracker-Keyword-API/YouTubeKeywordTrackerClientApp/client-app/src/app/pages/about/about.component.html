@@ -3,3 +3,68 @@
     [imgSource]="headerDefinition.imgSource"
     [imgAlt]="headerDefinition.imgAlt"
 ></app-header>
+<div class="about-container">
+    <section class="author" [@fadeInOut]="isSectionVisible('author') ? 'in' : 'out'">
+        <h1 (click)="toggleSection('author')">{{ sections.author.label }}
+            <mat-icon> person_pin</mat-icon></h1>
+        <span *ngIf="isSectionVisible('author')" [@fadeInOut]="isSectionVisible('author') ? 'in' : 'out'">
+            <p>Filip Koźlik młody programista, który szuka wyzwań, aby dalej rozwijać swoje umiejętności. Od 1.5 roku pracuje na stanowisku developera, aktualnie jest to fullstack dev.
+                Zajmuje się zarówno frontem, backiem liznąłem troszkę automatyzacji, devopsowania i data science.</p>
+            <div class="img-container">
+                <img src="../../../assets/coder-removebg.png" alt="coder"/>
+            </div>
+        </span>
+    </section>
+
+    <section class="technologies">
+        <h1 (click)="toggleSection('technologies')" [@fadeInOut]="isSectionVisible('technologies') ? 'in' : 'out'">{{ sections.technologies.label }}
+            <mat-icon>settings</mat-icon>
+        </h1>
+        <span *ngIf="isSectionVisible('technologies')" [@fadeInOut]="isSectionVisible('technologies') ? 'in' : 'out'">
+            <ul>
+                <li>
+                    <a href="https://fastapi.tiangolo.com/" target="_blank">
+                        <h2>Python FastApi</h2>
+                    </a>Efektywny framework do tworzenia szybkich i skalowalnych API w języku Python.
+                </li>
+                <li>
+                    <a href="https://learn.microsoft.com/pl-pl/dotnet/" target="_blank">
+                        <h2>C# .Net</h2>
+                    </a>Potężna platforma programistyczna umożliwiająca tworzenie nowoczesnych aplikacji webowych i desktopowych.
+                </li>
+                <li>
+                    <a href="https://angular.io/" target="_blank">
+                        <h2>Angular</h2>
+                    </a>Framework do tworzenia dynamicznych i responsywnych interfejsów użytkownika w języku TypeScript.
+                </li>
+                <li>
+                    <a href="https://www.docker.com/get-started/" target="_blank">
+                        <h2>Docker</h2>
+                    </a>
+                    Technologia konteneryzacji umożliwiająca łatwe pakowanie, dostarczanie i uruchamianie aplikacji we wszelkich środowiskach.
+                </li>
+                <li>
+                    <a href="https://www.microsoft.com/pl-pl/sql-server/sql-server-downloads" target="_blank">
+                        <h2>MS SQL Server</h2>
+                    </a>
+                    Zaawansowany system zarządzania bazami danych, oferujący niezawodność i wydajność w obszarze przechowywania i zarządzania danymi.
+                </li>
+            </ul>
+            <div class="img-container">
+                <img src="../../../assets/technologies.png" alt="coder"/>
+            </div>
+        </span>
+    </section>
+
+    <section class="description">
+        <h1 (click)="toggleSection('description')" [@fadeInOut]="isSectionVisible('description') ? 'in' : 'out'">{{ sections.description.label }}
+            <mat-icon>description</mat-icon>
+        </h1>
+        <span *ngIf="isSectionVisible('description')" [@fadeInOut]="isSectionVisible('description') ? 'in' : 'out'">
+            <p>Projekt ma zadania zarządzać tworzyć i zarządzać raportami tworzonymi cyklicznie na podstawie dostarczonych słów kluczowych. Użytkownik na swoim profilu wprowadza interesujące go słowa kluczowe i na ich podstawie dostaje raz na tydzień generowane raporty dla każdego słowa na swój profil, które ma możliwość przeglądać i/lub pobrac.</p>
+            <div class="img-container">
+                <img src="../../../assets/description-removebg.png" alt="coder"/>
+            </div>
+        </span>
+    </section>
+</div>
