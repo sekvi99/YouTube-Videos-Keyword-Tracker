@@ -6,6 +6,7 @@ import { DataReducerEntity } from '../../state/data/data.reducer';
 import { ListComponent } from '../../generic-components/list-component';
 import { ISearchKeyword } from '../../models/data/search.keyword';
 import { deleteData } from '../../state/data/data.actions';
+import { AddDataButtonLabels } from '../../common/buttons/add-data-button/add.data.buttons';
 
 @Component({
   selector: 'app-keyword-list',
@@ -17,6 +18,7 @@ export class KeywordListComponent extends ListComponent<ISearchKeyword> {
   endpoint = KeywordsEndpoints.GetAllKeywords;
   columns = KEYWORD_COLUMNS_DEFINITION;
   headerDefinition = HEADER_DEFINITIONS.keywords;
+  addDataButtonLabel = AddDataButtonLabels.AddKeywordButton;
 
   override editDataClick(data: ISearchKeyword): void {
     this.dialog.openDialog(data, this.entityType, true);
@@ -24,5 +26,9 @@ export class KeywordListComponent extends ListComponent<ISearchKeyword> {
 
   override deleteDataClick(data: ISearchKeyword): void {
     this.store.dispatch(deleteData({ endpoint: KeywordsEndpoints.Keyword, entity: data }));
+  }
+
+  onAddKeyword(event: any): void {
+    this.dialog.openDialog(null, this.entityType, false);
   }
 }

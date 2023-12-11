@@ -4,6 +4,7 @@ import { AppConfig } from "../app.config";
 import { Observable } from 'rxjs';
 import { FormGroup } from "@angular/forms";
 import { IEntity } from '../models/entity';
+import { catchError, of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -26,23 +27,30 @@ export class DataService {
         return this.http.get<T>(`${this.apiUrl}${url}${id}`);
     }
 
-    upload<T>(url: string, formData: FormGroup, params?: any): Observable<HttpEvent<T>> {
-        return this.http.post<T>(`${this.apiUrl}${url}`, formData.value, params);
+    upload<T>(url: string, formData: FormGroup, params?: any): Observable<HttpEvent<string>> {
+        return this.http.post<string>(`${this.apiUrl}${url}`, formData.value, {
+            ...params,
+            responseType: 'text'
+        }).pipe(
+            catchError(error => {
+                console.error('Error during upload:', error);
+                return of(error);
+            })
+        );
     }
 
     edit<T>(url: string, formData: FormGroup, params?: any): Observable<HttpEvent<string>> {
         const dataId = formData.value.id;
-        console.log(formData.value);
-        console.log(dataId);
         const modifiedUrl = `${this.apiUrl}${url}${dataId !== undefined ? `/${dataId}` : ''}`;
-        const options = { params, observe: 'response' as const, responseType: 'text' as const };
-      
-        return this.http.put(modifiedUrl, formData.value, options);
+        return this.http.put(modifiedUrl, formData.value, this.createTextOptions(params));
     }
 
     delete<T>(url: string, data: IEntity, params?: any): Observable<HttpEvent<string>> {
         const dataId = data.id;
-        const options = { params, observe: 'response' as const, responseType: 'text' as const };
-        return this.http.delete(`${this.apiUrl}${url}/${dataId}`, options);
+        return this.http.delete(`${this.apiUrl}${url}/${dataId}`, this.createTextOptions(params));
+    }
+
+    private createTextOptions(params?: any) {
+        return { params, observe: 'response' as const, responseType: 'text' as const };
     }
 }

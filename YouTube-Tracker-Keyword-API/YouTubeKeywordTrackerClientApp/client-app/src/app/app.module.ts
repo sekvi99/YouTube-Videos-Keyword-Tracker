@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -25,7 +24,6 @@ import { HeaderComponent } from './common/header/header.component';
 import { dataReducer } from './state/data/data.reducer';
 import { DataEffects } from './state/data/data.effects';
 import { KeywordListComponent } from './pages/keyword-list/keyword-list.component';
-import { reducers } from './state';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { TranslatedPaginatorIntl } from './providers/paginator.translation';
 import { UsersListComponent } from './pages/users-list/users-list.component';
@@ -34,6 +32,9 @@ import { KeywordFormComponent } from './common/forms/keyword-form/keyword-form.c
 import { UserFormComponent } from './common/forms/user-form/user-form.component';
 import { ToastService } from './services/toast.service';
 import { ToastrModule } from 'ngx-toastr';
+import { AddDataButtonComponent } from './common/buttons/add-data-button/add-data-button.component';
+import { NoDataPipe } from './pipes/no.data.pipe';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import { ToastrModule } from 'ngx-toastr';
     DataDialogComponentComponent,
     KeywordFormComponent,
     UserFormComponent,
+    AddDataButtonComponent,
+    NoDataPipe
     
   ],
   imports: [

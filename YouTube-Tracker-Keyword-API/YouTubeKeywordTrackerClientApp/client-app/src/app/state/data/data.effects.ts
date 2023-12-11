@@ -79,7 +79,10 @@ export class DataEffects {
                 .upload(action.endpoint, action.formData)
                 .pipe(
                     map(data => uploadSuccess({ successMessage: 'Successfully uploaded data' })),
-                    catchError(() => of(uploadError({ errorMessage: 'Error occured while uploading data' })))
+                    catchError((error) => {
+                        console.error('Error occurred while uploading data:', error); // Log the error to the console
+                        return of(uploadError({ errorMessage: 'Error occurred while uploading data' }));
+                    })
                 )
             })
         )
@@ -90,6 +93,9 @@ export class DataEffects {
             ofType(uploadSuccess),
             tap(() => {
                 this.toastService.success(DataActionMessages.AddSuccess);
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 1000);
             })
         ),
         { dispatch: false }
@@ -101,7 +107,8 @@ export class DataEffects {
             tap(() => {
                 this.toastService.error(DataActionMessages.AddError);
             })
-        )
+        ),
+        { dispatch: false }
     );
 
     edit$ = createEffect(() => 
@@ -123,6 +130,9 @@ export class DataEffects {
             ofType(editSuccess),
             tap(() => {
                 this.toastService.success(DataActionMessages.EditSuccess);
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 1000);
             })
         ),
         { dispatch: false }

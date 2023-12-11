@@ -4,7 +4,10 @@
         [imgSource]="headerDefinition.imgSource"
         [imgAlt]="headerDefinition.imgAlt"
     ></app-header>
-
+    <app-add-data-button
+        [buttonLabel]="addDataButtonLabel"
+        (onAddDataButtonClick)="onAddKeyword($event)"
+    ></app-add-data-button>>
     <app-table
         [entityType]="entityType"
         [dataColumns]="columns"
