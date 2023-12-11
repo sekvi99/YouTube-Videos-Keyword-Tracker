@@ -26,6 +26,7 @@ export class TableComponent implements OnInit {
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   data$?: Observable<any>;
+  loading: boolean = false;
 
   constructor(
     protected store: Store<IState>
@@ -67,5 +68,12 @@ export class TableComponent implements OnInit {
 
   public onDeleteRowClick(event: any, row: any): void {
     this.onDeleteClickEvent.emit(row);
+  }
+
+  public onPageChange(event: any): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 150);
   }
 }

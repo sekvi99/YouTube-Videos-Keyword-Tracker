@@ -37,7 +37,7 @@ export class UserFormComponent extends FormComponent {
 
   // TODO Think whether adding user should be based on this form
   private addUser() {
-
+    
   }
 
   private editUser(): void {
