@@ -11,5 +11,6 @@ export enum KeywordsEndpoints {
 
 export enum UsersEndpoints {
     Users = '/Authentication/all',
-    User = '/Authentication'
+    User = '/Authentication',
+    UserPassword = '/Authentication/password'
 }

@@ -34,7 +34,10 @@ import { ToastService } from './services/toast.service';
 import { ToastrModule } from 'ngx-toastr';
 import { AddDataButtonComponent } from './common/buttons/add-data-button/add-data-button.component';
 import { NoDataPipe } from './pipes/no.data.pipe';
-
+import { UserAccountViewComponent } from './pages/account/user-account-view/user-account-view.component';
+import { UsernamePipe } from './pipes/username.pipe';
+import { UserRolePipe } from './pipes/role.pipe';
+import { UserPasswordFormComponent } from './common/forms/user-password-form/user-password-form.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,11 @@ import { NoDataPipe } from './pipes/no.data.pipe';
     KeywordFormComponent,
     UserFormComponent,
     AddDataButtonComponent,
-    NoDataPipe
+    NoDataPipe,
+    UserAccountViewComponent,
+    UsernamePipe,
+    UserRolePipe,
+    UserPasswordFormComponent
     
   ],
   imports: [

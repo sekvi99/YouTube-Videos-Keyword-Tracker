@@ -1,0 +1,12 @@
+<app-header
+    [title]="headerDefinition.title"
+    [imgSource]="headerDefinition.imgSource"
+    [imgAlt]="headerDefinition.imgAlt"
+></app-header>
+<div class="user-data-container">
+    <span>
+        <h1>Użytkownik: {{ (user$ | async)?.user | UsernameLabel }}</h1>
+        <h1>{{ (user$ | async)?.roleId | UserRoleLabel }}</h1>
+    </span>
+</div>
+

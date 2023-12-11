@@ -4,7 +4,11 @@ import { UserRole } from "../../models/user/user";
 
 const authentication = (state: IState) => state.auth;
 
-export const userSelector = createSelector(authentication, state => state.user);
+export const userSelector = createSelector(authentication, () => {
+    const user = localStorage.getItem("currentUser");
+    const roleId = localStorage.getItem("currentUserRole");
+    return { user, roleId };
+});
 
 export const userRoleSelector = createSelector(authentication, state => state.user.roleId);
 
