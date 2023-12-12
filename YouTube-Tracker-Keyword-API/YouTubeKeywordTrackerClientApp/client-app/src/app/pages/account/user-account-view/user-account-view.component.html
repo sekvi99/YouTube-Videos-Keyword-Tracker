@@ -5,6 +5,9 @@
 ></app-header>
 <div class="user-data-container">
     <span>
+        <app-user-password-form></app-user-password-form>
+    </span>
+    <span>
         <h1>Użytkownik: {{ (user$ | async)?.user | UsernameLabel }}</h1>
         <h1>{{ (user$ | async)?.roleId | UserRoleLabel }}</h1>
     </span>

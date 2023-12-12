@@ -7,7 +7,8 @@ export enum LoginActionMessages {
 export enum RegisterActionMessages {
     Info = 'Rejestrowanie użytkownika w systemie',
     Error = 'Wystąpił błąd, nie udało się zarejstrować użytkownika w systemie',
-    Success = 'Sukces, poprawnie zarejestrowano!'
+    Success = 'Sukces, poprawnie zarejestrowano!',
+    PasswordMismatchError = 'Wystąpił błąd, wprowadzone hasła nie są takie same',
 }
 
 export enum LogoutActionMessages {

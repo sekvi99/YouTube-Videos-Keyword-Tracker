@@ -4,6 +4,8 @@ import { IState } from '../../../state';
 import { Store } from '@ngrx/store';
 import { edit } from '../../../state/data/data.actions';
 import { UsersEndpoints } from '../../../services/api-endpoints/endpoints';
+import { ToastService } from '../../../services/toast.service';
+import { RegisterActionMessages } from '../../../models/toast/toast-messages';
 
 @Component({
   selector: 'app-user-password-form',
@@ -18,7 +20,8 @@ export class UserPasswordFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<IState>
+    private store: Store<IState>,
+    private toastService: ToastService
   ) { }
   
   onSubmit(): void {
@@ -30,7 +33,7 @@ export class UserPasswordFormComponent {
     const newPasswordConfirm = this.userPasswordForm.value.passwordConfirm;
 
     if (newPassword !== newPasswordConfirm) {
-      // TODO Throw a toast for mismatch in password
+      this.toastService.error(RegisterActionMessages.PasswordMismatchError);
       return;
     }
 
@@ -38,6 +41,5 @@ export class UserPasswordFormComponent {
       formData: this.userPasswordForm,
       endpoint: UsersEndpoints.UserPassword
     }))
-
   }
 }
