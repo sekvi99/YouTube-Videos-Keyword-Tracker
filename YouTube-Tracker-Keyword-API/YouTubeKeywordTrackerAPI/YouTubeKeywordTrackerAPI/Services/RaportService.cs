@@ -16,12 +16,12 @@ public class RaportService : IRaportService
 {
     private readonly ISearchKeywordService _searchKeywordService;
     private readonly YouTubeKeywordTrackerDbContext _dbContext;
-    private readonly ILogger _logger;
+    private readonly ILogger<RaportService> _logger;
     private readonly IMapper _mapper;
     private readonly IYouTubeApiKeywordService _apiKeywordService;
     private readonly IRaportFileService _fileService;
     private readonly IUserIdentityService _userIdentityService;
-    public RaportService(ISearchKeywordService searchKeywordService, YouTubeKeywordTrackerDbContext dbContext, ILogger logger, IMapper mapper, IYouTubeApiKeywordService apiKeywordService, IRaportFileService fileService, IUserIdentityService userIdentityService)
+    public RaportService(ISearchKeywordService searchKeywordService, YouTubeKeywordTrackerDbContext dbContext, ILogger<RaportService> logger, IMapper mapper, IYouTubeApiKeywordService apiKeywordService, IRaportFileService fileService, IUserIdentityService userIdentityService)
     {
         _searchKeywordService = searchKeywordService;
         _dbContext = dbContext;
@@ -49,14 +49,22 @@ public class RaportService : IRaportService
             throw new EmptyCollectionException("Extracted api collection is empty or null");
         }
 
-        var raportContent = _fileService.ConvertJsonToPdfByes(combinedCollection);
+        var raportContent = await _fileService.ConvertJsonToPdfByes(combinedCollection);
         _logger.LogInformation("Extracted stream content of pdf file");
 
-        // await _dbContext.Raports.AddAsync(new Raport()
-        // {
-        //    UserId = _userIdentityService.GetUserId(),
-        // });
+        var raport = new Raport()
+        {
+            UserId = _userIdentityService.GetUserId(),
+            RaportFile = new RaportFiles()
+            {
+                FileContent = raportContent
+            },
+            RaportDataList = _mapper.Map<IEnumerable<RaportData>>(combinedCollection.Items)
+        };
 
+        _logger.LogInformation("Created new raport reference");
+        await _dbContext.AddAsync(raport);
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<RaportDto>> GetAllRaportsAsync()

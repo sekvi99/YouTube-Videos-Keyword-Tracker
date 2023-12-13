@@ -18,13 +18,15 @@ using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication.Roles;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Email;
 using MailKit;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Raport;
+using PdfSharp.Fonts;
+using YouTubeKeywordTrackerAPI.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<YouTubeKeywordTrackerDbContext>();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<HttpClient>();
+builder.Services.AddHttpClient();
 // builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IMailConfig, MailConfigService>();
 builder.Services.AddScoped<IRaportService, RaportService>();
@@ -88,7 +90,7 @@ builder.Services.AddSwaggerGen(c =>
             }
             });
 });
-
+GlobalFontSettings.FontResolver = new CustomFontResolver();
 builder.Logging.ClearProviders();
 builder.WebHost.UseNLog();
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YouTubeKeywordTrackerAPI.Entities;
 
@@ -11,9 +12,10 @@ using YouTubeKeywordTrackerAPI.Entities;
 namespace YouTubeKeywordTrackerAPI.Migrations
 {
     [DbContext(typeof(YouTubeKeywordTrackerDbContext))]
-    partial class YouTubeKeywordTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231213192927_Reports")]
+    partial class Reports
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

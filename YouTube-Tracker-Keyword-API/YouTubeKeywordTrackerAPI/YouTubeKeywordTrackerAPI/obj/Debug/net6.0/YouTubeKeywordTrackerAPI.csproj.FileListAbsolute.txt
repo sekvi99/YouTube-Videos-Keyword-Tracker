@@ -82,3 +82,11 @@ A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\PdfSharp.Charting.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\PdfSharp.Quality.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\PdfSharp.Snippets.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\PdfSharp.System.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\PdfSharp.WPFonts.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\PdfSharp.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\de\PdfSharp.Charting.resources.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\de\PdfSharp.resources.dll

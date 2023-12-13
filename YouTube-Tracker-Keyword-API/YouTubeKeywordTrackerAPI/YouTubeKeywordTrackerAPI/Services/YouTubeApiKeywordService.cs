@@ -8,19 +8,21 @@ namespace YouTubeKeywordTrackerAPI.Services;
 public class YouTubeApiKeywordService : IYouTubeApiKeywordService
 {
     private readonly string _defaultUrl = "http://127.0.0.1:8000";
-    private readonly HttpClient _httpClient;
-	public YouTubeApiKeywordService(HttpClient httpClient)
+    private readonly IHttpClientFactory _httpClientFactory;
+	public YouTubeApiKeywordService(IHttpClientFactory httpClientFactory)
 	{
-        _httpClient = httpClient;
+        _httpClientFactory = httpClientFactory;
 	}
     public async Task<CollectionModel<KeywordSummaryDto>> GetKeywordSummaryAsync(string keyword)
     {
+        var httpClient = _httpClientFactory.CreateClient();
+
         // TODO Refactor service after proper Docker service connection
-        _httpClient.BaseAddress = new Uri(_defaultUrl);
+        httpClient.BaseAddress = new Uri(_defaultUrl);
 
         string apiUrl = $"/api/keyword/{keyword}";
 
-        HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+        HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
 
         if (!response.IsSuccessStatusCode)
         {
