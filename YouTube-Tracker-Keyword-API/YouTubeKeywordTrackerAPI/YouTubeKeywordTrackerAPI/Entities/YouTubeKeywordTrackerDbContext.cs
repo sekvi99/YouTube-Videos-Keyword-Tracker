@@ -10,6 +10,9 @@ public class YouTubeKeywordTrackerDbContext : DbContext
     public DbSet<Address> Addresses { get; set; }
     public DbSet<SearchKeyword> Keywords { get; set; }
     public DbSet<Role> Roles { get; set; }
+    public DbSet<Raport> Raports { get; set; }
+    public DbSet<RaportData> RaportsData { get; set; }
+    public DbSet<RaportFiles> RaportFiles { get; set; }
     public YouTubeKeywordTrackerDbContext(IApplicationConfiguration _configuration)
     {
         _applicationConfiguration = _configuration;
@@ -39,6 +42,18 @@ public class YouTubeKeywordTrackerDbContext : DbContext
         modelBuilder.Entity<Address>()
             .Property(address => address.City)
             .IsRequired();
+
+        // Raport
+        modelBuilder.Entity<Raport>();
+
+        // Raport Data
+        modelBuilder.Entity<RaportData>();
+
+        // Raport Files
+        modelBuilder.Entity<RaportFiles>()
+            .Property(raport => raport.FileContent)
+            .IsRequired();
+
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
