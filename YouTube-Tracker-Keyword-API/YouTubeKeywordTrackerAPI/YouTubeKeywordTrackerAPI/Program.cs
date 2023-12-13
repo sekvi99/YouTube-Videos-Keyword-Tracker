@@ -28,6 +28,7 @@ builder.Services.AddScoped<HttpClient>();
 // builder.Services.AddScoped<IMailService, MailService>();
 builder.Services.AddScoped<IMailConfig, MailConfigService>();
 builder.Services.AddScoped<IRaportService, RaportService>();
+builder.Services.AddScoped<IRaportFileService, RaportFileService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ITokenGenerator, TokenGeneratorService>();
 builder.Services.AddScoped<IUserIdentityService, UserIdentityService>();

@@ -33,7 +33,7 @@ public class YouTubeApiKeywordService : IYouTubeApiKeywordService
         {
             VideoTitle = item?.VideoTitle,
             VideoUrl = item?.VideoUrl,
-            View = item?.View,
+            Views = item?.Views,
             CommentsCount = item?.CommentsCount,
             PublishedAt = item?.PublishedAt,
             Duration = item?.Duration,
