@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using YouTubeKeywordTrackerAPI.Entities;
 using YouTubeKeywordTrackerAPI.Exceptions;
 using YouTubeKeywordTrackerAPI.Helpers;
@@ -69,16 +70,82 @@ public class RaportService : IRaportService
 
     public async Task<IEnumerable<RaportDto>> GetAllRaportsAsync()
     {
-        throw new NotImplementedException();
+        var userId = _userIdentityService.GetUserId();
+        var raports = await _dbContext
+            .Raports
+            .Include(r => r.RaportDataList)
+            .Where(r => r.UserId  == userId)
+            .ToListAsync();
+
+        if (raports == null || raports.Count <= 0)
+        {
+            throw new ResourceNotFoundException($"Can not find raports for current user");
+        }
+
+        var raportDtos = raports
+            .Select(r => new RaportDto()
+            {
+                Id = r.Id,
+                ReadoutsCount = r.RaportDataList.Count()
+            });
+
+        return raportDtos;
     }
 
     public async Task<RaportFileDto> GetFileAsync(int fileId)
     {
-        throw new NotImplementedException();
+        var raportFile = _dbContext
+            .RaportFiles
+            .FirstOrDefault(raport => raport.Id == fileId);
+
+        if (raportFile == null)
+        {
+            throw new ResourceNotFoundException($"Raport file with Id: {fileId} does not exist in the system");
+        }
+
+        return _mapper.Map<RaportFileDto>(raportFile);
     }
 
     public async Task<RaportDetailsDto> GetRaportDataAsync(int raportId)
     {
-        throw new NotImplementedException();
+        var raportData = await _dbContext
+            .RaportsData
+            .Where(r => r.RaportId == raportId)
+            .ToListAsync();
+
+        if (raportData == null || raportData.Count <= 0)
+        {
+            throw new ResourceNotFoundException($"Data of raport with ID: {raportId} does not exist in the system");
+        }
+
+        var raportFile = await _dbContext
+            .RaportFiles
+            .Where(rf => rf.RaportId == raportId)
+            .FirstOrDefaultAsync();
+
+        // Check if a file exists for the given raportId
+        if (raportFile == null)
+        {
+            throw new ResourceNotFoundException($"File for raport with ID: {raportId} does not exist in the system");
+        }
+
+        // TODO Refactor below
+        return new RaportDetailsDto()
+        {
+            Id = raportId,
+            FileId = raportFile.Id,
+            RaportReadouts = raportData.Select(r => new RaportReadoutDto()
+            {
+                Id = r.Id,
+                RaportId = r.RaportId,
+                VideoTitle = r.VideoTitle,
+                VideoUrl = r.VideoUrl,
+                Views = r.Views ?? 0,
+                CommentsCount = r.CommentsCount ?? 0,
+                PublishedAt = r.PublishedAt ?? DateTime.MinValue,
+                Duration = r.Duration,
+                ChannelTitle = r.ChannelTitle
+            }).ToList()
+        };
     }
 }

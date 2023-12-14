@@ -1,6 +1,6 @@
 ﻿namespace YouTubeKeywordTrackerAPI.Models.Raport;
 
-public interface RaportFileDto
+public class RaportFileDto
 {
     public int Id { get; set; }
     public byte[] FileContent { get; set; }

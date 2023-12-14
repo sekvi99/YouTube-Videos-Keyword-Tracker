@@ -5,6 +5,7 @@ using YouTubeKeywordTrackerAPI.Models.Authentication;
 using YouTubeKeywordTrackerAPI.Models.Authentication.Roles;
 using YouTubeKeywordTrackerAPI.Models.Data;
 using YouTubeKeywordTrackerAPI.Models.ExternalApiModels;
+using YouTubeKeywordTrackerAPI.Models.Raport;
 
 namespace YouTubeKeywordTrackerAPI.Mapper;
 
@@ -22,5 +23,7 @@ public class YouTubeKeywordTrackerMappingProfile : Profile
         CreateMap<CreateSearchKeywordDto, SearchKeyword>();
         CreateMap<Address, AdressDto>();
         CreateMap<KeywordSummaryDto, RaportData>();
+        CreateMap<RaportData, RaportReadoutDto>();
+        CreateMap<RaportFiles, RaportFileDto>();
     }
 }
