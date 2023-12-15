@@ -13,6 +13,7 @@ export enum RegisterActionMessages {
 
 export enum LogoutActionMessages {
     Success = 'Sukces, poprawnie wylogowano!',
+    NotAuthorized = 'Nastąpi wylogowanie, token wygasł!'
 }
 
 export enum DataActionMessages {

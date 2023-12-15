@@ -9,7 +9,7 @@
     </span>
     <span>
         <h1>Użytkownik: {{ (user$ | async)?.user | UsernameLabel }}</h1>
-        <h1>{{ (user$ | async)?.roleId | UserRoleLabel }}</h1>
+        <h1>Rola: {{ (user$ | async)?.roleId | UserRoleLabel }}</h1>
     </span>
 </div>
 

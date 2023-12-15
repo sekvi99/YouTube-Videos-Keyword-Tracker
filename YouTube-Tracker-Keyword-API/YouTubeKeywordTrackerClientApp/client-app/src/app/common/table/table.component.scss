@@ -12,6 +12,13 @@
   margin-bottom: 10px;
   position: relative;
 
+  & table tr:hover{
+    background-color: $primary-color;
+    color: $secondary-color;
+    cursor: pointer;
+    transition: all ease-in-out 0.2s;
+  }
+
   .spinner-overlay {
     position: absolute;
     top: 0;
@@ -50,10 +57,10 @@
     }
 
     .edit-table-icon {
-        color: $primary-color;
+        color: $secondary-color;
         
         &:hover {
-            @include iconHover($primary-color, $text-color);
+            @include iconHover($secondary-color, $text-color);
         }
     }
 

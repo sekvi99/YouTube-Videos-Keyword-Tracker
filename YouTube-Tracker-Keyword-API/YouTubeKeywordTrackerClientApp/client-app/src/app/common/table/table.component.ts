@@ -21,6 +21,7 @@ export class TableComponent implements OnInit {
 
   @Output('onEditClick') onEditClickEvent = new EventEmitter<any>();
   @Output('onDeleteClick') onDeleteClickEvent = new EventEmitter<any>();
+  @Output('onRowClick') onRowClickEvent = new EventEmitter<any>();
 
   @ViewChild('tableRef', { static: true }) tableRef?: ElementRef;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -76,5 +77,12 @@ export class TableComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
     }, 150);
+  }
+
+  public onRowClick(event: any, row: any): void {
+    if (!this.isSimpleMode) {
+      return;
+    }
+    this.onRowClickEvent.emit(row);
   }
 }

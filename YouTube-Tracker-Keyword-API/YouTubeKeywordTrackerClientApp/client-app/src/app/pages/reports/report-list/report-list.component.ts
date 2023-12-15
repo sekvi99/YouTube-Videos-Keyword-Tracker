@@ -17,6 +17,13 @@ export class ReportListComponent extends ListComponent<IReport> {
   columns = REPORT_DEFAULT_COLUMNS_DEFINITION;
   headerDefinition = HEADER_DEFINITIONS.report;
 
+  public onRowClick(report: IReport): void {
+    if (report === undefined) {
+      return;
+    }
+    this.router.navigateByUrl(`report/${report.id}`);
+  }
+
   // TODO Refactor make those methods not mandatory to override
   override editDataClick(data: IReport): void {
     throw new Error('Method not implemented.');
