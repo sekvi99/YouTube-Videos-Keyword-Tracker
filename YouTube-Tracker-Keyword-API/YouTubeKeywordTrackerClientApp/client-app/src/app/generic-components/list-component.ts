@@ -6,10 +6,6 @@ import { DataDialogComponentComponent } from '../common/data-dialog-component/da
 @Directive()
 export abstract class ListComponent<TDataType> {
 
-    // TODO Think about rxjs-compat
-    // isFormSubmitting$ = new BehaviorSubject<boolean>(false);
-    // isDeleting$ = new BehaviorSubject<boolean>(false);
-
     @ViewChild(DataDialogComponentComponent, { static: true }) dialog!: DataDialogComponentComponent;
 
     constructor(

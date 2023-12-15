@@ -17,6 +17,7 @@ export class TableComponent implements OnInit {
   @Input() dataColumns?: IColumnDefinition[];
   @Input() entityType?: string;
   @Input() endpoint?: string;
+  @Input() isSimpleMode: boolean = false; 
 
   @Output('onEditClick') onEditClickEvent = new EventEmitter<any>();
   @Output('onDeleteClick') onDeleteClickEvent = new EventEmitter<any>();

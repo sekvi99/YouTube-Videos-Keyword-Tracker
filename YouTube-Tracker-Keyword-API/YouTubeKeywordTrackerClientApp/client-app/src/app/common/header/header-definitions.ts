@@ -10,6 +10,7 @@ interface IHeaderDefinitions {
     keywords: IHeaderDefinition;
     accountSettings: IHeaderDefinition;
     usersHub: IHeaderDefinition;
+    report: IHeaderDefinition;
 }
 
 export const HEADER_DEFINITIONS: IHeaderDefinitions = {
@@ -35,6 +36,11 @@ export const HEADER_DEFINITIONS: IHeaderDefinitions = {
     },
     usersHub: {
         title: "Panel użytkowników",
+        imgSource: "../../../assets/logo.jpg",
+        imgAlt: "Logo",
+    },
+    report: {
+        title: "Raporty",
         imgSource: "../../../assets/logo.jpg",
         imgAlt: "Logo",
     }

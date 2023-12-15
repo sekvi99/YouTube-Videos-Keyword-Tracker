@@ -38,6 +38,8 @@ import { UserAccountViewComponent } from './pages/account/user-account-view/user
 import { UsernamePipe } from './pipes/username.pipe';
 import { UserRolePipe } from './pipes/role.pipe';
 import { UserPasswordFormComponent } from './common/forms/user-password-form/user-password-form.component';
+import { ReportListComponent } from './pages/reports/report-list/report-list.component';
+import { ReportDetailsComponent } from './pages/reports/report-details/report-details.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { UserPasswordFormComponent } from './common/forms/user-password-form/use
     UserAccountViewComponent,
     UsernamePipe,
     UserRolePipe,
-    UserPasswordFormComponent
+    UserPasswordFormComponent,
+    ReportListComponent,
+    ReportDetailsComponent
     
   ],
   imports: [

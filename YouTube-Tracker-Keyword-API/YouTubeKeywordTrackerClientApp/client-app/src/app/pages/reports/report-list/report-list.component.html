@@ -4,16 +4,12 @@
         [imgSource]="headerDefinition.imgSource"
         [imgAlt]="headerDefinition.imgAlt"
     ></app-header>
-    <app-add-data-button
-        [buttonLabel]="addDataButtonLabel"
-        (onAddDataButtonClick)="onAddKeyword($event)"
-    ></app-add-data-button>
     <app-table
         [entityType]="entityType"
+        [isSimpleMode]="true"
         [dataColumns]="columns"
         [endpoint] = "endpoint"
         (onEditClick)="editDataClick($event)"
         (onDeleteClick)="deleteDataClick($event)"
     ></app-table>
 </div>
-<app-data-dialog-component></app-data-dialog-component>

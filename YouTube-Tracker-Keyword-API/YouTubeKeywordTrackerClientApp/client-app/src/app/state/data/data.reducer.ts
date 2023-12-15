@@ -10,7 +10,8 @@ export interface IDataState {
 export enum DataReducerEntity {
     Keywords = 'keywordsData',
     KeywordSingle = 'singleKeywordData',
-    Users = 'usersData'
+    Users = 'usersData',
+    Reports = 'reportsData'
 }
 
 const initialState: IDataState = {

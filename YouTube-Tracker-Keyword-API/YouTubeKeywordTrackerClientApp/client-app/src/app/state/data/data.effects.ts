@@ -20,14 +20,15 @@ import {
 } from './data.actions';
 import { IEntity } from "../../models/entity";
 import { DataReducerEntity } from "./data.reducer";
-import { KeywordsEndpoints, UsersEndpoints } from "../../services/api-endpoints/endpoints";
+import { KeywordsEndpoints, ReportsEndpoints, UsersEndpoints } from "../../services/api-endpoints/endpoints";
 import { ToastService } from "../../services/toast.service";
 import { DataActionMessages } from "../../models/toast/toast-messages";
 
 const TABLE_ENTITY_URL_MAP: Record<DataReducerEntity, string> = {
     keywordsData: KeywordsEndpoints.GetAllKeywords,
     singleKeywordData: KeywordsEndpoints.GetSingleKeyword,
-    usersData: UsersEndpoints.Users
+    usersData: UsersEndpoints.Users,
+    reportsData: ReportsEndpoints.Report
 }
 
 @Injectable()

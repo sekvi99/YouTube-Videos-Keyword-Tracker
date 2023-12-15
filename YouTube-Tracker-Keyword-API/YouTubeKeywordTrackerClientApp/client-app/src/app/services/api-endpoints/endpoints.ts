@@ -14,3 +14,8 @@ export enum UsersEndpoints {
     User = '/Authentication',
     UserPassword = '/Authentication/password'
 }
+
+export enum ReportsEndpoints {
+    Report = '/Raport',
+    ReportFile = '/Raport/file'
+}

@@ -14,6 +14,7 @@
         <th mat-header-cell *matHeaderCellDef>Akcje</th>
         <td mat-cell *matCellDef="let element">
             <span 
+                *ngIf="!isSimpleMode"
                 class="icon-span"
                 (click)="onEditRowClick($event, element)"
             >
@@ -21,7 +22,8 @@
                     class="edit-table-icon"
                     >edit</mat-icon>
             </span>
-            <span 
+            <span
+                *ngIf="!isSimpleMode" 
                 class="icon-span"
                 (click)="onDeleteRowClick($event, element)"
             >

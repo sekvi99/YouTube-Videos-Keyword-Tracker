@@ -24,6 +24,12 @@ export const pages: INavigation = {
             guard: (isAuthenticated, _) => isAuthenticated === true
         },
         {
+            routeLink: "reports",
+            icon: "insert_drive_file",
+            label: "Raporty",
+            guard: (isAuthenticated, _) => isAuthenticated === true
+        },
+        {
             routeLink: "account",
             icon: "settings",
             label: "Ustawienia konta",
