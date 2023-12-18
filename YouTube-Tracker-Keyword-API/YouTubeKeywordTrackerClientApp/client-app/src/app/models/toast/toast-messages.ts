@@ -25,3 +25,7 @@ export enum DataActionMessages {
     DeleteSuccess = 'Sukces, udało się usunąć dane!',
     DeleteError = 'Wystąpił błąd, nie udało usunąć się danych'
 }
+
+export enum FileMessages {
+    FetchError = 'Wystąpił błąd, nie udało pobrać się zawartości pliku!'
+}

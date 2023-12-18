@@ -8,6 +8,7 @@
         [buttonLabel]="raportFileButtonLabel"
         (onAddDataButtonClick)="onDownloadReportClick($event)"
     ></app-add-data-button>
+    <mat-spinner *ngIf="(isFetchingFile$ | async)"></mat-spinner>
     <div class="tabs-container">
         <mat-tab-group class="report-tabs">
             <mat-tab
@@ -23,3 +24,4 @@
         </mat-tab-group>
     </div>
 </div>
+<app-pdf-preview></app-pdf-preview>
