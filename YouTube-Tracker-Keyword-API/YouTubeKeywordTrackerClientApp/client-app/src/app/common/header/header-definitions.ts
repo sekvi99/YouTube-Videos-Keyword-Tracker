@@ -11,6 +11,7 @@ interface IHeaderDefinitions {
     accountSettings: IHeaderDefinition;
     usersHub: IHeaderDefinition;
     report: IHeaderDefinition;
+    reportDetails: IHeaderDefinition;
 }
 
 export const HEADER_DEFINITIONS: IHeaderDefinitions = {
@@ -41,6 +42,11 @@ export const HEADER_DEFINITIONS: IHeaderDefinitions = {
     },
     report: {
         title: "Raporty",
+        imgSource: "../../../assets/logo.jpg",
+        imgAlt: "Logo",
+    },
+    reportDetails: {
+        title: "Dane szczegółowe raportu",
         imgSource: "../../../assets/logo.jpg",
         imgAlt: "Logo",
     }

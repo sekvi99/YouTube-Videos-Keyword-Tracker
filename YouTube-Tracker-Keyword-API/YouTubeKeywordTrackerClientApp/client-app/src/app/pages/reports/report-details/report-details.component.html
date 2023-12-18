@@ -1,1 +1,25 @@
-<p>report-details works!</p>
+<div class="details-container">
+    <app-header
+        [title]="headerDefinition.title"
+        [imgSource]="headerDefinition.imgSource"
+        [imgAlt]="headerDefinition.imgAlt"
+    ></app-header>
+    <app-add-data-button
+        [buttonLabel]="raportFileButtonLabel"
+        (onAddDataButtonClick)="onDownloadReportClick($event)"
+    ></app-add-data-button>
+    <div class="tabs-container">
+        <mat-tab-group class="report-tabs">
+            <mat-tab
+                label="Statystyki"
+            >
+                <!-- TABLE -->
+            </mat-tab>
+            <mat-tab
+                label="Dashboard"
+            >
+                <!-- Charts -->
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
