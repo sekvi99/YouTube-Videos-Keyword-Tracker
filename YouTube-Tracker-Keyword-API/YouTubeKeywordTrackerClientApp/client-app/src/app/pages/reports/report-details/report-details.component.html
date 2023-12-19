@@ -24,7 +24,10 @@
             <mat-tab
                 label="Dashboard"
             >
-                <!-- Charts -->
+                <app-video-views-chart
+                    *ngIf="reportData"
+                    [data]="reportData?.raportReadouts"
+                ></app-video-views-chart>
             </mat-tab>
         </mat-tab-group>
     </div>

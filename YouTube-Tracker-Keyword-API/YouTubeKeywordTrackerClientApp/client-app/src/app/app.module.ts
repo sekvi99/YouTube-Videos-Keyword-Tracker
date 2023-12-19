@@ -42,6 +42,7 @@ import { ReportListComponent } from './pages/reports/report-list/report-list.com
 import { ReportDetailsComponent } from './pages/reports/report-details/report-details.component';
 import { PdfPreviewComponent } from './common/pdf-preview/pdf-preview.component';
 import { SimpleTableComponent } from './common/simple-table/simple-table.component';
+import { VideoViewsChartComponent } from './common/graphs/video-views-chart/video-views-chart.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { SimpleTableComponent } from './common/simple-table/simple-table.compone
     ReportListComponent,
     ReportDetailsComponent,
     PdfPreviewComponent,
-    SimpleTableComponent
+    SimpleTableComponent,
+    VideoViewsChartComponent
     
   ],
   imports: [
