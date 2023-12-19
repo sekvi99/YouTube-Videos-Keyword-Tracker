@@ -4,6 +4,17 @@
         [imgSource]="headerDefinition.imgSource"
         [imgAlt]="headerDefinition.imgAlt"
     ></app-header>
+    <app-add-data-button
+        [buttonLabel]="addDataButtonLabel"
+        (onAddDataButtonClick)="onGenerateNewRaport($event)"
+    ></app-add-data-button>
+
+    <mat-progress-spinner *ngIf="isRaportCreating$ | async"
+        class="spinner"
+        [diameter]="50"
+        [mode]="'indeterminate'"
+    ></mat-progress-spinner>
+
     <app-table
         [entityType]="entityType"
         [isSimpleMode]="true"

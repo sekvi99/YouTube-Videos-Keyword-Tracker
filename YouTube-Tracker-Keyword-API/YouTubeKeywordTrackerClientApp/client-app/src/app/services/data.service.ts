@@ -39,6 +39,10 @@ export class DataService {
         );
     }
 
+    create<T>(url: string, params?: any): Observable<T> {
+        return this.http.post<T>(`${this.apiUrl}${url}`, params);
+    }
+
     edit<T>(url: string, formData: FormGroup, params?: any): Observable<HttpEvent<string>> {
         const dataId = formData.value.id;
         const modifiedUrl = `${this.apiUrl}${url}${dataId !== undefined ? `/${dataId}` : ''}`;

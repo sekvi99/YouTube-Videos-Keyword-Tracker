@@ -29,3 +29,9 @@ export enum DataActionMessages {
 export enum FileMessages {
     FetchError = 'Wystąpił błąd, nie udało pobrać się zawartości pliku!'
 }
+
+export enum ReportMessages {
+    ReportCreationInfo = 'Generowanie nowego raportu!',
+    ReportCreationSuccess = 'Sukces, pomyślnie utworzono nowy raport!',
+    ReportCreationError = 'Wystąpił błąd, nie udało się stworzyć nowego raportu!',
+}
