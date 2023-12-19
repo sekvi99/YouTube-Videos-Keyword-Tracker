@@ -41,6 +41,7 @@ import { UserPasswordFormComponent } from './common/forms/user-password-form/use
 import { ReportListComponent } from './pages/reports/report-list/report-list.component';
 import { ReportDetailsComponent } from './pages/reports/report-details/report-details.component';
 import { PdfPreviewComponent } from './common/pdf-preview/pdf-preview.component';
+import { SimpleTableComponent } from './common/simple-table/simple-table.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PdfPreviewComponent } from './common/pdf-preview/pdf-preview.component'
     UserPasswordFormComponent,
     ReportListComponent,
     ReportDetailsComponent,
-    PdfPreviewComponent
+    PdfPreviewComponent,
+    SimpleTableComponent
     
   ],
   imports: [

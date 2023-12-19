@@ -10,12 +10,10 @@
         <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
       </ng-container>
     
-      <!-- TODO Refactor to avoid empty action column -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Akcje</th>
         <td mat-cell *matCellDef="let element">
             <span
-                *ngIf="!isSimpleMode"
                 class="icon-span"
                 (click)="onEditRowClick($event, element)"
             >
@@ -24,7 +22,6 @@
                     >edit</mat-icon>
             </span>
             <span
-                *ngIf="!isSimpleMode"
                 class="icon-span"
                 (click)="onDeleteRowClick($event, element)"
             >
@@ -35,8 +32,16 @@
         </td>
       </ng-container>
   
-      <tr mat-header-row *matHeaderRowDef="propertyNames?.concat('actions')"></tr>
-      <tr mat-row *matRowDef="let row; columns: propertyNames?.concat('actions');" (click)="onRowClick($event, row)"></tr>
+      <ng-container *ngIf="!isSimpleMode">
+        <tr mat-header-row *matHeaderRowDef="propertyNames?.concat('actions')"></tr>
+        <tr mat-row *matRowDef="let row; columns: propertyNames?.concat('actions');" (click)="onRowClick($event, row)"></tr>
+      </ng-container>
+
+      <ng-container *ngIf="isSimpleMode">
+        <tr mat-header-row *matHeaderRowDef="propertyNames"></tr>
+        <tr mat-row *matRowDef="let row; columns: propertyNames" (click)="onRowClick($event, row)"></tr>
+      </ng-container>
+      
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
   </div>

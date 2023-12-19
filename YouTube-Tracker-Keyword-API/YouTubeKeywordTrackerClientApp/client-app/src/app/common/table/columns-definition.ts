@@ -20,3 +20,11 @@ export const USERS_HUB_COLUMNS_DEFINITION: IColumnDefinition[] = [
 export const REPORT_DEFAULT_COLUMNS_DEFINITION: IColumnDefinition[] = [
     { propertyName: "readoutsCount", columnName: "Liczba statystyk w raporcie" },
 ];
+
+export const REPORT_READOUTS_COLUMNS_DEFINITION: IColumnDefinition[] = [
+    { propertyName: "channelTitle", columnName: "Nazwa kanału" },
+    { propertyName: "videoTitle", columnName: "Nazwa filmu" },
+    { propertyName: "views", columnName: "Liczba wyświetleń" },
+    { propertyName: "commentsCount", columnName: "Liczba komentarzy" },
+    { propertyName: "publishedAt", columnName: "Data publikacji" },
+];

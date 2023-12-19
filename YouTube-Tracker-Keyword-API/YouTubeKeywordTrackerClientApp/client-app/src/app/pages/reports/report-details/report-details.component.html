@@ -14,7 +14,12 @@
             <mat-tab
                 label="Statystyki"
             >
-                <!-- TABLE -->
+                <app-simple-table
+                    *ngIf="reportData"
+                    [data]="reportData?.raportReadouts"
+                    [dataColumns]="reportReadoutsColumns"
+                    (onRowClick)="onVideoOpenClick($event)"
+                ></app-simple-table>
             </mat-tab>
             <mat-tab
                 label="Dashboard"

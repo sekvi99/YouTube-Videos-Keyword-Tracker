@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Observable, Subscription, BehaviorSubject, switchMap, finalize } from 'rxjs';
-import { IReportDetails } from '../../../models/report/report-details';
+import { IReportDetail, IReportDetails } from '../../../models/report/report-details';
 import { DataService } from '../../../services/data.service';
 import { Store } from '@ngrx/store';
 import { IState } from '../../../state';
@@ -12,6 +12,7 @@ import { PdfPreviewComponent } from '../../../common/pdf-preview/pdf-preview.com
 import { IReportFile } from '../../../models/report/report-file';
 import { ToastService } from '../../../services/toast.service';
 import { FileMessages } from '../../../models/toast/toast-messages';
+import { REPORT_READOUTS_COLUMNS_DEFINITION } from '../../../common/table/columns-definition';
 
 @Component({
   selector: 'app-report-details',
@@ -27,6 +28,7 @@ export class ReportDetailsComponent {
 
   headerDefinition = HEADER_DEFINITIONS.reportDetails;
   raportFileButtonLabel = GetDataButtonLabels.GetReportFile;
+  reportReadoutsColumns = REPORT_READOUTS_COLUMNS_DEFINITION;
 
   @ViewChild(PdfPreviewComponent, { static: true }) fileDialog!: PdfPreviewComponent;
 
@@ -61,5 +63,9 @@ export class ReportDetailsComponent {
         this.isFetchingFileSubject.next(false);
       }
     })
+  }
+
+  onVideoOpenClick(video: IReportDetail): void {
+    window.open(video.videoUrl, '_blank');
   }
 }

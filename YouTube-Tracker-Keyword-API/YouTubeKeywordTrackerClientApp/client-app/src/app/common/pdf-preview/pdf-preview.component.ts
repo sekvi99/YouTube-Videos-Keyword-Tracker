@@ -18,8 +18,8 @@ export class PdfPreviewComponent {
   public openDialog(fileBytes: any): void {
     const unsafeUrl = this.pdfService.createPdfUrl(fileBytes);
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(unsafeUrl);
-    this.dialog.open(this.dialogContent, { width: '100vh' });
-  }
+    this.dialog.open(this.dialogContent, { width: '80%', height: '80%' });
+}
 
   closeDialog(): void {
     this.dialog.closeAll();

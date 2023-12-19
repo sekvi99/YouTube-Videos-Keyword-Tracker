@@ -1,0 +1,13 @@
+@import 'color-variables';
+
+.table-container {
+    height: 80vh;
+    overflow: auto;
+
+    & table tr:hover{
+        background-color: $primary-color;
+        color: $secondary-color;
+        cursor: pointer;
+        transition: all ease-in-out 0.2s;
+      }
+}
