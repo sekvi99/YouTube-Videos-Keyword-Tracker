@@ -43,6 +43,8 @@ import { ReportDetailsComponent } from './pages/reports/report-details/report-de
 import { PdfPreviewComponent } from './common/pdf-preview/pdf-preview.component';
 import { SimpleTableComponent } from './common/simple-table/simple-table.component';
 import { VideoViewsChartComponent } from './common/graphs/video-views-chart/video-views-chart.component';
+import { MailDialogComponent } from './common/mail/mail-dialog/mail-dialog.component';
+import { MailFormComponent } from './common/mail/mail-form/mail-form.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { VideoViewsChartComponent } from './common/graphs/video-views-chart/vide
     ReportDetailsComponent,
     PdfPreviewComponent,
     SimpleTableComponent,
-    VideoViewsChartComponent
+    VideoViewsChartComponent,
+    MailDialogComponent,
+    MailFormComponent
     
   ],
   imports: [

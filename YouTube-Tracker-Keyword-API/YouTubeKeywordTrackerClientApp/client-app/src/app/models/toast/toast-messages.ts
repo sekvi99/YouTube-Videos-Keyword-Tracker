@@ -35,3 +35,9 @@ export enum ReportMessages {
     ReportCreationSuccess = 'Sukces, pomyślnie utworzono nowy raport!',
     ReportCreationError = 'Wystąpił błąd, nie udało się stworzyć nowego raportu!',
 }
+
+export enum MailMessages {
+    MailInfo = 'Tworzenie wiadomości e-mail!',
+    MailSuccess = 'Pomyślnie wysłano wiadomość e-mail!',
+    MailError = 'Wystąpił błąd, nie udało wysłać się wiadomości e-mail!'
+}

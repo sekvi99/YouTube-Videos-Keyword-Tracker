@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { FormComponent } from '../../../generic-components/form-component';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-// import { isAuthenticatedSelector, isLoadingSelector } from '../../../store/authentication/authentication.selectors';
-// import { errorsSelector } from '../../../store/authentication/authentication.selectors';
-import { Store } from '@ngrx/store';
-// import { IState } from '../../../store';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, Validators } from '@angular/forms';
 import { loginRequest } from '../../../state/auth/auth.actions';
 import { LoginActionMessages } from '../../../models/toast/toast-messages';
 

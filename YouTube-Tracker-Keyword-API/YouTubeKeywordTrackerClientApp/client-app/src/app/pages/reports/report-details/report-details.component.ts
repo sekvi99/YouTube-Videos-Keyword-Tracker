@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Observable, Subscription, BehaviorSubject, switchMap, finalize } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
 import { IReportDetail, IReportDetails } from '../../../models/report/report-details';
 import { DataService } from '../../../services/data.service';
 import { Store } from '@ngrx/store';
@@ -7,12 +7,13 @@ import { IState } from '../../../state';
 import { ActivatedRoute } from '@angular/router';
 import { ReportsEndpoints } from '../../../services/api-endpoints/endpoints';
 import { HEADER_DEFINITIONS } from '../../../common/header/header-definitions';
-import { GetDataButtonLabels } from '../../../common/buttons/add-data-button/add.data.buttons';
+import { GetDataButtonLabels, MailButtonLabels } from '../../../common/buttons/add-data-button/add.data.buttons';
 import { PdfPreviewComponent } from '../../../common/pdf-preview/pdf-preview.component';
 import { IReportFile } from '../../../models/report/report-file';
 import { ToastService } from '../../../services/toast.service';
 import { FileMessages } from '../../../models/toast/toast-messages';
 import { REPORT_READOUTS_COLUMNS_DEFINITION } from '../../../common/table/columns-definition';
+import { MailDialogComponent } from '../../../common/mail/mail-dialog/mail-dialog.component';
 
 @Component({
   selector: 'app-report-details',
@@ -29,8 +30,10 @@ export class ReportDetailsComponent {
   headerDefinition = HEADER_DEFINITIONS.reportDetails;
   raportFileButtonLabel = GetDataButtonLabels.GetReportFile;
   reportReadoutsColumns = REPORT_READOUTS_COLUMNS_DEFINITION;
+  sentReportsViaMailButtonLabel = MailButtonLabels.SentReportViaMail;
 
   @ViewChild(PdfPreviewComponent, { static: true }) fileDialog!: PdfPreviewComponent;
+  @ViewChild(MailDialogComponent, { static: true }) mailDialog!: MailDialogComponent;
 
   constructor(private dataService: DataService, private store: Store<IState>, private route: ActivatedRoute, private toastService: ToastService) {}
 
@@ -67,5 +70,9 @@ export class ReportDetailsComponent {
 
   onVideoOpenClick(video: IReportDetail): void {
     window.open(video.videoUrl, '_blank');
+  }
+
+  onSentMailReportClick(event: any): void {
+    this.mailDialog.openDialog(this.reportData.fileId);
   }
 }

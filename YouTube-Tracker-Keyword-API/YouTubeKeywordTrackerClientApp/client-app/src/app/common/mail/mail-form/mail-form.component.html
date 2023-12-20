@@ -1,0 +1,28 @@
+<div class="auth-form">
+    <form [formGroup]="sentMailForm" (ngSubmit)="onSubmit()">
+        <div class="fields-container">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Temat" formControlName="topic" />
+                <mat-error *ngIf="sentMailForm.get('topic')?.hasError('required')"
+                >Temat maila jest wymagany</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Odbiorca" formControlName="receiver" />
+                <mat-error *ngIf="sentMailForm.get('receiver')?.hasError('required')"
+                >Odbiorca jest wymagany</mat-error>
+                <mat-error *ngIf="sentMailForm.get('receiver')?.hasError('email')"
+                >Zły format e-mail</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Treść" formControlName="body" />
+            </mat-form-field>
+        </div>
+        <div class="form-actions">
+            <button 
+                class="buttons-confirm"
+                type="submit"
+                [disabled]="sentMailForm.invalid"
+            >Wyślij</button>
+        </div>
+    </form>
+</div>

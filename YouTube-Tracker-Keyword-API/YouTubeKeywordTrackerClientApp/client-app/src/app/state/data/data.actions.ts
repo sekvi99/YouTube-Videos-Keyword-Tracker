@@ -85,9 +85,9 @@ export const deleteData = createAction(
 export const deleteSuccess = createAction(
     DataActionTypes.DeleteSuccess,
     props<{ successMessage: string }>()
-)
+);
 
 export const deleteError = createAction(
     DataActionTypes.DeleteError,
     props<{  errorMessage: string }>()
-)
+);

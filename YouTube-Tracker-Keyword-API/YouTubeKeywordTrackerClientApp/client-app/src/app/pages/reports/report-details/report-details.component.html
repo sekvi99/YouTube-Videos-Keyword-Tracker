@@ -4,10 +4,19 @@
         [imgSource]="headerDefinition.imgSource"
         [imgAlt]="headerDefinition.imgAlt"
     ></app-header>
-    <app-add-data-button
-        [buttonLabel]="raportFileButtonLabel"
-        (onAddDataButtonClick)="onDownloadReportClick($event)"
-    ></app-add-data-button>
+    
+    <div class="buttons-container">
+        <app-add-data-button
+            [buttonLabel]="raportFileButtonLabel"
+            (onAddDataButtonClick)="onDownloadReportClick($event)"
+        ></app-add-data-button>
+
+        <app-add-data-button
+            [buttonLabel]="sentReportsViaMailButtonLabel"
+            (onAddDataButtonClick)="onSentMailReportClick($event)"
+        ></app-add-data-button>
+    </div>
+
     <mat-spinner *ngIf="(isFetchingFile$ | async)"></mat-spinner>
     <div class="tabs-container">
         <mat-tab-group class="report-tabs">
@@ -33,3 +42,4 @@
     </div>
 </div>
 <app-pdf-preview></app-pdf-preview>
+<app-mail-dialog></app-mail-dialog>

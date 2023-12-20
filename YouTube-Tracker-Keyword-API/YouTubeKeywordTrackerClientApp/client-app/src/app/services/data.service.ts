@@ -39,6 +39,10 @@ export class DataService {
         );
     }
 
+    post<T>(url: string, data: FormData): Observable<void> {
+        return this.http.post<void>(`${this.apiUrl}${url}`, data);
+    }
+
     create<T>(url: string, params?: any): Observable<T> {
         return this.http.post<T>(`${this.apiUrl}${url}`, params);
     }
