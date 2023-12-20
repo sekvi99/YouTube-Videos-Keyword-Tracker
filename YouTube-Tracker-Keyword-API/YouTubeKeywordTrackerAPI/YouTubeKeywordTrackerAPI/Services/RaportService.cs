@@ -56,6 +56,7 @@ public class RaportService : IRaportService
         var raport = new Raport()
         {
             UserId = _userIdentityService.GetUserId(),
+            DateCreated = DateTime.UtcNow,
             RaportFile = new RaportFiles()
             {
                 FileContent = raportContent
@@ -86,7 +87,8 @@ public class RaportService : IRaportService
             .Select(r => new RaportDto()
             {
                 Id = r.Id,
-                ReadoutsCount = r.RaportDataList.Count()
+                ReadoutsCount = r.RaportDataList.Count(),
+                PublishedAt = r.DateCreated
             });
 
         return raportDtos;

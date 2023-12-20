@@ -3,8 +3,11 @@
 .table-container {
     height: 80vh;
     overflow: auto;
+    margin: 0 auto;
+    position: relative;
+    width: 80%;    
 
-    & table tr:hover{
+    & table tr:hover {
         background-color: $primary-color;
         color: $secondary-color;
         cursor: pointer;
