@@ -27,4 +27,16 @@ public class EmailController : ControllerBase
 
         return Ok();
     }
+    [HttpPost("{reportFileId}")]
+    public async Task<ActionResult> SendEmailWithReport([FromBody] EmailRequestDto mail, int reportFileId)
+    {
+        var result = await _emailService.SendEmailWithReportAsync(mail, reportFileId);
+        
+        if (result == false)
+        {
+            return StatusCode(500, new { error = "Something went wrong, can't send mail with report file" });
+        }
+
+        return Ok();
+    }
 }

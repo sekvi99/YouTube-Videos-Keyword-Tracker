@@ -17,19 +17,13 @@ export class MailFormComponent extends FormComponent {
   });
 
   override async onSubmit(): Promise<void> {
-    if (this.sentMailForm.invalid) {
+    if (this.sentMailForm.invalid && this.data) {
       return ;
     }
 
     this.toastService.info(MailMessages.MailInfo);
 
-    const data = new FormData();
-    data.append('topic', this.sentMailForm.value.topic);
-    data.append('receiver', this.sentMailForm.value.receiver);
-    data.append('body', this.sentMailForm.value.body);
-    data.append('reportId', this.data || '');
-
-    this.dataService.post(MailEndpoints.Mail, data)
+    this.dataService.post(`${MailEndpoints.Mail}/${this.data}`, this.sentMailForm.value)
     .subscribe({
       next: () => this.toastService.success(MailMessages.MailSuccess),
       error: () => this.toastService.error(MailMessages.MailError)
