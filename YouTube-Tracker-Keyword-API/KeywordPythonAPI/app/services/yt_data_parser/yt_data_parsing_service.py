@@ -59,7 +59,6 @@ class YouTubeDataParseService(AbstractParseService):
             )
             
             logger.info('Correctly parsed object')
-            print(parsed_object)
             return parsed_object
 
         except (KeyError, TypeError) as e:
