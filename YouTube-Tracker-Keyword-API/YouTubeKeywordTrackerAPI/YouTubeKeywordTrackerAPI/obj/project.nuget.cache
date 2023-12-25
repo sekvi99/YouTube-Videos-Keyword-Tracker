@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pT6VU3Iofg36PxASvUDrJPAeBgs7lFZoUgxsV30Du3esjL3f8V5SX08PHHNWxWeKts/fsWx6TqZVC9N7bYOF2g==",
+  "dgSpecHash": "UetRr6YAh/VH0zbprBLnOL2ab/OpxNEsZUqHq3Xzyx4zgLXAf/X7wGK/XYjEXKKg9o7+xD7TwzXC+S/DiiFDpA==",
   "success": true,
   "projectFilePath": "A:\\GithubProjects\\Projekt Magisterski App\\YouTube-Videos-Keyword-Tracker\\YouTube-Tracker-Keyword-API\\YouTubeKeywordTrackerAPI\\YouTubeKeywordTrackerAPI\\YouTubeKeywordTrackerAPI.csproj",
   "expectedPackageFiles": [
@@ -52,6 +52,7 @@
     "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\mimekit\\4.3.0\\mimekit.4.3.0.nupkg.sha512",
+    "C:\\Users\\sekvi\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\nlog\\5.2.5\\nlog.5.2.5.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\nlog.extensions.logging\\5.3.5\\nlog.extensions.logging.5.3.5.nupkg.sha512",
     "C:\\Users\\sekvi\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.5\\nlog.web.aspnetcore.5.3.5.nupkg.sha512",
