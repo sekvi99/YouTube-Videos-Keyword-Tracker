@@ -1,4 +1,5 @@
 export interface IReport {
-    id: number;
-    readoutsCount: number;
+  id: number;
+  readoutsCount: number;
+  publishedAt: Date;
 }

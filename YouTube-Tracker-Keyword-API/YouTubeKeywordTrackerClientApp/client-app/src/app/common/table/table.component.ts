@@ -1,23 +1,33 @@
-import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { IColumnDefinition } from './columns-definition';
 import { Store } from '@ngrx/store';
 import { IState } from '../../state';
 import { fetch } from '../../state/data/data.actions';
 import { dataSelector } from '../../state/data/data.selectors';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { TABLE_MAP_FUNCTIONS } from './map-functions';
+import { DataReducerEntity } from '../../state/data/data.reducer';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrl: './table.component.scss',
 })
 export class TableComponent implements OnInit {
   @Input() dataColumns?: IColumnDefinition[];
   @Input() entityType?: string;
   @Input() endpoint?: string;
-  @Input() isSimpleMode: boolean = false; 
+  @Input() isSimpleMode: boolean = false;
 
   @Output('onEditClick') onEditClickEvent = new EventEmitter<any>();
   @Output('onDeleteClick') onDeleteClickEvent = new EventEmitter<any>();
@@ -29,19 +39,30 @@ export class TableComponent implements OnInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   data$?: Observable<any>;
   loading: boolean = false;
+  mapFunctions?: any = null;
 
-  constructor(
-    protected store: Store<IState>
-  ) { }
+  constructor(protected store: Store<IState>) {}
 
   ngOnInit(): void {
     if (!this.endpoint || !this.entityType) {
       return;
     }
+    this.mapFunctions = this.getMapFunctions(this.entityType);
     this.store.dispatch(fetch({ endpoint: this.endpoint }));
-    this.data$ = this.store.select(dataSelector, { entityType: this.entityType });
+    this.data$ = this.store
+      .select(dataSelector, {
+        entityType: this.entityType,
+      })
+      .pipe(
+        map((data) => {
+          if (this.mapFunctions !== null) {
+            return this.mapFunctions(data);
+          }
+          return data;
+        })
+      );
     if (this.dataColumns) {
-      this.data$.subscribe(data => {
+      this.data$.subscribe((data) => {
         this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
       });
@@ -49,19 +70,22 @@ export class TableComponent implements OnInit {
   }
 
   get columnLabels(): string[] | undefined {
-    return this.dataColumns?.map(column => column.columnName);
+    return this.dataColumns?.map((column) => column.columnName);
   }
 
   get columnsMap() {
     const propertyNameToColumnNameMap = new Map<string, string>();
     this.dataColumns?.forEach((propertyMap) => {
-      propertyNameToColumnNameMap.set(propertyMap.propertyName, propertyMap.columnName);
+      propertyNameToColumnNameMap.set(
+        propertyMap.propertyName,
+        propertyMap.columnName
+      );
     });
     return propertyNameToColumnNameMap;
   }
 
   get propertyNames(): string[] | undefined {
-    return this.dataColumns?.map(column => column.propertyName);
+    return this.dataColumns?.map((column) => column.propertyName);
   }
 
   public onEditRowClick(event: any, row: any): void {
@@ -84,5 +108,9 @@ export class TableComponent implements OnInit {
       return;
     }
     this.onRowClickEvent.emit(row);
+  }
+
+  private getMapFunctions(entityType: string): any {
+    return TABLE_MAP_FUNCTIONS[entityType as DataReducerEntity];
   }
 }
