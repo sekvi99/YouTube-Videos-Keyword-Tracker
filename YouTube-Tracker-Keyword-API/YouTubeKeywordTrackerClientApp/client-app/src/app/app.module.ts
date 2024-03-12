@@ -45,6 +45,7 @@ import { SimpleTableComponent } from './common/simple-table/simple-table.compone
 import { VideoViewsChartComponent } from './common/graphs/video-views-chart/video-views-chart.component';
 import { MailDialogComponent } from './common/mail/mail-dialog/mail-dialog.component';
 import { MailFormComponent } from './common/mail/mail-form/mail-form.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { MailFormComponent } from './common/mail/mail-form/mail-form.component';
     SimpleTableComponent,
     VideoViewsChartComponent,
     MailDialogComponent,
-    MailFormComponent
+    MailFormComponent,
+    MainPageComponent
     
   ],
   imports: [

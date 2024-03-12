@@ -1,0 +1,25 @@
+@import "color-variables";
+
+@mixin flexContainerCentered() {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+@mixin flexContentCentered() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin urlStyle() {
+  text-decoration: none;
+  color: $text-color;
+  font-size: 12px;
+}
+
+@mixin urlHover() {
+  color: $secondary-color;
+  transition: all ease-in-out 0.5s;
+}

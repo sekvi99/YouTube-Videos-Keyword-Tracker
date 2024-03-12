@@ -1,0 +1,45 @@
+@import "mixins";
+@import "color-variables";
+
+// Container variables
+$container-padding: 50px;
+
+// Tile variables
+$tile-border-radius: 10%;
+$tile-padding-value: 10px;
+$tile-sizing: 8rem;
+$tile-margin: 1rem;
+
+// Tile elemenet variables
+$tile-elements-space: 3px;
+
+.tiles-container {
+  @include flexContainerCentered();
+  padding: $container-padding;
+
+  & > .tile-container {
+    cursor: pointer;
+    position: relative;
+    padding: $tile-padding-value;
+    height: $tile-sizing;
+    width: $tile-sizing;
+    margin: $tile-margin;
+    background-color: $primary-color;
+    border-radius: $tile-border-radius;
+    border: 2px solid $header-color;
+    @include flexContentCentered();
+    @include urlStyle();
+
+    &:hover {
+      @include urlHover();
+    }
+
+    & > * {
+      margin: $tile-elements-space;
+    }
+
+    & > *:last-child {
+      margin: 0;
+    }
+  }
+}

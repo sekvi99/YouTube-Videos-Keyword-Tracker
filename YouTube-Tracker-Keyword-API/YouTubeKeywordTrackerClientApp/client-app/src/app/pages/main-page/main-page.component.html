@@ -1,0 +1,19 @@
+<app-header
+  [title]="headerDefinition.title"
+  [imgSource]="headerDefinition.imgSource"
+  [imgAlt]="headerDefinition.imgAlt"
+></app-header>
+<div class="tiles-container">
+  <ng-container *ngFor="let item of navigationService.navigation.pages">
+    <a
+      *ngIf="
+        item.guard(isUserAuthenticated$ | async, hadUserAdminRights$ | async)
+      "
+      class="tile-container"
+      [routerLink]="item.routeLink"
+    >
+      <mat-icon>{{ item.icon }}</mat-icon>
+      <span class="tile-text">{{ item.label }}</span>
+    </a>
+  </ng-container>
+</div>

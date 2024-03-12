@@ -1,19 +1,35 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
-    <div class="logo-container">
-        <button class="logo" (click)="toggleCollapse()">S</button>
-    </div>
-    <ul class="sidenav-nav">
-        <li class="sidenav-nav-item" *ngFor="let data of pages">
-            <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" *ngIf="data.guard(isUserAuthenticated$ | async, hadUserAdminRights$ | async)">
-                <mat-icon>{{ data.icon }}</mat-icon>
-                <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
-            </a>
-        </li>
-        <li class="sidenav-nav-item">
-            <a class="sidenav-nav-link" [routerLink]="'/'" *ngIf="isUserAuthenticated$ | async" (click)="onLogout()">
-                <mat-icon>exit_to_app</mat-icon>
-                <span class="sidenav-link-text" *ngIf="collapsed">Wyloguj</span>
-            </a>
-        </li>
-    </ul>
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapse()">S</button>
+  </div>
+  <ul class="sidenav-nav">
+    <li
+      class="sidenav-nav-item"
+      *ngFor="let data of navigationService.navigation.pages"
+    >
+      <a
+        class="sidenav-nav-link"
+        [routerLink]="[data.routeLink]"
+        *ngIf="
+          data.guard(isUserAuthenticated$ | async, hadUserAdminRights$ | async)
+        "
+      >
+        <mat-icon>{{ data.icon }}</mat-icon>
+        <span class="sidenav-link-text" *ngIf="collapsed">{{
+          data.label
+        }}</span>
+      </a>
+    </li>
+    <li class="sidenav-nav-item">
+      <a
+        class="sidenav-nav-link"
+        [routerLink]="'/'"
+        *ngIf="isUserAuthenticated$ | async"
+        (click)="onLogout()"
+      >
+        <mat-icon>exit_to_app</mat-icon>
+        <span class="sidenav-link-text" *ngIf="collapsed">Wyloguj</span>
+      </a>
+    </li>
+  </ul>
 </div>
