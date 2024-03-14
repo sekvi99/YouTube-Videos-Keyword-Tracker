@@ -46,6 +46,8 @@ import { VideoViewsChartComponent } from './common/graphs/video-views-chart/vide
 import { MailDialogComponent } from './common/mail/mail-dialog/mail-dialog.component';
 import { MailFormComponent } from './common/mail/mail-form/mail-form.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { SubtitlesGeneratePageComponent } from './pages/subtitles-generate-page/subtitles-generate-page.component';
+import { UrlFormatPipe } from './pipes/url-format.pipe';
 
 @NgModule({
   declarations: [
@@ -75,8 +77,9 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     VideoViewsChartComponent,
     MailDialogComponent,
     MailFormComponent,
-    MainPageComponent
-    
+    MainPageComponent,
+    SubtitlesGeneratePageComponent,
+    UrlFormatPipe,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     MaterialModule,
     StoreModule.forRoot({
       auth: authReducer,
-      data: dataReducer
+      data: dataReducer,
     }),
     EffectsModule.forRoot([AuthEffects, DataEffects]),
     ToastrModule.forRoot(),
@@ -100,13 +103,13 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: MatPaginatorIntl,
-      useClass: TranslatedPaginatorIntl
-    }
+      useClass: TranslatedPaginatorIntl,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

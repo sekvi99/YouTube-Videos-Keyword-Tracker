@@ -10,6 +10,7 @@ import { UserAccountViewComponent } from './pages/account/user-account-view/user
 import { ReportListComponent } from './pages/reports/report-list/report-list.component';
 import { ReportDetailsComponent } from './pages/reports/report-details/report-details.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { SubtitlesGeneratePageComponent } from './pages/subtitles-generate-page/subtitles-generate-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,7 +45,12 @@ const routes: Routes = [
     component: UserAccountViewComponent,
     canActivate: [AuthorizationGuard],
   },
-  { path: '**', redirectTo: '' }, // * Has to be last one
+  {
+    path: 'generate-subtitles',
+    component: SubtitlesGeneratePageComponent,
+    canActivate: [AuthorizationGuard],
+  },
+  { path: '**', redirectTo: 'main-page' }, // * Has to be last one
 ];
 
 @NgModule({

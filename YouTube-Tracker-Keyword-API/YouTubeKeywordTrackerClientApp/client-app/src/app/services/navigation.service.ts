@@ -38,6 +38,12 @@ export class NavigationService {
           guard: (isAuthenticated, _) => isAuthenticated === true,
         },
         {
+          routeLink: 'generate-subtitles',
+          icon: 'subtitles',
+          label: 'Generuj Napisy',
+          guard: (isAuthenticated, _) => isAuthenticated === true,
+        },
+        {
           routeLink: 'account',
           icon: 'settings',
           label: 'Ustawienia konta',

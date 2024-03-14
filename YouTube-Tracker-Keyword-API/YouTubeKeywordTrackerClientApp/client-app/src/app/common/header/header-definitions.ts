@@ -13,6 +13,7 @@ interface IHeaderDefinitions {
   report: IHeaderDefinition;
   reportDetails: IHeaderDefinition;
   mainPage: IHeaderDefinition;
+  subtitlesPage: IHeaderDefinition;
 }
 
 export const HEADER_DEFINITIONS: IHeaderDefinitions = {
@@ -53,6 +54,11 @@ export const HEADER_DEFINITIONS: IHeaderDefinitions = {
   },
   mainPage: {
     title: 'Strona główna',
+    imgSource: '../../../assets/logo.jpg',
+    imgAlt: 'Logo',
+  },
+  subtitlesPage: {
+    title: 'Generuj Napisy',
     imgSource: '../../../assets/logo.jpg',
     imgAlt: 'Logo',
   },
