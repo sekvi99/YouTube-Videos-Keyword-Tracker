@@ -54,6 +54,14 @@ $nav-light-color: #fff;
     width: 100%;
     margin-bottom: 0.6rem;
 
+    .sidenav-nav-link.active {
+      color: $secondary-color;
+
+      .sidenav-link-icon {
+        color: $secondary-color;
+      }
+    }
+
     .sidenav-nav-link {
       display: flex;
       align-items: center;

@@ -7,6 +7,7 @@ import {
 } from '../../state/auth/auth.selectors';
 import { IState } from '../../state';
 import { NavigationService } from '../../services/navigation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -20,6 +21,7 @@ export class SideNavComponent {
 
   constructor(
     private store: Store<IState>,
+    private router: Router,
     public navigationService: NavigationService
   ) {}
 
@@ -33,5 +35,9 @@ export class SideNavComponent {
 
   public closeSidenav(): void {
     this.collapsed = false;
+  }
+
+  public isActiveRoute(route: string): boolean {
+    return route === this.router.url.replace('/', '');
   }
 }

@@ -10,6 +10,7 @@
       <a
         class="sidenav-nav-link"
         [routerLink]="[data.routeLink]"
+        [ngClass]="{ active: isActiveRoute(data.routeLink) }"
         *ngIf="
           data.guard(isUserAuthenticated$ | async, hadUserAdminRights$ | async)
         "
