@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class UrlFormatPipe implements PipeTransform {
   transform(url: string): string {
-    console.log(url);
     return url;
   }
 }

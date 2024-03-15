@@ -22,4 +22,8 @@ export class MainPageComponent {
     public navigationService: NavigationService,
     private store: Store<IState>
   ) {}
+
+  get pages() {
+    return this.navigationService.navigation.pages;
+  }
 }
