@@ -49,3 +49,6 @@ __pycache__/
 
 # Mail credentials
 mailsettings.json
+
+# Github api credentials
+githubsettings.json

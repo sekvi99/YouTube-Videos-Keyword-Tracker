@@ -1,11 +1,14 @@
 # Api Set up
+
 **Description**\
 In order to use the api correctly, it is necessary to create a file called _mailsettings.json_.
+Next file you need to create is _githubsettings.json_.
 
 **Directory structure**\
-![Alt text](image.png)
+![alt text](image-1.png)
 
-The structure of the file is as follows and is shown below.
+The structure of the file _mailsettings.json_ is as follows and is shown below.
+
 ```
 {
   "SmtpServer": Your smtp server string,
@@ -15,3 +18,14 @@ The structure of the file is as follows and is shown below.
 }
 ```
 
+Structure of _githubsettings.json_ looks like below.
+
+```
+{
+  "Token": Github personal access token,
+  "Encoding": "gzip, deflate, br",
+  "Accept": "*/*",
+  "GithubApiVersion": Current github api version,
+  "UserAgent": Agent type of your client
+}
+```

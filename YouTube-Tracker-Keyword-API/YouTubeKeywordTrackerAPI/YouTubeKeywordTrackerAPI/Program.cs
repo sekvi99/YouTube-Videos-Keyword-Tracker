@@ -16,18 +16,28 @@ using YouTubeKeywordTrackerAPI.Services.Interfaces.ExternalDataService;
 using NLog.Web;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Authentication.Roles;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Email;
-using MailKit;
 using YouTubeKeywordTrackerAPI.Services.Interfaces.Raport;
 using PdfSharp.Fonts;
 using YouTubeKeywordTrackerAPI.Helpers;
+using YouTubeKeywordTrackerAPI.Services.Interfaces.Version;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<YouTubeKeywordTrackerDbContext>();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("github", client =>
+{
+    client.DefaultRequestHeaders.Add("Accept", "*/*");
+    client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate, br");
+})
+.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+{
+    AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
+});
 // builder.Services.AddScoped<IMailService, MailService>();
+builder.Services.AddScoped<IVersionConfigService, VersionConfigService>();
+builder.Services.AddScoped<IVersionService, VersionService>();
 builder.Services.AddScoped<IMailConfig, MailConfigService>();
 builder.Services.AddScoped<IRaportService, RaportService>();
 builder.Services.AddScoped<IRaportFileService, RaportFileService>();

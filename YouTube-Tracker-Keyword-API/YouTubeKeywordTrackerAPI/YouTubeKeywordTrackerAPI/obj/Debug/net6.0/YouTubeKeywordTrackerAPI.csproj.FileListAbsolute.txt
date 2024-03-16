@@ -91,3 +91,4 @@ A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\de\PdfSharp.Charting.resources.dll
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\de\PdfSharp.resources.dll
 A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+A:\GithubProjects\Projekt Magisterski App\YouTube-Videos-Keyword-Tracker\YouTube-Tracker-Keyword-API\YouTubeKeywordTrackerAPI\YouTubeKeywordTrackerAPI\bin\Debug\net6.0\githubsettings.json
