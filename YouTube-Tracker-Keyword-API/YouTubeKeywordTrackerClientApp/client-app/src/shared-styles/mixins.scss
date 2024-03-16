@@ -7,6 +7,13 @@
   justify-content: center;
 }
 
+@mixin flexColumnCentered() {
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
 @mixin flexContentCentered() {
   display: flex;
   align-items: center;

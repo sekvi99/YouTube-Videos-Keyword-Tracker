@@ -17,3 +17,12 @@
     </a>
   </ng-container>
 </div>
+<div class="version-container" *ngIf="appVersion$ | async as version">
+  <ng-container *ngIf="version">
+    <h6>Autor: {{ version.author }}</h6>
+    <h6>E-mail autora: {{ version.email }}</h6>
+    <h6>Wiadomość ostatniego commit'a: {{ version.message }}</h6>
+    <h6>Data ostatniego commit'a: {{ version.date | dateFormat }}</h6>
+    <h6>Sha: {{ version.sha }}</h6>
+  </ng-container>
+</div>

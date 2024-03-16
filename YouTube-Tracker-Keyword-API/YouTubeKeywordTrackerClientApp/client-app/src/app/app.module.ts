@@ -48,6 +48,7 @@ import { MailFormComponent } from './common/mail/mail-form/mail-form.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SubtitlesGeneratePageComponent } from './pages/subtitles-generate-page/subtitles-generate-page.component';
 import { UrlFormatPipe } from './pipes/url-format.pipe';
+import { DateFormatPipe } from './pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { UrlFormatPipe } from './pipes/url-format.pipe';
     MainPageComponent,
     SubtitlesGeneratePageComponent,
     UrlFormatPipe,
+    DateFormatPipe,
   ],
   imports: [
     BrowserModule,

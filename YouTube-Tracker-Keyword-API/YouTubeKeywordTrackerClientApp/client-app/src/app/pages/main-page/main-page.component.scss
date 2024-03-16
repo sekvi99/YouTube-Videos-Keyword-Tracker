@@ -3,6 +3,7 @@
 
 // Container variables
 $container-padding: 50px;
+$version-container-padding: 100px;
 
 // Tile variables
 $tile-border-radius: 10%;
@@ -12,6 +13,9 @@ $tile-margin: 1rem;
 
 // Tile elemenet variables
 $tile-elements-space: 3px;
+
+// Version variables
+$version-info-margin: 3px;
 
 .tiles-container {
   @include flexContainerCentered();
@@ -41,5 +45,14 @@ $tile-elements-space: 3px;
     & > *:last-child {
       margin: 0;
     }
+  }
+}
+
+.version-container {
+  @include flexColumnCentered();
+  padding: $version-container-padding;
+
+  & > h6 {
+    margin: $version-info-margin;
   }
 }
