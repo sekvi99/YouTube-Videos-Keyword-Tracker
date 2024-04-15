@@ -48,4 +48,25 @@ public class YouTubeSubititlesService : IYouTubeSubtitlesService
             Items = subtitles ?? Enumerable.Empty<VideoSubtitleDto>()
         };
     }
+
+    public async Task<string> GetVideoTranscriptionAsync(VideoUrlDto video)
+    {
+        var httpClient = _httpClientFactory.CreateClient();
+        httpClient.BaseAddress = new Uri(_defaultUrl);
+
+        string apiUrl = "/api/generate-subtitles";
+
+        var requestBody = new { videoUrl = video.VideoUrl };
+        var jsonBody = JsonConvert.SerializeObject(requestBody);
+        HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+        HttpResponseMessage response = await httpClient.PostAsync(apiUrl, content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new ApiConnectionException("Unable to connect with Python API service");
+        }
+
+        return await response.Content.ReadAsStringAsync();
+    }
 }

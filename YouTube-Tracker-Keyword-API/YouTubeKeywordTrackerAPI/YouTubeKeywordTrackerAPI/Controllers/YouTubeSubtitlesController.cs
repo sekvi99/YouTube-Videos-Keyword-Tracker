@@ -21,4 +21,10 @@ public class YouTubeSubtitlesController : ControllerBase
         var collection = await _youTubeSubtitlesService.GetVideoSubtitlesAsync(videoUrl.VideoUrl);
         return Ok(collection);
     }
+    [HttpPost("generateTranscription")]
+    public async Task<IActionResult> GetVideoTranscriptionAsync([FromBody] VideoUrlDto videoUrl)
+    {
+        var transcription = await _youTubeSubtitlesService.GetVideoTranscriptionAsync(videoUrl);
+        return Ok(transcription);
+    }
 }

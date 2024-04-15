@@ -55,8 +55,7 @@ async def get_video_subtitles(
         
 @app.post('/api/generate-subtitles')
 async def generate_video_subtitles(
-    video: VideoDto,
-    language: LanguageDto
+    video: VideoDto
 ):
     logger.info(f"Downloading videos audio for url: {video.videoUrl}")
     audio_file_name = get_audio(video_url=video.videoUrl)
