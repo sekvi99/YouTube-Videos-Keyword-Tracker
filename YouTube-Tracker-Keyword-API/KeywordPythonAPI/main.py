@@ -1,14 +1,17 @@
+import time
+
 from fastapi import FastAPI, HTTPException, Path
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.consts import *
 from app.controller.api_controllers.youtube_api_controller import \
     YouTubeApiController
+from app.helpers.process_audio_request import get_audio, transcribe_audio
 from app.helpers.process_subtitles_request import extract_video_subtitles
 from app.models.entity_dto import Entity
 from app.models.keyword_dto import KeywordDto
 from app.models.keyword_raport_dto import KeywordRaportDto
-from app.models.video_dto import VideoDto
+from app.models.video_dto import LanguageDto, VideoDto
 from logger_conf import logger
 
 app = FastAPI()
@@ -49,6 +52,23 @@ async def get_video_subtitles(
         raise HTTPException(status_code=500, detail="Failed to extract subtitles")
 
     return subitles
+        
+@app.post('/api/generate-subtitles')
+async def generate_video_subtitles(
+    video: VideoDto,
+    language: LanguageDto
+):
+    logger.info(f"Downloading videos audio for url: {video.videoUrl}")
+    audio_file_name = get_audio(video_url=video.videoUrl)
+    logger.info(f"Audio for provided url: {video.videoUrl} has been downloaded")
+    time.sleep(2) # * Sleep to avoid conversion to mp3 error
+    logger.info(f"Audio has been converted to mp3 format")
+    transcription = transcribe_audio(audio_file_name, ASSEMBLY_AI_API_KEY)
+    
+    if transcription is not None:
+        return transcription
+    
+    raise HTTPException(status_code=500, detail="Failed to create transcription for provided url")
         
 @app.post('/api/keyword-raport', response_model=KeywordRaportDto)
 async def create_keyword_raport(
