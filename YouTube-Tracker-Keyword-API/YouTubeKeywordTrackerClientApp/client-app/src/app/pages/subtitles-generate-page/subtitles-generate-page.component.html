@@ -3,4 +3,36 @@
   [imgSource]="headerDefinition.imgSource"
   [imgAlt]="headerDefinition.imgAlt"
 ></app-header>
-<div class="container"></div>
+<div class="container">
+  <div class="generate-subtitles-form">
+    <form [formGroup]="generateSubtitlesForm" (ngSubmit)="onSubmit()">
+      <div class="fields-container">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="Url"
+            formControlName="videoUrl"
+          />
+          <mat-error
+            *ngIf="generateSubtitlesForm.get('videoUrl')?.hasError('required')"
+            >Url do filmu jest wymagany</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="form-actions">
+        <button
+          class="buttons-confirm"
+          type="submit"
+          [disabled]="generateSubtitlesForm.invalid"
+        >
+          Rozpocznij transkrypcje
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="subtitles-container" *ngIf="subtitles">
+  {{ subtitles }}
+</div>
+<mat-spinner *ngIf="isGenerateSubtitlesInProgress$ | async"></mat-spinner>

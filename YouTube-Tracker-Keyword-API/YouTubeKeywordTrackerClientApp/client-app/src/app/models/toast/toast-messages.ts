@@ -1,43 +1,50 @@
 export enum LoginActionMessages {
-    Info = 'Logowanie do systemu!',
-    Error = 'Wystąpił błąd, nie udało się zalogować!',
-    Success = 'Witaj, poprawnie zalogowano!'
+  Info = 'Logowanie do systemu!',
+  Error = 'Wystąpił błąd, nie udało się zalogować!',
+  Success = 'Witaj, poprawnie zalogowano!',
 }
 
 export enum RegisterActionMessages {
-    Info = 'Rejestrowanie użytkownika w systemie',
-    Error = 'Wystąpił błąd, nie udało się zarejstrować użytkownika w systemie',
-    Success = 'Sukces, poprawnie zarejestrowano!',
-    PasswordMismatchError = 'Wystąpił błąd, wprowadzone hasła nie są takie same',
+  Info = 'Rejestrowanie użytkownika w systemie',
+  Error = 'Wystąpił błąd, nie udało się zarejstrować użytkownika w systemie',
+  Success = 'Sukces, poprawnie zarejestrowano!',
+  PasswordMismatchError = 'Wystąpił błąd, wprowadzone hasła nie są takie same',
 }
 
 export enum LogoutActionMessages {
-    Success = 'Sukces, poprawnie wylogowano!',
-    NotAuthorized = 'Nastąpi wylogowanie, token wygasł!'
+  Success = 'Sukces, poprawnie wylogowano!',
+  NotAuthorized = 'Nastąpi wylogowanie, token wygasł!',
 }
 
 export enum DataActionMessages {
-    Info = 'Dodawanie danych!',
-    AddSuccess = 'Sukces, poprawnie dodano dane!',
-    AddError = 'Wystąpił błąd, nie udało się dodać danych!',
-    EditSuccess = 'Sukces, udało się zmienić dane!',
-    EditError = 'Wystąpił błąd, nie udało się zmienić danych',
-    DeleteSuccess = 'Sukces, udało się usunąć dane!',
-    DeleteError = 'Wystąpił błąd, nie udało usunąć się danych'
+  Info = 'Dodawanie danych!',
+  AddSuccess = 'Sukces, poprawnie dodano dane!',
+  AddError = 'Wystąpił błąd, nie udało się dodać danych!',
+  EditSuccess = 'Sukces, udało się zmienić dane!',
+  EditError = 'Wystąpił błąd, nie udało się zmienić danych',
+  DeleteSuccess = 'Sukces, udało się usunąć dane!',
+  DeleteError = 'Wystąpił błąd, nie udało usunąć się danych',
 }
 
 export enum FileMessages {
-    FetchError = 'Wystąpił błąd, nie udało pobrać się zawartości pliku!'
+  FetchError = 'Wystąpił błąd, nie udało pobrać się zawartości pliku!',
 }
 
 export enum ReportMessages {
-    ReportCreationInfo = 'Generowanie nowego raportu!',
-    ReportCreationSuccess = 'Sukces, pomyślnie utworzono nowy raport!',
-    ReportCreationError = 'Wystąpił błąd, nie udało się stworzyć nowego raportu!',
+  ReportCreationInfo = 'Generowanie nowego raportu!',
+  ReportCreationSuccess = 'Sukces, pomyślnie utworzono nowy raport!',
+  ReportCreationError = 'Wystąpił błąd, nie udało się stworzyć nowego raportu!',
 }
 
 export enum MailMessages {
-    MailInfo = 'Tworzenie wiadomości e-mail!',
-    MailSuccess = 'Pomyślnie wysłano wiadomość e-mail!',
-    MailError = 'Wystąpił błąd, nie udało wysłać się wiadomości e-mail!'
+  MailInfo = 'Tworzenie wiadomości e-mail!',
+  MailSuccess = 'Pomyślnie wysłano wiadomość e-mail!',
+  MailError = 'Wystąpił błąd, nie udało wysłać się wiadomości e-mail!',
+}
+
+export enum GenerateSubtitlesMessages {
+  Info = 'Nastąpi generowanie napisów dla podanego url',
+  TranscriptError = 'Wystąpił błąd, podczas transkrypcji',
+  UrlError = 'Wystąpił błąd, podany url nie zawiera youtube',
+  Success = 'Poprawnie wygenerowano napisy',
 }
