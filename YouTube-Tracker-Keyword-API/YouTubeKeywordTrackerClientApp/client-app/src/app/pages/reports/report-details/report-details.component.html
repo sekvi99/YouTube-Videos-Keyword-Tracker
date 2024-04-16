@@ -1,45 +1,41 @@
 <div class="details-container">
-    <app-header
-        [title]="headerDefinition.title"
-        [imgSource]="headerDefinition.imgSource"
-        [imgAlt]="headerDefinition.imgAlt"
-    ></app-header>
-    
-    <div class="buttons-container">
-        <app-add-data-button
-            [buttonLabel]="raportFileButtonLabel"
-            (onAddDataButtonClick)="onDownloadReportClick($event)"
-        ></app-add-data-button>
+  <app-header
+    [title]="headerDefinition.title"
+    [imgSource]="headerDefinition.imgSource"
+    [imgAlt]="headerDefinition.imgAlt"
+  ></app-header>
 
-        <app-add-data-button
-            [buttonLabel]="sentReportsViaMailButtonLabel"
-            (onAddDataButtonClick)="onSentMailReportClick($event)"
-        ></app-add-data-button>
-    </div>
+  <div class="buttons-container">
+    <app-add-data-button
+      [buttonLabel]="raportFileButtonLabel"
+      (onAddDataButtonClick)="onDownloadReportClick($event)"
+    ></app-add-data-button>
 
-    <mat-spinner *ngIf="(isFetchingFile$ | async)"></mat-spinner>
-    <div class="tabs-container">
-        <mat-tab-group class="report-tabs">
-            <mat-tab
-                label="Statystyki"
-            >
-                <app-simple-table
-                    *ngIf="reportData"
-                    [data]="reportData?.raportReadouts"
-                    [dataColumns]="reportReadoutsColumns"
-                    (onRowClick)="onVideoOpenClick($event)"
-                ></app-simple-table>
-            </mat-tab>
-            <mat-tab
-                label="Dashboard"
-            >
-                <app-video-views-chart
-                    *ngIf="reportData"
-                    [data]="reportData?.raportReadouts"
-                ></app-video-views-chart>
-            </mat-tab>
-        </mat-tab-group>
-    </div>
+    <app-add-data-button
+      [buttonLabel]="sentReportsViaMailButtonLabel"
+      (onAddDataButtonClick)="onSentMailReportClick($event)"
+    ></app-add-data-button>
+  </div>
+
+  <mat-spinner *ngIf="isFetchingFile$ | async"></mat-spinner>
+  <div class="tabs-container">
+    <mat-tab-group class="report-tabs">
+      <mat-tab label="Statystyki">
+        <app-simple-table
+          *ngIf="reportData"
+          [data]="reportData?.raportReadouts"
+          [dataColumns]="reportReadoutsColumns"
+          (onRowClick)="onVideoOpenClick($event)"
+        ></app-simple-table>
+      </mat-tab>
+      <mat-tab label="Dashboard">
+        <!-- <app-video-views-chart -->
+        <!-- *ngIf="reportData" -->
+        <!-- [data]="reportData?.raportReadouts" -->
+        <!-- ></app-video-views-chart> -->
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>
 <app-pdf-preview></app-pdf-preview>
 <app-mail-dialog></app-mail-dialog>
