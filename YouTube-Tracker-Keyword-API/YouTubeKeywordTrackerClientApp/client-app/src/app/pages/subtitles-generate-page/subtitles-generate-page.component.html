@@ -31,8 +31,8 @@
       </div>
     </form>
   </div>
+  <mat-spinner *ngIf="isGenerateSubtitlesInProgress$ | async"></mat-spinner>
 </div>
 <div class="subtitles-container" *ngIf="subtitles">
-  {{ subtitles }}
+  <p>{{ subtitles }}</p>
 </div>
-<mat-spinner *ngIf="isGenerateSubtitlesInProgress$ | async"></mat-spinner>

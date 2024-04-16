@@ -8,3 +8,17 @@
   justify-content: center;
   background-color: #fff;
 }
+
+.subtitles-container {
+  max-width: 450px;
+  margin: 0 auto;
+  margin-left: 300px;
+  padding: 20px;
+
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+  }
+}
