@@ -37,10 +37,15 @@ def transcribe_audio(audio_file_name: str, api_key: str) -> str | None:
         logger.error(f"Unable to transcribe, file: {audio_file_name} has not been found")
         return None
 
+    config = aai.TranscriptionConfig(
+        speech_model=aai.SpeechModel.nano,
+        language_detection=True
+    )
+
     aai.settings.api_key = api_key
 
     logger.info(f"Transcribing file: {audio_file_name}")
-    transcriber = aai.Transcriber()
+    transcriber = aai.Transcriber(config=config)
     transcript = transcriber.transcribe(audio_file_path)
     clear_directory(dir_path)
     
