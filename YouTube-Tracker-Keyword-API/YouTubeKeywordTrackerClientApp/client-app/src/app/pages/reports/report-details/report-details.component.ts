@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Subscription, BehaviorSubject } from 'rxjs';
+import { Subscription, BehaviorSubject, map } from 'rxjs';
 import {
   IReportDetail,
   IReportDetails,
@@ -20,6 +20,7 @@ import { ToastService } from '../../../services/toast.service';
 import { FileMessages } from '../../../models/toast/toast-messages';
 import { REPORT_READOUTS_COLUMNS_DEFINITION } from '../../../common/table/columns-definition';
 import { MailDialogComponent } from '../../../common/mail/mail-dialog/mail-dialog.component';
+import { getFormattedDate } from '../../../common/helpers/date-mapper';
 
 @Component({
   selector: 'app-report-details',
@@ -55,6 +56,17 @@ export class ReportDetailsComponent {
       if (reportId) {
         this.dataService
           .fetch<IReportDetails>(`${ReportsEndpoints.Report}/${reportId}`)
+          .pipe(
+            map((details) => {
+              details.raportReadouts = details.raportReadouts.map((readout) => {
+                return {
+                  ...readout,
+                  publishedAt: getFormattedDate(readout.publishedAt as Date),
+                };
+              });
+              return details;
+            })
+          )
           .subscribe((response) => {
             this.reportData = response;
           });

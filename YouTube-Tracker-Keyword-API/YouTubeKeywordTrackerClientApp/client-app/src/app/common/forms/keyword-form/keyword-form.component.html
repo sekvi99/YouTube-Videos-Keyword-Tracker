@@ -1,17 +1,25 @@
 <div class="form-container">
-    <form [formGroup]="keywordForm" (ngSubmit)="onSubmit()">
-        <mat-form-field>
-            <mat-label>Słowo kluczowe</mat-label>
-            <input matInput type="text" placeholder="Słowo kluczowe" formControlName="keyword" />
-            <mat-error *ngIf="keywordForm.get('keyword')?.hasError('required')"
-            >Słowo kluczowe jest wymagane</mat-error>
-        </mat-form-field>
-        <div class="form-actions">
-            <button 
-                class="buttons-confirm"
-                type="submit"
-                [disabled]="keywordForm.invalid"
-            >Dodaj</button>
-        </div>
-    </form>
+  <form [formGroup]="keywordForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Słowo kluczowe</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Słowo kluczowe"
+        formControlName="keyword"
+      />
+      <mat-error *ngIf="keywordForm.get('keyword')?.hasError('required')"
+        >Słowo kluczowe jest wymagane</mat-error
+      >
+    </mat-form-field>
+    <div class="form-actions">
+      <button
+        class="buttons-confirm"
+        type="submit"
+        [disabled]="keywordForm.invalid"
+      >
+        {{ editMode ? "Edytuj" : "Dodaj" }}
+      </button>
+    </div>
+  </form>
 </div>
