@@ -31,6 +31,7 @@ export class SubtitlesGeneratePageComponent extends FormComponent {
       return;
     }
 
+    this.toastService.info(GenerateSubtitlesMessages.Info);
     this.isGenerateSubtitlesInProgress$.next(true);
     this.dataService
       .post(

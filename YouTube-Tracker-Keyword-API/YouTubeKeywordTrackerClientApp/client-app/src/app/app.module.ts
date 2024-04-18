@@ -49,6 +49,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SubtitlesGeneratePageComponent } from './pages/subtitles-generate-page/subtitles-generate-page.component';
 import { UrlFormatPipe } from './pipes/url-format.pipe';
 import { DateFormatPipe } from './pipes/date.pipe';
+import { TruncateTextDirective } from './directives/truncate-text.directive';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { DateFormatPipe } from './pipes/date.pipe';
     SubtitlesGeneratePageComponent,
     UrlFormatPipe,
     DateFormatPipe,
+    TruncateTextDirective,
   ],
   imports: [
     BrowserModule,

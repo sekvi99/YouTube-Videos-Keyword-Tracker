@@ -25,6 +25,7 @@
           class="buttons-confirm"
           type="submit"
           [disabled]="generateSubtitlesForm.invalid"
+          style="margin-bottom: 10px"
         >
           Rozpocznij transkrypcje
         </button>
@@ -33,6 +34,6 @@
   </div>
   <mat-spinner *ngIf="isGenerateSubtitlesInProgress$ | async"></mat-spinner>
 </div>
-<div class="subtitles-container" *ngIf="subtitles">
+<div class="subtitles-container" *ngIf="subtitles" truncateText>
   <p>{{ subtitles }}</p>
 </div>

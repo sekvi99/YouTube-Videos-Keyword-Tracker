@@ -1,9 +1,9 @@
-@import 'color-variables';
+@import "color-variables";
 
 @mixin iconHover($background-color, $color) {
-    background-color: $background-color;
-    color: $color;
-    transition: ease-in-out 0.15s all;
+  background-color: $background-color;
+  color: $color;
+  transition: ease-in-out 0.15s all;
 }
 
 .table-container {
@@ -11,8 +11,9 @@
   margin: 0 auto;
   margin-bottom: 10px;
   position: relative;
+  display: flex;
 
-  & table tr:hover{
+  & table tr:hover {
     background-color: $primary-color;
     color: $secondary-color;
     cursor: pointer;
@@ -31,19 +32,24 @@
     justify-content: center;
     z-index: 2;
   }
-  
+
+  mat-paginator {
+    bottom: 0;
+    position: fixed;
+  }
+
   .data-table {
-    width: 100%;
+    max-width: 800px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
     ::ng-deep .mat-header-row:hover {
-        background-color: $table-row-hover;
-        color: $text-color;
+      background-color: $table-row-hover;
+      color: $text-color;
     }
 
     ::ng-deep .mat-row:hover {
-        background-color: $table-row-hover;
-        color: $text-color;
+      background-color: $table-row-hover;
+      color: $text-color;
     }
 
     .mat-icon {
@@ -56,19 +62,19 @@
     }
 
     .edit-table-icon {
-        color: $secondary-color;
-        
-        &:hover {
-            @include iconHover($secondary-color, $text-color);
-        }
+      color: $secondary-color;
+
+      &:hover {
+        @include iconHover($secondary-color, $text-color);
+      }
     }
 
     .delete-table-icon {
-        color: $error-color;
+      color: $error-color;
 
-        &:hover {
-            @include iconHover($error-color, $text-color);
-        }
+      &:hover {
+        @include iconHover($error-color, $text-color);
+      }
     }
   }
 }
